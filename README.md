@@ -7,10 +7,6 @@ Basically, it works like the native git gui.
 
 It still lacks a few features, please help me improve it!
 
-[node-webkit](https://github.com/rogerwang/node-webkit)
-
-[git-utils](https://github.com/atom/git-utils)
-
 ## Features
 
 * Real-time multiple file diff information with line numbers.
@@ -21,7 +17,7 @@ It still lacks a few features, please help me improve it!
 ## Download Linux build
 
 Coming soon...
-[Linux 64bit]()
+[Linux 64bit](...)
 
 ### How to use
 
@@ -45,8 +41,11 @@ I'mk working on the following features
 ## Quick Start for developers
 
 Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) for details on how to run apps.
-Clone repo and make sure to install node dependencies by executing `npm install` inside `resources/node_modules/git_watcher`
+
+Clone repo and make sure to install node dependencies by executing `npm install` inside `resources/node_modules/git-watcher`
+
 Also, in the resources folder, you will find a helper script `build.sh` that creates a Linux build.
+
 It asumes you have node-webkit installed on `/opt/node-webkit`.
 
 ## Troubleshooting
