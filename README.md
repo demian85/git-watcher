@@ -17,7 +17,7 @@ It still lacks a few features, please help me improve it!
 ## Download Linux build
 
 Coming soon...
-[Linux 64bit](...)
+[Linux 64bit](https://www.dropbox.com/s/vcvbd18zjnz180q/git-watcher-linux-x64.tar.gz)
 
 ### How to use
 
