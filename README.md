@@ -42,11 +42,14 @@ I'mk working on the following features
 
 Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) for details on how to run apps.
 
-Clone repo and make sure to install node dependencies by executing `npm install` inside `resources/node_modules/git-watcher`
+* Clone repo 
+* Install node dependencies by executing `npm install` inside `resources/node_modules/git-watcher`.
+* Install *nw-gyp*: `npm install -g nw-gyp`
+* Rebuild *git-utils* and *mmmagic* dependencies based on the node-webkit version you are running. Eg: `nw-gyp rebuild --target=0.8.4`
+* Download node-webkit and extract its contents in `/opt/node-webkit`
+* Run the app! `/opt/node-webkit/nw /path/to/git-watcher/resources`
 
-Also, in the resources folder, you will find a helper script `build.sh` that creates a Linux build.
-
-It asumes you have node-webkit installed on `/opt/node-webkit`.
+Also, in the resources folder, you will find a helper script `build.sh` that creates a Linux build. It asumes you have node-webkit installed on `/opt/node-webkit`.
 
 ## Troubleshooting
 
