@@ -14,19 +14,9 @@ It still lacks a few features, please help me improve it!
 * Allows you to open files by clicking on its name of line number.
 * Shows current branch information: upstream branch and ahead/behind commit count.
 
-## Download Linux build
-
-Coming soon...
-[Linux 64bit](https://www.dropbox.com/s/vcvbd18zjnz180q/git-watcher-linux-x64.tar.gz)
-
-### How to use
-
-Extract file contents and just execute `./run.sh /path/to/repository`
-See `config.json`file for more options.
-
 ## TODO 
 
-I'mk working on the following features
+I'm working on the following features
 (your help will be much appreciated!)
 
 * Amend commit: I don't even know how to do it!
@@ -38,7 +28,16 @@ I'mk working on the following features
 * Git log
 * UI improvements
 
-## Quick Start for developers
+## Download
+
+[Linux 64bit](https://www.dropbox.com/s/vcvbd18zjnz180q/git-watcher-linux-x64.tar.gz)
+
+## How to run the app
+
+Extract file contents and just execute `./run.sh /path/to/repository`
+See `config.json`file for more options.
+
+## Quick start for developers
 
 Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) for details on how to run apps.
 
