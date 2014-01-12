@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Git GUI</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<script src="GitWatcher.js"></script>
+		<script src="index.js"></script>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body onload="init()">
+		
+		<template id="gitModuleTpl">
+			<div class="module">
+				<header>
+					<div class="branchInfo"></div>
+				</header>
+				<h2 class="unstagedTitle">Unstaged Files</h2>
+				<div class="row unstagedFiles">
+					<div class="box fileListColumn">
+						<ul class="fileList"></ul>
+					</div>
+					<div class="box diff"></div>
+				</div>
+				<h2 class="stagedTitle">Staged Files</h2>
+				<div class="row stagedFiles">
+					<div class="box fileListColumn">
+						<ul class="fileList"></ul>
+					</div>
+					<div class="box diff"></div>
+				</div>
+				<div class="controls">
+					<div>
+						<label><input type="radio" value="new" class="commitOption" checked /> New commit</label>
+						<label><input type="radio" value="amend" class="commitOption" disabled /> Amend commit</label>
+					</div>
+					<textarea rows="3" cols="40" class="commitMessage"></textarea>
+					<div class="buttonPanel">
+						<button class="commitButton">Commit</button>
+					</div>					
+				</div>
+			</div>
+		</template>
+	
+		<template id="gitModuleFileTpl">
+			<div class="file">
+				<label>
+					<span class="fileName"></span>
+					<span class="fileStatus"></span>
+					<span class="fileType"></span>
+				</label>
+				<div class="fileDiffContents"></div>
+			</div>
+		</template>
+	
+		<template id="gitModuleLabelTpl">
+			<li class="moduleLabel" tabindex="-1"></li>
+		</template>
+	
+		<template id="gitFileListItemTpl">
+			<li></li>
+		</template>
+	
+		<div id="main">
+			<header>
+				<ul id="gitModules"></ul>
+			</header>
+		</div>
+	
+	</body>
+</html>

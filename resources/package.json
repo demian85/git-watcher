@@ -1,0 +1,25 @@
+{
+	"name": "git-watcher",
+	"main": "index.html",
+	"version": "0.0.1",
+	"keywords": ["git", "gui", "diff", "tool", "commit", "push", "realtime"],
+	"window": {
+		"title": "Git GUI",
+		"width": 1024,
+		"height": 768,
+		"position": "center",
+		"toolbar": true
+	},
+	"contributors": [
+		{
+			"name": "Demián Rodriguez",
+			"email": "demian85@gmail.com"
+		}
+	],
+	"repositories": [
+		{
+			"type": "git", 
+			"url": "http://github.com/example.git"
+		}
+	]
+}

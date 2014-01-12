@@ -1,0 +1,224 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	font-family: "dejavu sans", sans-serif;
+	height: 100%;
+}
+
+#main {
+	height: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+}
+#main > header {
+	overflow: auto;
+	flex: 0 0 auto;
+}
+
+.row {
+	display: flex;
+	flex-flow: row nowrap;
+	flex: 1 1 auto;
+	min-height: 100px;
+}
+
+.box {
+	border: 1px solid gray;
+	border-radius: 6px;
+	margin: 0.2rem;
+}
+.box.fileListColumn {
+	flex: 0 0 auto;
+	min-width: 150px;
+	overflow: auto;
+}
+.box.diff {
+	display: flex;
+	flex-flow: row wrap;
+	flex: 1 1 auto;
+	overflow: auto;
+}
+
+.file {
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	margin: 0.2rem;
+	display: flex;
+	flex-flow: column nowrap;
+	flex: 1 1 auto;
+	min-height: 10rem;
+}
+.file.selected {
+	border: 1px solid blue;
+	min-height: 15rem;
+	min-width: 20rem;
+}
+.file > label {
+	display: block;
+	font-size: 0.9rem;
+	background: #eee;
+	padding: 0.3rem;
+	border-radius: 6px 6px 0 0;
+	flex: 0 0 auto;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.file .fileName {
+	font-weight: bold;
+	cursor: pointer;
+	margin-right: 1rem;
+}
+.file .fileName:hover {
+	text-decoration: underline;
+}
+.file .fileStatus {
+	margin-right: 1rem;
+}
+.file .status {
+	margin-left: 1rem;
+}
+.file .status.deleted {
+	color: red;
+}
+.file .status.modified {
+	color: blue;
+}
+.file .status.new {
+	color: #4f8044;
+}
+.file .emptyLabel {
+	color: blue;
+	font-weight: bold;
+}
+
+.fileDiffContents {
+	overflow: auto;
+	white-space: pre;
+	font-family: "dejavu sans mono", monospace;
+	font-size: 0.9rem;
+	flex: 1 1 20%;
+	margin: 0 0.2rem 0.2rem 0.2rem;
+}
+.range {
+	display: block;
+	padding: 0.1rem 0 0.2rem 0;
+	border-bottom: 1px dotted #ccc;
+}
+.range:last-child {
+	border-bottom: 0;
+}
+.line {
+	display: inline-block;
+	width: 20px;
+	color: #000;
+	background-color: #ddd;
+	margin-right: 0.2rem;
+	padding: 0 0.2rem;
+	text-align: right;
+	cursor: default;
+	-webkit-user-select: none;
+}
+.deleted {
+	color: red;
+}
+.added {
+	color: #4f8044;
+}
+.added .line {
+	cursor: pointer;
+}
+.added .line:hover {
+	text-decoration: underline;
+}
+
+#gitModules {
+	list-style-type: none;
+	margin: 0.5rem 0 0 0;
+	padding: 0 0.5rem;
+	border-bottom: 1px solid gray;
+	flex: 0 0 auto;
+}
+#gitModules > li {
+	display: inline-block;
+	margin: 0 0.5rem 0 0;
+	padding: 0.5rem;
+	background: #ccc;
+	border: 1px solid gray;
+	border-radius: 3px 3px 0 0;
+	cursor: pointer;
+	position: relative;
+	top: 1px;
+	transition: background-color 0.1s linear;
+}
+#gitModules > li:focus {
+	outline: 0;
+}
+#gitModules > li:hover {
+	background: #ddd;
+}
+#gitModules > li.visible {
+	border-bottom: 1px solid #fff;
+	background: #fff;
+}
+
+.module {
+	display: none;
+	flex: 1 1 auto;
+	margin: 0.5rem;
+}
+.module.visible {
+	display: flex;
+	flex-flow: column nowrap;
+}
+.module > header {
+	margin: 0 0.2rem;
+	flex: 0 0 auto;
+}
+
+.module h1.title {
+	font-size: 1.2rem;
+	margin: 0;
+	padding: 0.5rem;
+}
+.module > h2 {
+	font-size: 1rem;
+	padding: 0.3rem 0.5rem;
+	border-radius: 6px;
+	margin: 0.5rem 0.2rem 0 0.2rem;
+	flex: 0 0 auto;
+}
+.module h2:first-child {
+	margin-top: 0;
+}
+.module h2.unstagedTitle {
+	background-color: rgba(255, 0, 0, 0.3);
+}
+.module h2.stagedTitle {
+	background-color: rgba(0, 255, 0, 0.5);
+}
+.module .fileList {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.module .fileList > li {
+	margin: 0;
+	padding: 0.3rem;
+	cursor: default;
+	transition: background-color 0.1s linear;
+}
+.module .fileList > li:hover {
+	background-color: rgba(0, 0, 255, 0.1);
+}
+.module .fileList > li.selected {
+	background-color: rgba(0, 0, 255, 0.2);
+}
+.module > .controls {
+	flex: 0 0 auto;
+}
+.module .commitMessage {
+	box-sizing: border-box;
+	padding: 0.5rem;
+	resize: none;
+}
