@@ -1,14 +1,14 @@
 {
 	"name": "git-watcher",
 	"main": "index.html",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"keywords": ["git", "gui", "diff", "tool", "commit", "push", "realtime"],
 	"window": {
 		"title": "Git GUI",
 		"width": 1024,
 		"height": 768,
 		"position": "center",
-		"toolbar": true
+		"toolbar": false
 	},
 	"contributors": [
 		{

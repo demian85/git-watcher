@@ -1,6 +1,6 @@
 {
 	"defaultRepository": "",
-	"debugMode": true,
+	"debugMode": false,
 	"diff": {
 		"contextLines": 3
 	}
