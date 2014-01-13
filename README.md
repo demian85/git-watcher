@@ -1,9 +1,10 @@
 ## Introduction
 
 Git Watcher is a desktop app written in pure HTML and Javascript using node-webkit.
-It shows diff information about local staged/unstaged files in real-time and allows you to commit changes.
+
+It shows diff information about local staged/unstaged files in real-time and allows you to commit changes. Basically, it works like the native git gui.
+
 It also organizes repository submodules in tabs, so that you can work easily with them without the need of having multiple git gui instances or shells.
-Basically, it works like the native git gui.
 
 It still lacks a few features, please help me improve it!
 
@@ -19,7 +20,7 @@ It still lacks a few features, please help me improve it!
 I'm working on the following features
 (your help will be much appreciated!)
 
-* Amend commit: I don't even know how to do it!
+* Amend commit
 * Allow to open repository using system's file browser
 * Use cwd as the default repository
 * Configuration options
@@ -30,7 +31,9 @@ I'm working on the following features
 
 ## Download
 
-[Linux 64bit](https://www.dropbox.com/s/vcvbd18zjnz180q/git-watcher-linux-x64.tar.gz)
+I'll try to keep this updated.
+
+[Linux 64bit v0.0.1](https://www.dropbox.com/s/vcvbd18zjnz180q/git-watcher-linux-x64.tar.gz)
 
 ## How to run the app
 
