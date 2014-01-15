@@ -177,7 +177,7 @@ function _renderFileDiff(file) {
 			return '<div class="range">' + range.map(function(line) {
 				var lineTypeStr = (line.type === '-' ? 'deleted' : (line.type === '+' ? 'added' : 'neutral'));
 				var symbol = (line.type === '-' ? '-' : (line.type === '+' ? '+' : ' '));
-				return '<span class="' + lineTypeStr + '"><span class="line">' + line.line + '</span>' + symbol + ' ' + line.content.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span>';
+				return '<span class="' + lineTypeStr + '"><span class="line oldLine">' + (line.type === '-' ? line.oldLine : '') + '</span><span class="line newLine">' + (line.type !== '-' ? line.newLine : '') + '</span>' + symbol + ' ' + line.content.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span>';
 			}).join('\n') + '</div>';
 		}).join('');
 	} else {

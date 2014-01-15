@@ -6,9 +6,9 @@
 	"window": {
 		"title": "Git GUI",
 		"width": 1024,
-		"height": 768,
+		"height": 900,
 		"position": "center",
-		"toolbar": false
+		"toolbar": true
 	},
 	"contributors": [
 		{
