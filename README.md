@@ -54,9 +54,6 @@ Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) fo
 
 Also, in the resources folder, you will find a helper script `build.sh` that creates a Linux build. It asumes you have node-webkit installed on `/opt/node-webkit`.
 
-## Bugs
-
-Currently, there is a bug that shows line numbers incorrectly when a file contains deleted lines and no added lines. I'm working on it!
 
 ## Troubleshooting
 
