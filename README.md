@@ -12,7 +12,7 @@ It still lacks a few features, please help me improve it!
 
 * Real-time multiple file diff information with line numbers.
 * Allows you to work with submodules organized in tabs.
-* Allows you to open files by clicking on its name of line number.
+* Allows you to open files by clicking on its name or line number.
 * Shows current branch information: upstream branch and ahead/behind commit count.
 
 ## TODO 
@@ -21,11 +21,12 @@ I'm working on the following features
 (your help will be much appreciated!)
 
 * Amend commit
+* Better diff information, possibly like Github!
 * Allow to open repository using system's file browser
 * Use cwd as the default repository
 * Configuration options
 * Option to revert changes
-* Show file type nice icon and context menu with options
+* Show file type icon
 * Git log
 * UI improvements
 
@@ -52,6 +53,10 @@ Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) fo
 * Run the app! `/opt/node-webkit/nw /path/to/git-watcher/resources`
 
 Also, in the resources folder, you will find a helper script `build.sh` that creates a Linux build. It asumes you have node-webkit installed on `/opt/node-webkit`.
+
+## Bugs
+
+Currently, there is a bug that shows line numbers incorrectly when a file contains deleted lines and no added lines. I'm working on it!
 
 ## Troubleshooting
 
