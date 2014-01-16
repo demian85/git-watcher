@@ -20,8 +20,7 @@ It still lacks a few features, please help me improve it!
 I'm working on the following features
 (your help will be much appreciated!)
 
-* Amend commit
-* Better diff information, possibly like Github!
+* Amend commit (help I don't know how to do it without a proper API)
 * Allow to open repository using system's file browser
 * Use cwd as the default repository
 * Configuration options
