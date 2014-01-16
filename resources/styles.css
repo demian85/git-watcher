@@ -114,9 +114,8 @@ html, body {
 
 .fileDiffContents {
 	overflow: auto;
-	white-space: pre;
 	font-family: "dejavu sans mono", monospace;
-	font-size: 0.9rem;
+	font-size: 1rem;
 	flex: 1 1 20%;
 	margin: 0 0.2rem 0.2rem 0.2rem;
 }
@@ -128,27 +127,38 @@ html, body {
 .range:last-child {
 	border-bottom: 0;
 }
+.lineRow {
+	white-space: pre;
+	transition: background-color 0.05s linear;
+}
+.lineRow:hover,
+.lineRow:hover .line {
+	background-color: #f6e8b5;
+}
 .line {
 	display: inline-block;
-	width: 20px;
-	color: #000;
-	background-color: #ddd;
-	margin-right: 0.2rem;
+	width: 27px;
+	padding: 0.3rem;
+	color: #666;
+	border-right: 1px solid #ddd;
+	background-color: #f5f5f5;
 	padding: 0 0.2rem;
 	text-align: right;
 	cursor: default;
 	-webkit-user-select: none;
 }
 .deleted {
-	color: red;
+	background-color: #ffdddd;
 }
 .added {
-	color: #4f8044;
+	background-color: #ddffdd;
 }
-.added .line {
+.added .line,
+.neutral .line {
 	cursor: pointer;
 }
-.added .line:hover {
+.added .line:hover,
+.neutral .line:hover {
 	text-decoration: underline;
 }
 
