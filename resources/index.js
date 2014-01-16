@@ -177,7 +177,7 @@ function _renderFileDiff(file) {
 			return '<div class="range">' + range.map(function(line) {
 				var lineTypeStr = (line.type === '-' ? 'deleted' : (line.type === '+' ? 'added' : 'neutral'));
 				var symbol = (line.type === '-' ? '-' : (line.type === '+' ? '+' : ' '));
-				return '<span class="' + lineTypeStr + '"><span class="line oldLine">' + (line.type === '-' ? line.oldLine : '') + '</span><span class="line newLine">' + (line.type !== '-' ? line.newLine : '') + '</span>' + symbol + ' ' + line.content.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span>';
+				return '<div class="lineRow ' + lineTypeStr + '"><span class="line oldLine">' + (line.type === '-' ? line.oldLine : ' ') + '</span><span class="line newLine">' + (line.type !== '-' ? line.newLine : ' ') + '</span>' + symbol + ' ' + line.content.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>';
 			}).join('\n') + '</div>';
 		}).join('');
 	} else {
@@ -185,7 +185,7 @@ function _renderFileDiff(file) {
 	}
 	fileNode.querySelector('.fileDiffContents').innerHTML = diffHtml;
 	fileNode.addEventListener('click', function(e) {
-		if (e.target.webkitMatchesSelector('.fileName, .fileDiffContents .range .added .line')) {
+		if (e.target.webkitMatchesSelector('.fileName, .fileDiffContents .added .line, .fileDiffContents .neutral .line')) {
 			gui.Shell.openItem(file.path);
 		}
 	}, false);
