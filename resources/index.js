@@ -80,8 +80,7 @@ var UI = {
 		this._updateModuleBranch(moduleName, status.branch);
 		this._updateModuleFileList(moduleName, 'unstaged', status.unstaged);
 		this._updateModuleFileList(moduleName, 'staged', status.staged);
-		this._updateModuleFilesDiff(moduleName, 'unstaged', status.unstaged);
-		this._updateModuleFilesDiff(moduleName, 'staged', status.staged);
+		this._updateModuleFilesDiff(moduleName, status);
 		this._addFileSelectionEvents('unstaged');
 		this._addFileSelectionEvents('staged');
 	},
@@ -114,7 +113,7 @@ var UI = {
 	},
 	
 	_updateModuleFileList: function(moduleName, type, files) {
-		var listNode = $m(moduleName, '.' + type + 'Files .fileList');
+		var listNode = $m(moduleName, '.' + type + 'Files');
 		listNode.innerHTML = '';
 		files.map(function(file) {
 			return _renderFileListItem(file, type);
@@ -123,10 +122,17 @@ var UI = {
 		});
 	},
 	
-	_updateModuleFilesDiff: function(moduleName, type, files) {
-		var diffNode = $m(moduleName, '.' + type + 'Files .diff');
+	_updateModuleFilesDiff: function(moduleName, status) {
+		var diffNode = $m(moduleName, '.filesDiff');
 		diffNode.innerHTML = '';
-		files.map(_renderFileDiff).forEach(function(node) {
+		status.unstaged.map(function(file) {
+			return _renderFileDiff(file, 'unstaged');
+		}).forEach(function(node) {
+			diffNode.appendChild(node);
+		});
+		status.staged.map(function(file) {
+			return _renderFileDiff(file, 'staged');
+		}).forEach(function(node) {
 			diffNode.appendChild(node);
 		});
 	},
@@ -139,15 +145,15 @@ var UI = {
 	},
 	
 	_addFileSelectionEvents: function(type) {
-		var items = $$('.fileList > li, .diff > .file', $('.' + type + 'Files'));
+		var items = $$('.fileList > li, .file');
 		items.forEach(function(node) {
 			node.addEventListener('mousedown', function(e) {
 				if (this.classList.contains('selected')) return;
 				var clickedFileName = this.dataset.name;
+				var fileType = this.dataset.type;
 				items.forEach(function(node) {
-					if (node.dataset.name === clickedFileName) {
+					if (node.dataset.name === clickedFileName && node.dataset.type === fileType) {
 						node.classList.add('selected');
-						node.scrollIntoView(false);
 					} else {
 						node.classList.remove('selected');
 					}
@@ -160,11 +166,14 @@ var UI = {
 /**
  * 
  * @param {object} file {name, path, status, type, diff}
+ * @param {String} type unstaged|staged
  * @returns {String}
  */
-function _renderFileDiff(file) {
+function _renderFileDiff(file, type) {
 	var fileNode = document.importNode($('#gitModuleFileTpl').content, true).querySelector('.file');
 	var isSubmoduleLabel = file.type === 'file' ? '' : '[submodule]';
+	fileNode.classList.add(type);
+	fileNode.dataset.type = type;
 	fileNode.dataset.name = file.name;
 	fileNode.dataset.path = file.path;
 	fileNode.querySelector('.fileName').textContent = file.name;
@@ -195,15 +204,16 @@ function _renderFileDiff(file) {
 /**
  * 
  * @param {object} file
- * @param {string} status
+ * @param {string} type staged|unstaged
  * @returns {HTMLElement}
  */
-function _renderFileListItem(file, status) {
+function _renderFileListItem(file, type) {
 	var node = document.importNode($('#gitFileListItemTpl').content, true).querySelector('li');
 	node.textContent = file.name;
 	node.dataset.name = file.name;
+	node.dataset.type = type;
 	node.addEventListener('dblclick', function(e) {
-		if (status === 'staged') {
+		if (type === 'staged') {
 			Git.unstageFile(currentModulePath, file, _handleGitResponse);
 		} else {
 			Git.stageFile(currentModulePath, file, _handleGitResponse);

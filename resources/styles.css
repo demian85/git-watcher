@@ -4,6 +4,7 @@ html, body {
 	font-size: 12px;
 	font-family: "dejavu sans", sans-serif;
 	height: 100%;
+	-webkit-user-select: none;
 }
 
 ::-webkit-scrollbar {
@@ -34,30 +35,6 @@ html, body {
 #main > header {
 	overflow: auto;
 	flex: 0 0 auto;
-}
-
-.row {
-	display: flex;
-	flex-flow: row nowrap;
-	flex: 1 1 auto;
-	min-height: 100px;
-}
-
-.box {
-	border: 1px solid gray;
-	border-radius: 6px;
-	margin: 0.2rem;
-}
-.box.fileListColumn {
-	flex: 0 0 auto;
-	min-width: 150px;
-	overflow: auto;
-}
-.box.diff {
-	display: flex;
-	flex-flow: row wrap;
-	flex: 1 1 auto;
-	overflow: auto;
 }
 
 .file {
@@ -118,6 +95,7 @@ html, body {
 	font-size: 1rem;
 	flex: 1 1 20%;
 	margin: 0 0.2rem 0.2rem 0.2rem;
+	-webkit-user-select: initial;
 }
 .range {
 	display: block;
@@ -197,58 +175,122 @@ html, body {
 	flex: 1 1 auto;
 	margin: 0.5rem;
 }
+.moduleContents {
+	display: flex;
+	flex-flow: row nowrap;
+	flex: 1 0 auto;
+}
+.leftColumn {
+	display: flex;
+	flex-flow: column nowrap;
+	flex: 0 1 auto;
+	min-width: 180px;
+	margin-right: 0.5rem;
+	border: 1px solid gray;
+	border-radius: 6px;
+}
+.filesDiff {
+	display: flex;
+	flex-flow: row wrap;
+	flex: 1 1 auto;
+	border: 1px solid gray;
+	border-radius: 6px;
+}
 .module.visible {
 	display: flex;
 	flex-flow: column nowrap;
 }
 .module > header {
-	margin: 0 0.2rem;
+	margin: 0 0.5rem 0.5rem 0.5rem;
 	flex: 0 0 auto;
+	-webkit-user-select: initial;
 }
-
 .module h1.title {
 	font-size: 1.2rem;
 	margin: 0;
 	padding: 0.5rem;
 }
-.module > h2 {
+.fileListTitle {
 	font-size: 1rem;
 	padding: 0.3rem 0.5rem;
-	border-radius: 6px;
-	margin: 0.5rem 0.2rem 0 0.2rem;
+	border-radius: 6px 6px 0 0;
+	margin: 0.5rem 0 0 0;
 	flex: 0 0 auto;
 }
 .module h2:first-child {
 	margin-top: 0;
 }
-.module h2.unstagedTitle {
+.unstagedTitle,
+.file.unstaged > label {
 	background-color: rgba(255, 0, 0, 0.3);
 }
-.module h2.stagedTitle {
-	background-color: rgba(0, 255, 0, 0.5);
+.stagedTitle,
+.file.staged > label {
+	background-color: rgba(26,152,4, 0.5);
 }
-.module .fileList {
+.fileListTitle.stagedTitle {
+	border-radius: 0;
+}
+.fileList {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+	flex: 1 0 auto;
 }
-.module .fileList > li {
+.fileList > li {
 	margin: 0;
-	padding: 0.3rem;
-	cursor: default;
-	transition: background-color 0.1s linear;
+	padding: 0.3rem 0.5rem;
+	cursor: pointer;
+	transition: background-color 0.05s linear;
 }
-.module .fileList > li:hover {
+.fileList > li:hover {
 	background-color: rgba(0, 0, 255, 0.1);
 }
-.module .fileList > li.selected {
+.fileList > li.selected {
 	background-color: rgba(0, 0, 255, 0.2);
 }
-.module > .controls {
+.controls {
+	display: flex;
+	flex-flow: column nowrap;
+	font-size: 0.9rem;
 	flex: 0 0 auto;
+	padding: 0 0.5rem 0.5rem 0.5rem;
+	margin-top: 0.5rem;
 }
-.module .commitMessage {
+.controlPanel {
+	display: flex;
+	flex-flow: row wrap;
+	flex: 1 1 auto;
+}
+.controlPanel > button,
+.commitOptionLabel {
+	flex: 1 1 auto;
+}
+.controlPanel > button {
+	border-radius: 3px;
+	border: 1px solid gray;
+	background-color: #ddd;
+	cursor: pointer;
+	margin: 0;
+	transition: background-color 0.05s linear;
+}
+.controlPanel > button:hover {
+	background-color: #d3d3d3;
+}
+.commitMessage {
+	width: 100%;
+	height: 80px;
+	margin: 0.5rem 0;
+	flex: 1 1 auto;
+	font-family: sans-serif;
 	box-sizing: border-box;
 	padding: 0.5rem;
 	resize: none;
+	border-radius: 3px;
+	border: 1px solid gray;
+	transition: height 0.1s ease;
+}
+.commitMessage:focus {
+	outline: 0;
+	height: 120px;
 }
