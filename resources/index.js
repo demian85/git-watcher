@@ -118,16 +118,17 @@ var UI = {
 	_updateModuleFilesDiff: function(moduleName, status) {
 		var diffNode = $m(moduleName, '.filesDiff');
 		diffNode.innerHTML = '';
-		status.unstaged.map(function(file) {
-			return _renderFileDiff(file, 'unstaged');
-		}).forEach(function(node) {
-			diffNode.appendChild(node);
-		});
-		status.staged.map(function(file) {
-			return _renderFileDiff(file, 'staged');
-		}).forEach(function(node) {
-			diffNode.appendChild(node);
-		});
+		function add(type) {
+			status[type].filter(function(file) {
+				return file.type !== 'submodule';
+			}).map(function(file) {
+				return _renderFileDiff(file, type);
+			}).forEach(function(node) {
+				diffNode.appendChild(node);
+			});
+		}
+		add('unstaged');
+		add('staged');
 	},
 	
 	_updateModuleBranch: function(moduleName, branch) {
@@ -183,7 +184,6 @@ var UI = {
  */
 function _renderFileDiff(file, type) {
 	var fileNode = document.importNode($('#gitModuleFileTpl').content, true).querySelector('.file');
-	var isSubmoduleLabel = file.type === 'file' ? '' : '[submodule]';
 	fileNode.classList.add(type);
 	fileNode.dataset.type = type;
 	fileNode.dataset.name = file.name;
@@ -191,7 +191,7 @@ function _renderFileDiff(file, type) {
 	fileNode.querySelector('.fileName').textContent = file.name;
 	fileNode.querySelector('.fileName').title = 'Open file';
 	fileNode.querySelector('.fileStatus').classList.add(file.status);
-	fileNode.querySelector('.fileStatus').textContent = isSubmoduleLabel + ' [' + file.status + ']';
+	fileNode.querySelector('.fileStatus').textContent = '[' + file.status + ']';
 	fileNode.querySelector('.fileType').textContent = file.mimeType;
 	var diffHtml = '';
 	if (file.diff) {
