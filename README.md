@@ -40,6 +40,9 @@ I'll try to keep this updated.
 Extract file contents and just execute `./run.sh /path/to/repository`
 See `config.json`file for more options.
 
+## Screenshots
+![Overview 1](http://screencloud.net/img/screenshots/b3c4d76bef7bec948aeb79520438bd7b.png)
+
 ## Quick start for developers
 
 Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) for details on how to run apps.
