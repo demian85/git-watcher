@@ -34,7 +34,7 @@ I'm working on the following features
 
 I'll try to keep this updated.
 
-[Linux 64bit v0.0.1](https://www.dropbox.com/s/vcvbd18zjnz180q/git-watcher-linux-x64.tar.gz)
+[Linux x64 v0.1.0](https://www.dropbox.com/s/nzngdiwqw2yi2mi/git-watcher-v0.1.0.tar.gz)
 
 ## How to run the app
 
