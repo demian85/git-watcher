@@ -188,6 +188,7 @@ html, body {
 	margin-right: 0.5rem;
 	border: 1px solid gray;
 	border-radius: 6px;
+	cursor: default;
 }
 .filesDiff {
 	display: flex;
@@ -236,18 +237,18 @@ html, body {
 	margin: 0;
 	padding: 0;
 	flex: 1 0 auto;
+	overflow: auto;
 }
 .fileList > li {
 	margin: 0;
 	padding: 0.3rem 0.5rem;
-	cursor: pointer;
 	transition: background-color 0.05s linear;
 }
 .fileList > li:hover {
-	background-color: rgba(0, 0, 255, 0.1);
+	background-color: rgba(101,118,246, 0.3);
 }
 .fileList > li.selected {
-	background-color: rgba(0, 0, 255, 0.2);
+	background-color: rgba(101,118,246, 0.5);
 }
 .controls {
 	display: flex;
@@ -256,6 +257,10 @@ html, body {
 	flex: 0 0 auto;
 	padding: 0 0.5rem 0.5rem 0.5rem;
 	margin-top: 0.5rem;
+}
+.commitOption {
+	vertical-align: middle;
+	margin: 0 0.3rem 0 0;
 }
 .controlPanel {
 	display: flex;
@@ -276,6 +281,9 @@ html, body {
 }
 .controlPanel > button:hover {
 	background-color: #d3d3d3;
+}
+.commitOptions {
+	padding: 0 0.5rem;
 }
 .commitMessage {
 	width: 100%;
