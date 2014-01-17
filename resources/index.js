@@ -88,11 +88,17 @@ var UI = {
 	createModule: function(moduleName) {
 		var module = document.importNode($('#gitModuleTpl').content, true).querySelector('.module');
 		module.dataset.name = moduleName;
-		module.querySelector('.commitButton', module).addEventListener('click', function(e) {
-			var message = module.querySelector('.commitMessage').value;
+		module.querySelector('.commitButton').addEventListener('click', function(e) {
+			var textarea = module.querySelector('.commitMessage');
+			var message = textarea.value.trim();
+			if (!message) {
+				alert('Please enter a valid commit message!');
+				textarea.focus();
+				return;
+			}
 			Git.commit(currentModulePath, message, function(err, res) {
 				_handleGitResponse(err);
-				module.querySelector('.commitMessage').value = '';
+				textarea.value = '';
 			});
 		}, false);
 		$$('.commitOption', module).forEach(function(node) {
