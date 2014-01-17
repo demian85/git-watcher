@@ -271,7 +271,7 @@ html, body {
 	border: 1px solid gray;
 	background-color: #ddd;
 	cursor: pointer;
-	margin: 0;
+	margin: 0.2rem;
 	transition: background-color 0.05s linear;
 }
 .controlPanel > button:hover {

@@ -87,23 +87,11 @@ var UI = {
 	createModule: function(moduleName) {
 		var module = document.importNode($('#gitModuleTpl').content, true).querySelector('.module');
 		module.dataset.name = moduleName;
-		module.querySelector('.commitButton').addEventListener('click', function(e) {
-			var textarea = module.querySelector('.commitMessage');
-			var message = textarea.value.trim();
-			if (!message) {
-				alert('Please enter a valid commit message!');
-				textarea.focus();
-				return;
-			}
-			Git.commit(currentModulePath, message, function(err, res) {
-				_handleGitResponse(err);
-				textarea.value = '';
-			});
-		}, false);
-		$$('.commitOption', module).forEach(function(node) {
+		$('#main').appendChild(module);
+		this._addModuleControlEvents(moduleName);
+		$$m(moduleName, '.commitOption').forEach(function(node) {
 			node.name = moduleName;
 		});
-		$('#main').appendChild(module);
 		var moduleLabel = document.importNode($('#gitModuleLabelTpl').content, true).querySelector('li');
 		moduleLabel.textContent = moduleName.replace(/^\//, '');
 		moduleLabel.dataset.name = moduleName;
@@ -165,6 +153,25 @@ var UI = {
 				});
 			}, false);
 		});
+	},
+	
+	_addModuleControlEvents: function(moduleName) {
+		$m(moduleName,'.commitButton').addEventListener('click', function(e) {
+			var textarea = $m(moduleName, '.commitMessage');
+			var message = textarea.value.trim();
+			if (!message) {
+				alert('Please enter a valid commit message!');
+				textarea.focus();
+				return;
+			}
+			Git.commit(currentModulePath, message, function(err, res) {
+				_handleGitResponse(err);
+				textarea.value = '';
+			});
+		}, false);
+		$m(moduleName,'.pushButton').addEventListener('click', function(e) {
+			Git.push(currentModulePath, _handleGitResponse);
+		}, false);
 	}
 };
 
