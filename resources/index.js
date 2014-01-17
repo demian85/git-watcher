@@ -189,24 +189,27 @@ function _renderFileDiff(file, type) {
 	fileNode.dataset.name = file.name;
 	fileNode.dataset.path = file.path;
 	fileNode.querySelector('.fileName').textContent = file.name;
+	fileNode.querySelector('.fileName').title = 'Open file';
 	fileNode.querySelector('.fileStatus').classList.add(file.status);
 	fileNode.querySelector('.fileStatus').textContent = isSubmoduleLabel + ' [' + file.status + ']';
 	fileNode.querySelector('.fileType').textContent = file.mimeType;
 	var diffHtml = '';
 	if (file.diff) {
+		diffHtml += '<table class="fileDiff">';
 		diffHtml += file.diff.map(function(range) {
-			return '<div class="range">' + range.map(function(line) {
+			return '<tbody class="range">' + range.map(function(line) {
 				var lineTypeStr = (line.type === '-' ? 'deleted' : (line.type === '+' ? 'added' : 'neutral'));
 				var symbol = (line.type === '-' ? '-' : (line.type === '+' ? '+' : ' '));
-				return '<div class="lineRow ' + lineTypeStr + '"><span class="line oldLine">' + (line.type === '-' ? line.oldLine : ' ') + '</span><span class="line newLine">' + (line.type !== '-' ? line.newLine : ' ') + '</span>' + symbol + ' ' + line.content.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>';
-			}).join('\n') + '</div>';
+				return '<tr class="lineRow ' + lineTypeStr + '"><td class="line oldLine">' + (line.type === '-' ? line.oldLine : '') + '</td><td class="line newLine">' + (line.type !== '-' ? line.newLine : '') + '</td><td>' + symbol + '</td><td>' + line.content.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</td></tr>';
+			}).join('\n') + '</tbody>';
 		}).join('');
+		diffHtml += '<table>';
 	} else {
-		diffHtml += '<span class="emptyLabel">[empty]</span>';
+		diffHtml += '<div class="emptyLabel">[empty]</div>';
 	}
 	fileNode.querySelector('.fileDiffContents').innerHTML = diffHtml;
 	fileNode.addEventListener('click', function(e) {
-		if (e.target.webkitMatchesSelector('.fileName, .fileDiffContents .added .line, .fileDiffContents .neutral .line')) {
+		if (e.target.webkitMatchesSelector('.fileName, .newLine')) {
 			gui.Shell.openItem(file.path);
 		}
 	}, false);

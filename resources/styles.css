@@ -87,6 +87,7 @@ html, body {
 .file .emptyLabel {
 	color: blue;
 	font-weight: bold;
+	margin: 0.5rem 0;
 }
 
 .fileDiffContents {
@@ -97,9 +98,12 @@ html, body {
 	margin: 0 0.2rem 0.2rem 0.2rem;
 	-webkit-user-select: initial;
 }
+.fileDiff {
+	width: 100%;
+	border: 0;
+	border-collapse: collapse;
+}
 .range {
-	display: block;
-	padding: 0.1rem 0 0.2rem 0;
 	border-bottom: 1px dotted #ccc;
 }
 .range:last-child {
@@ -114,10 +118,10 @@ html, body {
 	background-color: #f6e8b5;
 }
 .line {
-	display: inline-block;
-	width: 27px;
+	width: 20px;
 	padding: 0.3rem;
 	color: #666;
+	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
 	background-color: #f5f5f5;
 	padding: 0 0.2rem;
