@@ -23,6 +23,7 @@ I'm working on the following features
 * Amend commit (help I don't know how to do it without a proper API)
 * Allow to open repository using system's file browser
 * Use cwd as the default repository
+* Improve speed for large repositories
 * Configuration options
 * Option to revert changes
 * Show file type icon
@@ -56,6 +57,11 @@ Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) fo
 
 Also, in the resources folder, you will find a helper script `build.sh` that creates a Linux build. It asumes you have node-webkit installed on `/opt/node-webkit`.
 
+## Current bugs
+
+Obviously, as this app is in alpha stage, it has bugs:
+* Cannot browse submodules added with `git submodule add <url>`
+* Binary files are not ignored and content is being shown!
 
 ## Troubleshooting
 
