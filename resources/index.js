@@ -81,8 +81,7 @@ var UI = {
 		this._updateModuleFileList(moduleName, 'unstaged', status.unstaged);
 		this._updateModuleFileList(moduleName, 'staged', status.staged);
 		this._updateModuleFilesDiff(moduleName, status);
-		this._addFileSelectionEvents('unstaged');
-		this._addFileSelectionEvents('staged');
+		this._addFileSelectionEvents();
 	},
 	
 	createModule: function(moduleName) {
@@ -150,7 +149,7 @@ var UI = {
 		$m(moduleName, '.branchInfo').innerHTML = html;
 	},
 	
-	_addFileSelectionEvents: function(type) {
+	_addFileSelectionEvents: function() {
 		var items = $$('.fileList > li, .file');
 		items.forEach(function(node) {
 			node.addEventListener('mousedown', function(e) {
