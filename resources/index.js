@@ -157,6 +157,7 @@ var UI = {
 	},
 	
 	_addModuleControlEvents: function(moduleName) {
+		$m(moduleName,'.refreshButton').addEventListener('click', updateCurrentModuleStatus, false);
 		$m(moduleName,'.commitButton').addEventListener('click', function(e) {
 			var textarea = $m(moduleName, '.commitMessage');
 			var message = textarea.value.trim();
