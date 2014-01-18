@@ -132,7 +132,7 @@ var UI = {
 	},
 	
 	_updateModuleBranch: function(moduleName, branch) {
-		var html = 'On branch <strong>' + branch.name + '</strong>. ';
+		var html = branch.name ? 'On branch <strong>' + branch.name + '</strong>. ' : 'Not currently on any branch.';
 		if (branch.ahead > 0) html += 'Ahead of ' + branch.remote + ' by ' + branch.ahead + ' commits.';
 		else if (branch.behind > 0) html += 'Behind of ' + branch.remote + ' by ' + branch.behind + ' commits.';
 		$m(moduleName, '.branchInfo').innerHTML = html;
