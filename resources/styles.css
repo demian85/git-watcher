@@ -242,6 +242,7 @@ html, body {
 	padding: 0;
 	flex: 1 0 auto;
 	overflow: auto;
+	font-size: 0.9rem;
 }
 .fileList > li {
 	margin: 0;
@@ -259,8 +260,9 @@ html, body {
 	flex-flow: column nowrap;
 	font-size: 0.9rem;
 	flex: 0 0 auto;
-	padding: 0 0.5rem 0.5rem 0.5rem;
+	padding: 0.5rem;
 	margin-top: 0.5rem;
+	border-top: 1px solid gray;
 }
 .commitOption {
 	vertical-align: middle;
@@ -277,7 +279,7 @@ html, body {
 }
 .controlPanel > button {
 	border-radius: 3px;
-	border: 1px solid gray;
+	border: 1px solid #ccc;
 	background-color: #ddd;
 	cursor: pointer;
 	margin: 0.2rem;
@@ -299,7 +301,7 @@ html, body {
 	padding: 0.5rem;
 	resize: none;
 	border-radius: 3px;
-	border: 1px solid gray;
+	border: 1px solid #ccc;
 	transition: height 0.1s ease;
 }
 .commitMessage:focus {
