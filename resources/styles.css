@@ -182,7 +182,7 @@ html, body {
 .moduleContents {
 	display: flex;
 	flex-flow: row nowrap;
-	flex: 1 0 auto;
+	flex: 1 1 auto;
 }
 .leftColumn {
 	display: flex;
@@ -200,6 +200,7 @@ html, body {
 	flex: 1 1 auto;
 	border: 1px solid gray;
 	border-radius: 6px;
+	overflow: auto;
 }
 .module.visible {
 	display: flex;
