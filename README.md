@@ -28,7 +28,7 @@ I'm working on the following features
 * Option to revert changes
 * Show file type icon
 * Git log
-* UI improvements
+* Language highlighter
 
 ## Download
 
