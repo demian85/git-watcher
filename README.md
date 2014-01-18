@@ -42,7 +42,8 @@ Extract file contents and just execute `./run.sh /path/to/repository`
 See `config.json`file for more options.
 
 ## Screenshots
-![Overview 1](http://screencloud.net/img/screenshots/b3c4d76bef7bec948aeb79520438bd7b.png)
+![Overview 1](http://screencloud.net/img/screenshots/4c4b881263af244228fed9d1a75d40b7.png)
+![Overview 2](http://screencloud.net/img/screenshots/bad02238ed39de9f19ee1438fd94dc19.png)
 
 ## Quick start for developers
 
