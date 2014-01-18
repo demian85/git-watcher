@@ -246,14 +246,34 @@ html, body {
 }
 .fileList > li {
 	margin: 0;
-	padding: 0.3rem 0.5rem;
+	padding: 0.3rem 0.5rem 0.3rem 20px;
 	transition: background-color 0.05s linear;
+	background-repeat: no-repeat;
+	background-position: 2px center;
 }
 .fileList > li:hover {
 	background-color: rgba(101,118,246, 0.3);
 }
 .fileList > li.selected {
 	background-color: rgba(101,118,246, 0.5);
+}
+.file-new {
+	background-image: url(icons/file-new.png);
+}
+.file-modified {
+	background-image: url(icons/file-modified.png);
+}
+.file-deleted {
+	background-image: url(icons/file-deleted.png);
+}
+.submodule-new {
+	background-image: url(icons/submodule-new.png);
+}
+.submodule-modified {
+	background-image: url(icons/submodule-modified.png);
+}
+.submodule-deleted {
+	background-image: url(icons/submodule-deleted.png);
 }
 .controls {
 	display: flex;
