@@ -15,6 +15,10 @@ It still lacks a few features, please help me improve it!
 * Allows you to open files by clicking on its name or line number.
 * Shows current branch information: upstream branch and ahead/behind commit count.
 
+## Screenshots
+![Overview 1](http://screencloud.net/img/screenshots/4c4b881263af244228fed9d1a75d40b7.png)
+![Overview 2](http://screencloud.net/img/screenshots/bad02238ed39de9f19ee1438fd94dc19.png)
+
 ## TODO 
 
 I'm working on the following features
@@ -40,10 +44,6 @@ I'll try to keep this updated.
 
 Extract file contents and just execute `./run.sh /path/to/repository`
 See `config.json`file for more options.
-
-## Screenshots
-![Overview 1](http://screencloud.net/img/screenshots/4c4b881263af244228fed9d1a75d40b7.png)
-![Overview 2](http://screencloud.net/img/screenshots/bad02238ed39de9f19ee1438fd94dc19.png)
 
 ## Quick start for developers
 
