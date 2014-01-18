@@ -109,12 +109,12 @@ html, body {
 .range:last-child {
 	border-bottom: 0;
 }
-.lineRow {
+.fileDiff .lineRow {
 	white-space: pre;
 	transition: background-color 0.05s linear;
 }
-.lineRow:hover,
-.lineRow:hover .line {
+.fileDiff .lineRow:hover,
+.fileDiff .lineRow:hover .line {
 	background-color: #f6e8b5;
 }
 .line {
@@ -129,18 +129,18 @@ html, body {
 	cursor: default;
 	-webkit-user-select: none;
 }
-.deleted {
+.fileDiff .deleted {
 	background-color: #ffdddd;
 }
-.added {
+.fileDiff .added {
 	background-color: #ddffdd;
 }
-.added .line,
-.neutral .line {
+.fileDiff .added .line,
+.fileDiff .neutral .line {
 	cursor: pointer;
 }
-.added .line:hover,
-.neutral .line:hover {
+.fileDiff .added .line:hover,
+.fileDiff .neutral .line:hover {
 	text-decoration: underline;
 }
 
