@@ -24,19 +24,35 @@ var config = require('loader').loadConfig(),
 	currentModuleName = null, 
 	gitWatcher;
 	
+var gitErrHandler = require('domain').create();
+gitErrHandler.on('error', function(err) {
+	UI.showError(err);
+});
+
+function log() {
+	if (config.debugMode && console) {
+		console.log.apply(console, arguments);
+	}
+}
+function logError() {
+	if (config.debugMode && console) {
+		console.error.apply(console, arguments);
+	}
+}
+	
 function init() {
 	if (!baseRepoDirectory) return alert('No repository path given!');
 	gitWatcher = new GitWatcher(baseRepoDirectory);
 	gitWatcher.on('change', function(status) {
-		if (config.debugMode) console.log(status, 'event: change');
+		log('Event: change', status);
 		UI.updateModule(status.module, status.status);
 	});
 	gitWatcher.on('error', function(err) {
-		if (config.debugMode) console.error('event: error');
+		logError('Event: error', err);
 		UI.showError(err);
 	});
 	gitWatcher.on('ready', function() {
-		if (config.debugMode) console.log('event: ready');
+		log('Event: ready');
 		var modules = gitWatcher.getModules();
 		modules.forEach(function(module) {
 			UI.createModule(module);
@@ -48,7 +64,7 @@ function init() {
 }
 
 function updateStatus() {
-	if (config.debugMode) console.log('Updating status...');
+	log('Updating status...');
 	gitWatcher.getStatus(function(err, status) {
 		if (err) return UI.showError(err);
 		for (var module in status) {
@@ -58,7 +74,7 @@ function updateStatus() {
 }
 
 function updateCurrentModuleStatus() {
-	if (config.debugMode) console.log('Updating current module status...');
+	log('Updating current module status...');
 	gitWatcher.getModuleStatus(currentModuleName, function(err, status) {
 		if (err) return UI.showError(err);
 		UI.updateModule(currentModuleName, status);
@@ -168,10 +184,10 @@ var UI = {
 				textarea.focus();
 				return;
 			}
-			Git.commit(currentModulePath, message, function(err, res) {
-				_handleGitResponse(err);
+			Git.commit(currentModulePath, message, gitErrHandler.intercept(function() {
 				textarea.value = '';
-			});
+				updateCurrentModuleStatus();
+			}));
 		}, false);
 		$m(moduleName,'.pushButton').addEventListener('click', function(e) {
 			Git.push(currentModulePath, _handleGitResponse);
@@ -254,9 +270,9 @@ function _renderFileListItem(file, type) {
 	node.dataset.type = type;
 	node.addEventListener('dblclick', function(e) {
 		if (type === 'staged') {
-			Git.unstageFile(currentModulePath, file, _handleGitResponse);
+			Git.unstageFile(currentModulePath, file, gitErrHandler.intercept(function() {}));
 		} else {
-			Git.stageFile(currentModulePath, file, _handleGitResponse);
+			Git.stageFile(currentModulePath, file, gitErrHandler.intercept(function() {}));
 		}
 	}, false);
 	return node;
