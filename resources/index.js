@@ -48,6 +48,7 @@ function init() {
 }
 
 function updateStatus() {
+	if (config.debugMode) console.log('Updating status...');
 	gitWatcher.getStatus(function(err, status) {
 		if (err) return UI.showError(err);
 		for (var module in status) {
@@ -57,6 +58,7 @@ function updateStatus() {
 }
 
 function updateCurrentModuleStatus() {
+	if (config.debugMode) console.log('Updating current module status...');
 	gitWatcher.getModuleStatus(currentModuleName, function(err, status) {
 		if (err) return UI.showError(err);
 		UI.updateModule(currentModuleName, status);
