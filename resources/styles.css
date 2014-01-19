@@ -97,6 +97,7 @@ html, body {
 	flex: 1 1 20%;
 	margin: 0 0.2rem 0.2rem 0.2rem;
 	-webkit-user-select: initial;
+	tab-size: 4;
 }
 .fileDiff {
 	width: 100%;
@@ -143,6 +144,15 @@ html, body {
 .fileDiff .neutral .line:hover {
 	text-decoration: underline;
 }
+.fileDiff .comment {
+	color: gray;
+}
+.fileDiff .keyword {
+	color: blue;
+}
+.fileDiff .string {
+	color: chocolate;
+}
 
 #gitModules {
 	list-style-type: none;
@@ -187,7 +197,7 @@ html, body {
 .leftColumn {
 	display: flex;
 	flex-flow: column nowrap;
-	flex: 0 1 auto;
+	flex: 0 0 auto;
 	min-width: 180px;
 	margin-right: 0.5rem;
 	border: 1px solid gray;

@@ -201,7 +201,7 @@ function _renderFileDiff(file, type) {
 			return '<tbody class="range">' + range.map(function(line) {
 				var lineTypeStr = (line.type === '-' ? 'deleted' : (line.type === '+' ? 'added' : 'neutral'));
 				var symbol = (line.type === '-' ? '-' : (line.type === '+' ? '+' : ' '));
-				return '<tr class="lineRow ' + lineTypeStr + '"><td class="line oldLine">' + (line.type === '-' ? line.oldLine : '') + '</td><td class="line newLine">' + (line.type !== '-' ? line.newLine : '') + '</td><td>' + symbol + '</td><td>' + line.content.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</td></tr>';
+				return '<tr class="lineRow ' + lineTypeStr + '"><td class="line oldLine">' + (line.type === '-' ? line.oldLine : '') + '</td><td class="line newLine">' + (line.type !== '-' ? line.newLine : '') + '</td><td>' + symbol + '</td><td>' + _renderFileDiffLine(file, line.content) + '</td></tr>';
 			}).join('\n') + '</tbody>';
 		}).join('');
 		diffHtml += '<table>';
@@ -215,6 +215,26 @@ function _renderFileDiff(file, type) {
 		}
 	}, false);
 	return fileNode;
+}
+
+/**
+ * 
+ * @param {object} file
+ * @param {String} lineText
+ * @returns {String}
+ */
+function _renderFileDiffLine(file, lineText) {
+	var hlConf = config.diff.highlight;
+	if (hlConf.enabled) {
+		var ext = require('path').extname(file.name);
+		if (hlConf.byFileExtension[ext] === undefined || hlConf.byFileExtension[ext]) {
+			var hl = require('highlighter').getInstance(ext);
+			if (hl) {
+				return hl.highlight(lineText);
+			}
+		}
+	}
+	return lineText.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
 /**
