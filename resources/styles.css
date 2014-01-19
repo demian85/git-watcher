@@ -38,7 +38,7 @@ html, body {
 }
 
 .file {
-	border: 1px solid #ddd;
+	border: 2px solid #ddd;
 	border-radius: 6px;
 	margin: 0.2rem;
 	display: flex;
@@ -46,8 +46,11 @@ html, body {
 	flex: 1 1 auto;
 	min-height: 10rem;
 }
+.file:hover {
+	border: 2px solid rgba(0, 0, 255, 0.4);
+}
 .file.selected {
-	border: 1px solid blue;
+	border: 2px solid rgb(0, 0, 255);
 	min-height: 15rem;
 	min-width: 20rem;
 }
