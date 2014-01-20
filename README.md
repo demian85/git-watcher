@@ -19,17 +19,18 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 ![Overview 1](http://screencloud.net/img/screenshots/7cebea458d52135e0e5dcdf871f88283.png)
 ![Overview 2](http://screencloud.net/img/screenshots/bad02238ed39de9f19ee1438fd94dc19.png)
 
-## TODO 
+## TODO
 
 I'm working on the following features
 (your help will be much appreciated!)
 
-* Amend commit (help I don't know how to do it without a proper API)
+* Amend commit
 * Allow to open repository using system's file browser
-* Use cwd as the default repository
 * Improve speed for large repositories
 * Configuration options
-* Option to revert changes
+* Quick menu for files: revert, stage/unstage, open gitk
+* Monitor submodules and inform changes to parent module
+* Render images in diff
 * Git log
 
 ## Download
