@@ -16,7 +16,7 @@ It still lacks a few features, please help me improve it!
 * Shows current branch information: upstream branch and ahead/behind commit count.
 
 ## Screenshots
-![Overview 1](http://screencloud.net/img/screenshots/4c4b881263af244228fed9d1a75d40b7.png)
+![Overview 1](http://screencloud.net/img/screenshots/7cebea458d52135e0e5dcdf871f88283.png)
 ![Overview 2](http://screencloud.net/img/screenshots/bad02238ed39de9f19ee1438fd94dc19.png)
 
 ## TODO 
