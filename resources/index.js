@@ -96,9 +96,8 @@ var UI = {
 	
 	updateModule: function(moduleName, status) {
 		this._updateModuleBranch(moduleName, status.branch);
-		this._updateModuleFileList(moduleName, 'unstaged', status.unstaged);
-		this._updateModuleFileList(moduleName, 'staged', status.staged);
 		this._updateModuleFilesDiff(moduleName, status);
+		this._updateModuleFileList(moduleName, status);
 		this._addFileSelectionEvents();
 	},
 	
@@ -123,14 +122,37 @@ var UI = {
 		alert(err.message);
 	},
 	
-	_updateModuleFileList: function(moduleName, type, files) {
-		var listNode = $m(moduleName, '.' + type + 'Files');
-		listNode.innerHTML = '';
-		files.map(function(file) {
-			return _renderFileListItem(file, type);
-		}).forEach(function(node) {
-			listNode.appendChild(node);
+	selectFile: function(name, type) {
+		var items = $$('.fileList > li, .file');
+		items.forEach(function(node) {
+			if (node.dataset.name === name && node.dataset.type === type) {
+				node.classList.add('selected');
+			} else {
+				node.classList.remove('selected');
+			}
 		});
+	},
+	
+	_updateModuleFileList: function(moduleName, status) {
+		var selectedFileNode = $m(moduleName, '.fileList > li.selected');
+		var fileToSelect = selectedFileNode ? {
+			name: selectedFileNode.dataset.name, 
+			type: selectedFileNode.dataset.type
+		} : null;
+		function update(type) {
+			var listNode = $m(moduleName, '.' + type + 'Files');
+			listNode.innerHTML = '';
+			status[type].map(function(file) {
+				return _renderFileListItem(file, type);
+			}).forEach(function(node) {
+				listNode.appendChild(node);
+			});
+		}
+		update('unstaged');
+		update('staged');
+		if (fileToSelect) {
+			this.selectFile(fileToSelect.name, fileToSelect.type);
+		}
 	},
 	
 	_updateModuleFilesDiff: function(moduleName, status) {
@@ -157,19 +179,13 @@ var UI = {
 	},
 	
 	_addFileSelectionEvents: function() {
+		var me = this;
 		var items = $$('.fileList > li, .file');
 		items.forEach(function(node) {
 			node.addEventListener('mousedown', function(e) {
-				if (this.classList.contains('selected')) return;
-				var clickedFileName = this.dataset.name;
-				var fileType = this.dataset.type;
-				items.forEach(function(node) {
-					if (node.dataset.name === clickedFileName && node.dataset.type === fileType) {
-						node.classList.add('selected');
-					} else {
-						node.classList.remove('selected');
-					}
-				});
+				if (!this.classList.contains('selected')) {
+					me.selectFile(this.dataset.name, this.dataset.type);
+				}
 			}, false);
 		});
 	},
