@@ -1,19 +1,19 @@
 ## Introduction
 
-Git Watcher is a desktop app written in pure HTML and Javascript using node-webkit.
+Git Watcher is a multi-platform desktop app written in pure HTML and Javascript using node-webkit.
 
-It shows diff information about local staged/unstaged files in real-time and allows you to commit changes. Basically, it works like the native git gui.
+It shows diff information about local staged/unstaged files in real-time and allows you to commit changes. UI is updated in real-time by detecting file changes and git index changes.
 
 It also organizes repository submodules in tabs, so that you can work easily with them without the need of having multiple git gui instances or shells.
 
-It still lacks a few features, please help me improve it!
+In my opinion, the native git gui app is awful and lacks a lot of features. This app aims to outstand it :)
 
 ## Features
 
-* Real-time multiple file diff information with line numbers.
-* Allows you to work with submodules organized in tabs.
-* Allows you to open files by clicking on its name or line number.
-* Shows current branch information: upstream branch and ahead/behind commit count.
+* **Real-time** multiple file diff information with line numbers and **syntax highlighting**
+* Allows you to work with **submodules organized in tabs**.
+* Allows you to **open files** by clicking on its name or lines numbers.
+* Shows current **branch information**: upstream branch and ahead/behind commit count.
 
 ## Screenshots
 ![Overview 1](http://screencloud.net/img/screenshots/7cebea458d52135e0e5dcdf871f88283.png)
@@ -30,9 +30,7 @@ I'm working on the following features
 * Improve speed for large repositories
 * Configuration options
 * Option to revert changes
-* Show file type icon
 * Git log
-* Language highlighter
 
 ## Download
 
