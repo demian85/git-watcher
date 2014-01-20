@@ -26,7 +26,7 @@ I'm working on the following features
 
 * Amend commit
 * Allow to open repository using system's file browser
-* Improve speed for large repositories
+* Improve speed for large repositories / show loading icon
 * Configuration options
 * Quick menu for files: revert, stage/unstage, open gitk
 * Monitor submodules and inform changes to parent module
@@ -37,6 +37,7 @@ I'm working on the following features
 
 I'll try to keep this updated.
 
+[Linux x64 v0.2.1](https://www.dropbox.com/s/rj7w3n80jrf21fu/git-watcher-linux-x64-v0.2.1.tar.gz)
 [Linux x64 v0.1.0](https://www.dropbox.com/s/nzngdiwqw2yi2mi/git-watcher-v0.1.0.tar.gz)
 
 ## How to run the app
