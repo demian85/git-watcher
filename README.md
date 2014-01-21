@@ -29,8 +29,7 @@ I'm working on the following features
 * Improve speed for large repositories / show loading icon
 * Configuration options
 * Quick menu for files: revert, stage/unstage, open gitk
-* Monitor submodules and inform changes to parent module
-* Render images in diff
+* Render images in diff / exclude content for other binary files
 * Git log
 
 ## Download
