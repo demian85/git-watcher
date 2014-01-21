@@ -50,6 +50,7 @@ function init() {
 	gitWatcher.on('error', function(err) {
 		logError('Event: error', err);
 		UI.showError(err);
+		throw err;
 	});
 	gitWatcher.on('ready', function() {
 		log('Event: ready');
