@@ -279,7 +279,7 @@ function _renderFileDiffLine(file, lineText) {
  */
 function _renderFileListItem(file, type) {
 	var node = document.importNode($('#gitFileListItemTpl').content, true).querySelector('li');
-	node.textContent = file.name;
+	node.querySelector('.fileListItemLabel').textContent = file.name;
 	var cssClass = file.type + '-' + file.status;
 	node.classList.add(cssClass);
 	node.dataset.name = file.name;

@@ -5,6 +5,7 @@
 	"keywords": ["git", "gui", "diff", "tool", "commit", "push", "realtime"],
 	"window": {
 		"title": "Git Watcher",
+		"icon": "icons/git-watcher.png",
 		"width": 1024,
 		"height": 768,
 		"position": "center",
