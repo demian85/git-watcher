@@ -58,12 +58,6 @@ Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) fo
 
 Also, in the resources folder, you will find a helper script `build.sh` that creates a Linux build. It asumes you have node-webkit installed on `/opt/node-webkit`.
 
-## Current bugs
-
-Obviously, as this app is in alpha stage, it has bugs:
-* Cannot browse submodules added with `git submodule add <url>`
-* Binary files are not ignored and content is being shown!
-
 ## Troubleshooting
 
 [The solution of lacking libudev.so.0](https://github.com/rogerwang/node-webkit/wiki/The-solution-of-lacking-libudev.so.0)
