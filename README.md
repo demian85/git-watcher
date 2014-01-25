@@ -2,7 +2,7 @@
 
 Git Watcher is a multi-platform desktop app written in pure HTML and Javascript using node-webkit.
 
-It shows diff information about local staged/unstaged files in real-time and allows you to commit changes. UI is updated in real-time by detecting file changes and git index changes.
+It shows diff information about local staged/unstaged files in real-time and allows you to commit changes. UI is updated in real-time by detecting file changes and git index changes. Submodules also inform changes to their parent module.
 
 It also organizes repository submodules in tabs, so that you can work easily with them without the need of having multiple git gui instances or shells.
 
