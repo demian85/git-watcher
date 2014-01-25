@@ -67,6 +67,7 @@ function init() {
 function updateStatus() {
 	log('Updating status...');
 	gitWatcher.getStatus(function(err, status) {
+		log('Status:', status);
 		if (err) return UI.showError(err);
 		for (var module in status) {
 			UI.updateModule(module, status[module]);
@@ -228,7 +229,7 @@ function _renderFileDiff(file, type) {
 	fileNode.querySelector('.fileName').title = 'Open file';
 	fileNode.querySelector('.fileStatus').classList.add(file.status);
 	fileNode.querySelector('.fileStatus').textContent = '[' + file.status + ']';
-	fileNode.querySelector('.fileType').textContent = file.mimeType;
+	fileNode.querySelector('.fileType').textContent = file.info.mimeType || '';
 	var diffHtml = '';
 	if (file.diff) {
 		diffHtml += '<table class="fileDiff">';
@@ -241,7 +242,7 @@ function _renderFileDiff(file, type) {
 		}).join('');
 		diffHtml += '<table>';
 	} else {
-		diffHtml += '<div class="emptyLabel">[empty]</div>';
+		diffHtml += file.info.isBinary ? '<div class="emptyLabel">[binary]</div>' : '<div class="emptyLabel">[empty]</div>';
 	}
 	fileNode.querySelector('.fileDiffContents').innerHTML = diffHtml;
 	fileNode.addEventListener('click', function(e) {
