@@ -24,13 +24,14 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 I'm working on the following features
 (your help will be much appreciated!)
 
-* Amend commit
+* Amend commit (Really hard to do without a proper API!)
 * Allow to open repository using system's file browser
-* Improve speed for large repositories / show loading icon
+* UI improvements
 * Configuration options
 * Quick menu for files: revert, stage/unstage, open gitk
 * Render images in diff / exclude content for other binary files
 * Git log
+* Shortcuts
 
 ## Download
 
