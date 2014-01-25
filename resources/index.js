@@ -67,8 +67,8 @@ function init() {
 function updateStatus() {
 	log('Updating status...');
 	gitWatcher.getStatus(function(err, status) {
+		if (err) throw err;
 		log('Status:', status);
-		if (err) return UI.showError(err);
 		for (var module in status) {
 			UI.updateModule(module, status[module]);
 		}
@@ -78,7 +78,7 @@ function updateStatus() {
 function updateCurrentModuleStatus() {
 	log('Updating current module status...');
 	gitWatcher.getModuleStatus(currentModuleName, function(err, status) {
-		if (err) return UI.showError(err);
+		if (err) throw err;
 		UI.updateModule(currentModuleName, status);
 	});
 }
