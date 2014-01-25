@@ -315,6 +315,7 @@ html, body {
 .controlPanel > button,
 .commitOptionLabel {
 	flex: 1 1 auto;
+	padding: 0 0.5rem;
 }
 .controlPanel > button {
 	border-radius: 3px;
@@ -326,9 +327,6 @@ html, body {
 }
 .controlPanel > button:hover {
 	background-color: #d3d3d3;
-}
-.commitOptions {
-	padding: 0 0.5rem;
 }
 .commitMessage {
 	width: 100%;
