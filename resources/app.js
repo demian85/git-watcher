@@ -81,6 +81,8 @@ function initApp() {
 	appTray.on('click', function(e) {
 		gui.Window.get().focus();
 	});
+	
+	AppMenus.init();
 }
 
 function updateStatus() {
@@ -101,6 +103,37 @@ function updateCurrentModuleStatus() {
 		UI.updateModule(currentModuleName, status);
 	});
 }
+
+var AppMenus = {
+	menus: {},
+	items: {},
+	
+	init: function() {
+		this.items['revert'] = new gui.MenuItem({label: 'Revert changes'});
+		this.items['stage'] = new gui.MenuItem({label: 'Stage file'});
+		this.items['unstage'] = new gui.MenuItem({label: 'Unstage file'});
+		this.menus.filesList = new gui.Menu();
+		this.menus.filesList.append(this.items['revert']);
+		this.menus.filesList.append(this.items['stage']);
+		this.menus.filesList.append(this.items['unstage']);
+	},
+	
+	showFileListMenu: function(file, x, y) {
+		this.items['revert'].enabled = file.unstaged && file.status !== 'new';
+		this.items['revert'].click = function() {
+			Git.revertFile(currentModulePath, file, _handleGitResponse);
+		};
+		this.items['stage'].enabled = file.unstaged;
+		this.items['stage'].click = function() {
+			Git.stageFile(currentModulePath, file, _handleGitResponse);
+		};
+		this.items['unstage'].enabled = file.staged;
+		this.items['unstage'].click = function() {
+			Git.unstageFile(currentModulePath, file, _handleGitResponse);
+		};
+		this.menus.filesList.popup(x, y);
+	}
+};
 
 var UI = {
 	showModule: function(moduleName) {
@@ -214,7 +247,7 @@ var UI = {
 		$m(moduleName, '.branchInfo').innerHTML = html;
 	},
 	
-	_addFileSelectionEvents: function() {
+	_addFileSelectionEvents: function() { // FIXME duplicated events?
 		var me = this;
 		var items = $$('.fileList > li, .file');
 		items.forEach(function(node) {
@@ -316,8 +349,7 @@ function _renderFileDiffLine(file, lineText) {
 function _renderFileListItem(file, type) {
 	var node = document.importNode($('#gitFileListItemTpl').content, true).querySelector('li');
 	node.querySelector('.fileListItemLabel').textContent = file.name;
-	var cssClass = file.type + '-' + file.status;
-	node.classList.add(cssClass);
+	node.classList.add(file.type + '-' + file.status);
 	node.dataset.name = file.name;
 	node.dataset.type = type;
 	node.addEventListener('dblclick', function(e) {
@@ -326,6 +358,12 @@ function _renderFileListItem(file, type) {
 		} else {
 			Git.stageFile(currentModulePath, file, _handleGitResponse);
 		}
+	}, false);
+	
+	// file list context menu
+	node.addEventListener('contextmenu', function(e) {
+		AppMenus.showFileListMenu(file, e.clientX, e.clientY);
+		e.preventDefault();
 	}, false);
 	return node;
 }
