@@ -26,11 +26,12 @@ I'm working on the following features
 
 * Amend commit (Really hard to do without a proper API!)
 * Allow to open repository using system's file browser
-* UI improvements: file type icons, render images in diff
+* Correctly show unmerged paths info. Alert when staging an unmerged file.
 * Configuration options
 * Quick menu for files: revert, stage/unstage, open gitk
-* Git log
+* UI improvements: file type icons, render images in diff
 * Shortcuts
+* Git log
 
 ## Download
 
