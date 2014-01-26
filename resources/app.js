@@ -152,7 +152,7 @@ var UI = {
 		this._updateModuleBranch(moduleName, status.branch);
 		this._updateModuleFilesDiff(moduleName, status);
 		this._updateModuleFileList(moduleName, status);
-		this._addFileSelectionEvents();
+		this._addFileSelectionEvents(moduleName);
 	},
 	
 	createModule: function(moduleName) {
@@ -247,9 +247,9 @@ var UI = {
 		$m(moduleName, '.branchInfo').innerHTML = html;
 	},
 	
-	_addFileSelectionEvents: function() { // FIXME duplicated events?
+	_addFileSelectionEvents: function(moduleName) {
 		var me = this;
-		var items = $$('.fileList > li, .file');
+		var items = $$m(moduleName, '.fileList > li, .file');
 		items.forEach(function(node) {
 			node.addEventListener('mousedown', function(e) {
 				if (!this.classList.contains('selected')) {
@@ -312,11 +312,18 @@ function _renderFileDiff(file, type) {
 		diffHtml += file.info.isBinary ? '<div class="emptyLabel">[binary]</div>' : '<div class="emptyLabel">[empty]</div>';
 	}
 	fileNode.querySelector('.fileDiffContents').innerHTML = diffHtml;
+	
+	// events
 	fileNode.addEventListener('click', function(e) {
 		if (e.target.webkitMatchesSelector('.fileName, .newLine')) {
 			gui.Shell.openItem(file.path);
 		}
 	}, false);
+	fileNode.addEventListener('contextmenu', function(e) {
+		AppMenus.showFileListMenu(file, e.clientX, e.clientY);
+		e.preventDefault();
+	}, false);
+	
 	return fileNode;
 }
 
