@@ -3,21 +3,6 @@ var GitWatcher = require('git-watcher'),
 	util = require('util'),
 	gui = require('nw.gui');
 	
-var $ = function(s, ctx) {
-	ctx = ctx || document;
-	return ctx.querySelector(s);
-};
-var $$ = function(s, ctx) {
-	ctx = ctx || document;
-	return [].slice.call(ctx.querySelectorAll(s));
-};
-var $m = function(moduleName, selector) {
-	return $('.module[data-name="' + moduleName + '"]').querySelector(selector);
-};
-var $$m = function(moduleName, selector) {
-	return $$(selector, $('.module[data-name="' + moduleName + '"]'));
-};
-
 var config = require('loader').loadConfig(), 
 	baseRepoDirectory = gui.App.argv[0] || config.defaultRepository || null, 
 	currentModulePath = null, 
@@ -28,6 +13,24 @@ var gitErrHandler = require('domain').create();
 gitErrHandler.on('error', function(err) {
 	UI.showError(err);
 });
+
+function $(s, ctx) {
+	ctx = ctx || document;
+	return ctx.querySelector(s);
+}
+
+function $$(s, ctx) {
+	ctx = ctx || document;
+	return [].slice.call(ctx.querySelectorAll(s));
+}
+
+function $m(moduleName, selector) {
+	return $('.module[data-name="' + moduleName + '"]').querySelector(selector);
+}
+
+function $$m(moduleName, selector) {
+	return $$(selector, $('.module[data-name="' + moduleName + '"]'));
+}
 
 function log() {
 	if (config.debugMode && console) {
@@ -41,7 +44,10 @@ function logError() {
 }
 	
 function init() {
-	if (!baseRepoDirectory) return alert('No repository path given!');
+	if (!baseRepoDirectory) {
+		return alert('No repository path given!');
+	}
+	
 	gitWatcher = new GitWatcher(baseRepoDirectory);
 	gitWatcher.on('change', function(status) {
 		log('Event: change', status);
