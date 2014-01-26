@@ -303,9 +303,9 @@ function _renderFileListItem(file, type) {
 	node.dataset.type = type;
 	node.addEventListener('dblclick', function(e) {
 		if (type === 'staged') {
-			Git.unstageFile(currentModulePath, file, gitErrHandler.intercept(function() {}));
+			Git.unstageFile(currentModulePath, file, _handleGitResponse);
 		} else {
-			Git.stageFile(currentModulePath, file, gitErrHandler.intercept(function() {}));
+			Git.stageFile(currentModulePath, file, _handleGitResponse);
 		}
 	}, false);
 	return node;
