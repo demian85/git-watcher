@@ -165,8 +165,11 @@ html, body {
 #gitModules > li {
 	display: inline-block;
 	margin: 0 0.5rem 0 0;
-	padding: 0.3rem 1rem;
-	background: #ccc;
+	padding: 0.5rem 1rem 0.3rem 32px;
+	background-color: #ccc;
+	background-image: url(icons/folder.png);
+	background-repeat: no-repeat;
+	background-position: 5px center;
 	border: 1px solid gray;
 	border-radius: 6px 6px 0 0;
 	cursor: pointer;
@@ -178,11 +181,11 @@ html, body {
 	outline: 0;
 }
 #gitModules > li:hover {
-	background: #ddd;
+	background-color: #ddd;
 }
 #gitModules > li.visible {
 	border-bottom: 1px solid #fff;
-	background: #fff;
+	background-color: #fff;
 }
 
 .module {
