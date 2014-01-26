@@ -7,7 +7,8 @@ var config = require('loader').loadConfig(),
 	baseRepoDirectory = gui.App.argv[0] || config.defaultRepository || null, 
 	currentModulePath = null, 
 	currentModuleName = null, 
-	gitWatcher;
+	gitWatcher,
+	appTray;
 	
 var gitErrHandler = require('domain').create();
 gitErrHandler.on('error', function(err) {
@@ -44,6 +45,8 @@ function logError() {
 }
 	
 function init() {
+	initApp();
+	
 	if (!baseRepoDirectory) {
 		return alert('No repository path given!');
 	}
@@ -68,6 +71,16 @@ function init() {
 		updateStatus();
 	});
 	gitWatcher.init();
+}
+
+function initApp() {
+	appTray = new gui.Tray({
+		title: 'Git Watcher',
+		icon: 'icons/git-watcher.png'
+	});
+	appTray.on('click', function(e) {
+		gui.Window.get().focus();
+	});
 }
 
 function updateStatus() {
