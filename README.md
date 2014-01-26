@@ -26,10 +26,9 @@ I'm working on the following features
 
 * Amend commit (Really hard to do without a proper API!)
 * Allow to open repository using system's file browser
-* UI improvements
+* UI improvements: file type icons, render images in diff
 * Configuration options
 * Quick menu for files: revert, stage/unstage, open gitk
-* Render images in diff / exclude content for other binary files
 * Git log
 * Shortcuts
 
