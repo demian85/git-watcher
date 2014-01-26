@@ -125,14 +125,29 @@ var UI = {
 	},
 	
 	selectFile: function(name, type) {
+		var me = this;
 		var items = $$('.fileList > li, .file');
 		items.forEach(function(node) {
 			if (node.dataset.name === name && node.dataset.type === type) {
 				node.classList.add('selected');
+				if (node.webkitMatchesSelector('.file')) {
+					me._scrollFileIntoView(node);
+				}
 			} else {
 				node.classList.remove('selected');
 			}
 		});
+	},
+	
+	_scrollFileIntoView: function(fileNode) {
+		var y0 = fileNode.offsetTop,
+			y1 = y0 + fileNode.offsetHeight,
+			parent = fileNode.parentNode;
+		if (y0 < parent.scrollTop) {
+			fileNode.scrollIntoView(true);
+		} else if (y1 > (parent.clientHeight + parent.scrollTop)) {
+			fileNode.scrollIntoView(false);
+		}
 	},
 	
 	_updateModuleFileList: function(moduleName, status) {

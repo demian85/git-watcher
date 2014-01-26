@@ -44,19 +44,18 @@ html, body {
 	display: flex;
 	flex-flow: column nowrap;
 	flex: 1 1 auto;
-	min-height: 10rem;
+	min-height: 8rem;
+	max-height: 40vh;
+	transition: border-color 0.1s ease;
 }
 .file:hover {
 	border: 2px solid rgba(0, 0, 255, 0.4);
 }
 .file.selected {
 	border: 2px solid rgb(0, 0, 255);
-	min-height: 15rem;
-	min-width: 20rem;
 }
 .file > label {
 	display: block;
-	font-size: 0.9rem;
 	background: #eee;
 	padding: 0.3rem;
 	border-radius: 6px 6px 0 0;
@@ -64,28 +63,28 @@ html, body {
 	white-space: nowrap;
 	overflow: hidden;
 }
-.file .fileName {
+.fileName {
 	font-weight: bold;
 	cursor: pointer;
 	margin-right: 1rem;
 }
-.file .fileName:hover {
+.fileName:hover {
 	text-decoration: underline;
 }
-.file .fileStatus {
+.fileStatus {
 	margin-right: 1rem;
 }
-.file .status {
-	margin-left: 1rem;
-}
-.file .status.deleted {
+.fileStatus.deleted {
 	color: red;
 }
-.file .status.modified {
+.fileStatus.modified {
 	color: blue;
 }
-.file .status.new {
-	color: #4f8044;
+.fileStatus.new {
+	color: #299C0F;
+}
+.fileType {
+	font-family: "dejavu sans mono", monospace;
 }
 .file .emptyLabel {
 	color: blue;
@@ -96,8 +95,7 @@ html, body {
 .fileDiffContents {
 	overflow: auto;
 	font-family: "dejavu sans mono", monospace;
-	font-size: 1rem;
-	flex: 1 1 20%;
+	flex: 1 1 auto;
 	margin: 0 0.2rem 0.2rem 0.2rem;
 	-webkit-user-select: initial;
 	tab-size: 4;
@@ -115,7 +113,7 @@ html, body {
 }
 .fileDiff .lineRow {
 	white-space: pre;
-	transition: background-color 0.05s linear;
+	transition: background-color 0.05s ease;
 }
 .fileDiff .lineRow:hover,
 .fileDiff .lineRow:hover .line {
@@ -174,7 +172,7 @@ html, body {
 	cursor: pointer;
 	position: relative;
 	top: 1px;
-	transition: background-color 0.1s linear;
+	transition: background-color 0.1s ease;
 }
 #gitModules > li:focus {
 	outline: 0;
@@ -212,9 +210,12 @@ html, body {
 	display: flex;
 	flex-flow: row wrap;
 	flex: 1 1 auto;
+	overflow: auto;
+	position: relative;
+}
+.filesDiff:empty {
 	border: 1px solid gray;
 	border-radius: 6px;
-	overflow: auto;
 }
 .module.visible {
 	display: flex;
@@ -224,11 +225,6 @@ html, body {
 	margin: 0 0.5rem 0.5rem 0.5rem;
 	flex: 0 0 auto;
 	-webkit-user-select: initial;
-}
-.module h1.title {
-	font-size: 1.2rem;
-	margin: 0;
-	padding: 0.5rem;
 }
 .fileListTitle {
 	font-size: 1rem;
@@ -262,7 +258,7 @@ html, body {
 	margin: 0;
 	height: 20px;
 	padding: 0.2rem 0.5rem 0.2rem 25px;
-	transition: background-color 0.05s linear;
+	transition: background-color 0.05s ease;
 	background-repeat: no-repeat;
 	background-position: 2px center;
 }
@@ -323,7 +319,7 @@ html, body {
 	background-color: #ddd;
 	cursor: pointer;
 	margin: 0.2rem;
-	transition: background-color 0.05s linear;
+	transition: background-color 0.05s ease;
 }
 .controlPanel > button:hover {
 	background-color: #d3d3d3;
