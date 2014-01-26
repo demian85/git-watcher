@@ -2,7 +2,7 @@
 
 Git Watcher is a multi-platform desktop app written in pure HTML and Javascript using node-webkit.
 
-It shows diff information about local staged/unstaged files in real-time and allows you to commit changes. UI is updated in real-time by detecting file changes and git index changes. Submodules also inform changes to their parent module.
+It shows diff information about local staged/unstaged files and allows you to commit changes. UI is updated in real-time by detecting file changes and git index changes. Submodules also inform changes to their parent module.
 
 It also organizes repository submodules in tabs, so that you can work easily with them without the need of having multiple git gui instances or shells.
 
@@ -14,6 +14,7 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 * Allows you to work with **submodules organized in tabs**.
 * Allows you to **open files** by clicking on its name or lines numbers.
 * Shows current **branch information**: upstream branch and ahead/behind commit count.
+* System Tray support
 
 ## Screenshots
 ![Overview 1](http://screencloud.net/img/screenshots/7cebea458d52135e0e5dcdf871f88283.png)
@@ -28,7 +29,7 @@ I'm working on the following features
 * Allow to open repository using system's file browser
 * Correctly show unmerged paths info. Alert when staging an unmerged file.
 * Configuration options
-* Quick menu for files: revert, stage/unstage, open gitk
+* Menu bar with utility options: open gitk, browse, diff, etc.
 * UI improvements: file type icons, render images in diff
 * Shortcuts
 * Git log
