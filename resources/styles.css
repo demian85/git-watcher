@@ -312,26 +312,40 @@ html, body {
 	vertical-align: middle;
 	margin: 0 0.3rem 0 0;
 }
+.commitOptionLabel {
+	flex: 1 1 auto;
+	padding: 0 0.5rem;
+}
 .controlPanel {
 	display: flex;
 	flex-flow: row wrap;
 	flex: 1 1 auto;
 }
-.controlPanel > button,
-.commitOptionLabel {
+.controlPanel > button {
 	flex: 1 1 auto;
-	padding: 0 0.5rem;
+	padding: 0.3rem 0.5rem 0.3rem 25px;
 }
 .controlPanel > button {
 	border-radius: 3px;
 	border: 1px solid #ccc;
 	background-color: #ddd;
+	background-position: 2px center;
+	background-repeat: no-repeat;
 	cursor: pointer;
 	margin: 0.2rem;
 	transition: background-color 0.05s ease;
 }
 .controlPanel > button:hover {
 	background-color: #d3d3d3;
+}
+.refreshButton {
+	background-image: url(icons/refresh.png);
+}
+.commitButton {
+	background-image: url(icons/commit.png);
+}
+.pushButton {
+	background-image: url(icons/push.png);
 }
 .commitMessage {
 	width: 100%;

@@ -109,9 +109,9 @@ var AppMenus = {
 	items: {},
 	
 	init: function() {
-		this.items['revert'] = new gui.MenuItem({label: 'Revert changes'});
-		this.items['stage'] = new gui.MenuItem({label: 'Stage file'});
-		this.items['unstage'] = new gui.MenuItem({label: 'Unstage file'});
+		this.items['revert'] = new gui.MenuItem({label: 'Revert changes', icon: 'icons/revert.png'});
+		this.items['stage'] = new gui.MenuItem({label: 'Stage file', icon: 'icons/stage.png'});
+		this.items['unstage'] = new gui.MenuItem({label: 'Unstage file', icon: 'icons/unstage.png'});
 		this.menus.filesList = new gui.Menu();
 		this.menus.filesList.append(this.items['revert']);
 		this.menus.filesList.append(this.items['stage']);
