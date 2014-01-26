@@ -156,14 +156,16 @@ html, body {
 }
 
 #gitModules {
+	display: flex;
+	flex-flow: row wrap;
+	flex: 0 0 auto;
 	list-style-type: none;
 	margin: 0.5rem 0 0 0;
 	padding: 0 0.5rem;
 	border-bottom: 1px solid gray;
-	flex: 0 0 auto;
 }
 #gitModules > li {
-	display: inline-block;
+	flex: 1 1 auto;
 	margin: 0 0.5rem 0 0;
 	padding: 0.5rem 1rem 0.3rem 32px;
 	background-color: #ccc;
@@ -219,6 +221,10 @@ html, body {
 .filesDiff:empty {
 	border: 1px solid gray;
 	border-radius: 6px;
+}
+.filesDiff::-webkit-scrollbar {
+    width: 12px;
+	height: 12px;
 }
 .module.visible {
 	display: flex;
