@@ -167,7 +167,7 @@ html, body {
 #gitModules > li {
 	flex: 1 1 auto;
 	margin: 0 0.5rem 0 0;
-	padding: 0.5rem 1rem 0.3rem 32px;
+	padding: 0.5rem 1rem 0.3rem 34px;
 	background-color: #ccc;
 	background-image: url(icons/folder.png);
 	background-repeat: no-repeat;
