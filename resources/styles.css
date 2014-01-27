@@ -83,7 +83,7 @@ button {
 	flex-flow: column nowrap;
 	flex: 1 1 auto;
 	min-height: 8rem;
-	max-height: 40vh;
+	max-height: 100vh;
 	transition: border-color 0.1s ease;
 }
 .file:hover {
@@ -144,7 +144,7 @@ button {
 	border-collapse: collapse;
 }
 .range {
-	border-bottom: 1px dotted #ccc;
+	border-bottom: 1px dotted #777;
 }
 .range:last-child {
 	border-bottom: 0;
