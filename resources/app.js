@@ -1,13 +1,12 @@
 var GitWatcher = require('git-watcher'),
 	Git = require('git'),
 	util = require('util'),
-	gui = require('nw.gui');
-	
-var config = require('loader').loadConfig(), 
-	baseRepoDirectory = gui.App.argv[0] || config.defaultRepository || null, 
+	gui = require('nw.gui'),
+	config = require('loader').loadConfig(), 
+	baseRepoDirectory = null, 
 	currentModulePath = null, 
 	currentModuleName = null, 
-	gitWatcher,
+	gitWatcher = null,
 	appTray;
 	
 var gitErrHandler = require('domain').create();
@@ -43,34 +42,15 @@ function logError() {
 		console.error.apply(console, arguments);
 	}
 }
-	
+
 function init() {
 	initApp();
 	
-	if (!baseRepoDirectory) {
-		return alert('No repository path given!');
-	}
+	baseRepoDirectory = gui.App.argv[0] || config.defaultRepository || null;
 	
-	gitWatcher = new GitWatcher(baseRepoDirectory);
-	gitWatcher.on('change', function(status) {
-		log('Event: change', status);
-		UI.updateModule(status.module, status.status);
-	});
-	gitWatcher.on('error', function(err) {
-		logError('Event: error', err);
-		UI.showError(err);
-		throw err;
-	});
-	gitWatcher.on('ready', function() {
-		log('Event: ready');
-		var modules = gitWatcher.getModules();
-		modules.forEach(function(module) {
-			UI.createModule(module);
-		});
-		UI.showModule(modules[0]);
-		updateStatus();
-	});
-	gitWatcher.init();
+	if (baseRepoDirectory) {
+		openRepository(baseRepoDirectory);
+	}
 }
 
 function initApp() {
@@ -81,7 +61,9 @@ function initApp() {
 	appTray.on('click', function(e) {
 		gui.Window.get().focus();
 	});
-	
+    
+    $('#repositoryChooser').setAttribute('nwworkingdir', process.env.HOME);    
+    
 	AppMenus.init();
 }
 
@@ -104,11 +86,76 @@ function updateCurrentModuleStatus() {
 	});
 }
 
+function isValidRepository(path) {
+    return require('fs').existsSync(require('path').join(path, '.git'));
+}
+
+function openRepository(repositoryPath) {
+	closeRepository();
+    
+    if (!isValidRepository(repositoryPath)) {
+        UI.showError('Invalid repository path given!\n\nPlease select a valid Git repository.');
+        chooseRepository();
+        return;
+    }
+    
+	baseRepoDirectory = repositoryPath;
+    
+	gitWatcher = new GitWatcher(repositoryPath);
+	gitWatcher.on('change', function(status) {
+		log('Event: change', status);
+		UI.updateModule(status.module, status.status);
+	});
+	gitWatcher.on('error', function(err) {
+		logError('Event: error', err);
+		UI.showError(err);
+		throw err;
+	});
+	gitWatcher.on('ready', function() {
+		log('Event: ready');
+		var modules = gitWatcher.getModules();
+		modules.forEach(function(module) {
+			UI.createModule(module);
+		});
+		UI.showModule(modules[0]);
+		updateStatus();
+	});
+	gitWatcher.init();
+    
+    AppMenus.items['repositoryClose'].enabled = true;
+    $('#main').classList.remove('empty');
+}
+
+function chooseRepository() {
+    gui.Window.get().focus();
+	$('#repositoryChooser').click();
+}
+
+function closeRepository() {
+	if (baseRepoDirectory && gitWatcher !== null) {
+		gitWatcher.close();
+        gitWatcher.removeAllListeners();
+		gitWatcher = null;
+		baseRepoDirectory = null;
+        AppMenus.items['repositoryClose'].enabled = false;
+		$$('.module').forEach(function(node) {
+			node.parentNode.removeChild(node);
+		});
+		$('#gitModules').innerHTML = '';
+        $('#main').classList.add('empty');
+	}
+}
+
 var AppMenus = {
 	menus: {},
 	items: {},
 	
 	init: function() {
+		this._createMenuBar();
+		this._createMenus();
+	},
+	
+	_createMenus: function() {
 		this.items['revert'] = new gui.MenuItem({label: 'Revert changes', icon: 'icons/revert.png'});
 		this.items['stage'] = new gui.MenuItem({label: 'Stage file', icon: 'icons/stage.png'});
 		this.items['unstage'] = new gui.MenuItem({label: 'Unstage file', icon: 'icons/unstage.png'});
@@ -116,6 +163,31 @@ var AppMenus = {
 		this.menus.filesList.append(this.items['revert']);
 		this.menus.filesList.append(this.items['stage']);
 		this.menus.filesList.append(this.items['unstage']);
+	},
+	
+	_createMenuBar: function() {
+		$('#repositoryChooser').addEventListener('change', function(e) {
+			openRepository(this.value);
+		}, false);
+		
+		this.items['repositoryOpen'] = new gui.MenuItem({
+			label: 'Open...',
+			click: chooseRepository
+		});
+		this.items['repositoryClose'] = new gui.MenuItem({
+			label: 'Close',
+            enabled: false,
+			click: closeRepository
+		});
+		this.menus.repository = new gui.Menu();
+		this.menus.repository.append(this.items['repositoryOpen']);
+		this.menus.repository.append(this.items['repositoryClose']);
+		this.menubar = new gui.Menu({type: 'menubar'});
+		this.menubar.append(new gui.MenuItem({
+			label: 'Repository',
+			submenu: this.menus.repository
+		}));
+		gui.Window.get().menu = this.menubar;
 	},
 	
 	showFileListMenu: function(file, x, y) {
@@ -173,7 +245,7 @@ var UI = {
 	},
 	
 	showError: function(err) {
-		alert(err.message);
+		alert(err.toString());
 	},
 	
 	selectFile: function(name, type) {

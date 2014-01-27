@@ -27,6 +27,15 @@ html, body {
 	background: rgba(0,0,255,0.5);
 }
 
+button {
+	border-radius: 3px;
+    padding: 0.5rem 1rem;
+	border: 1px solid #ccc;
+	background-color: #ddd;
+	cursor: pointer;
+	transition: background-color 0.1s ease;
+}
+
 #main {
 	height: 100%;
 	display: flex;
@@ -35,6 +44,24 @@ html, body {
 #main > header {
 	overflow: auto;
 	flex: 0 0 auto;
+}
+#main.empty #emptyMessage {
+    display: block;
+}
+#main.empty #gitModules {
+    display: none;
+}
+
+#emptyMessage {
+    text-align: center;
+    margin: 1rem auto;
+    display: none;
+}
+#emptyMessage button {
+    font-size: 1.5rem;
+}
+#emptyMessage button:hover {
+    background-color: #d3d3d3;
 }
 
 .file {

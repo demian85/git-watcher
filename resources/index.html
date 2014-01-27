@@ -57,11 +57,14 @@
 			<li><label class="fileListItemLabel"></label></li>
 		</template>
 	
-		<div id="main">
+		<div id="main" class="empty">
 			<header>
 				<ul id="gitModules"></ul>
 			</header>
+            <div id="emptyMessage"><button onclick="chooseRepository()"><img src="icons/open.png" alt="" /><br/>Open repository</button></div>
 		</div>
+	
+		<input type="file" id="repositoryChooser" style="display: none" nwdirectory nwworkingdir="/home" />
 	
 	</body>
 </html>
