@@ -19,7 +19,7 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 ## Screenshots
 ![Overview 1](http://screencloud.net/img/screenshots/7532a5c724d8fba5d0f305106c2ff90d.png)
 ![Overview 2](http://screencloud.net/img/screenshots/8585ba99bd331e2942bdb40fcf1906c5.png)
-![Overview 3](http://screencloud.net/img/screenshots/ce16abddd6740647bb4277fe483b1d74.png)
+![Overview 3](http://screencloud.net/img/screenshots/c796b264e0b55691410599d56e2e0d66.png)
 
 ## TODO
 
