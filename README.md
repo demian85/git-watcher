@@ -26,13 +26,12 @@ I'm working on the following features
 (your help will be much appreciated!)
 
 * Amend commit (Really hard to do without a proper API!)
-* Allow to open repository using system's file browser
 * Correctly show unmerged paths info. Alert when staging an unmerged file.
 * Configuration options
-* Menu bar with utility options: open gitk, browse, diff, etc.
-* UI improvements: file type icons, render images in diff
-* Shortcuts
-* Git log
+* Utility options in menu bar: open gitk, browse, diff, etc.
+* UI improvements: render images in diff, shortcuts, more file options, better syntax highlighting, etc
+* Git log: show errors/warnings
+* Improve speed for large repositories
 
 ## Download
 
@@ -43,8 +42,7 @@ I'll try to keep this updated.
 
 ## How to run the app
 
-Extract file contents and just execute `./run.sh /path/to/repository`
-See `config.json`file for more options.
+Just extract file contents and just execute `./run.sh`
 
 ## Quick start for developers
 
