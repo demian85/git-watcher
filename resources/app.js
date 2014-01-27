@@ -99,6 +99,8 @@ function openRepository(repositoryPath) {
         return;
     }
     
+	$('#loadingImage').classList.add('visible');
+    
 	baseRepoDirectory = repositoryPath;
     
 	gitWatcher = new GitWatcher(repositoryPath);
@@ -113,6 +115,7 @@ function openRepository(repositoryPath) {
 	});
 	gitWatcher.on('ready', function() {
 		log('Event: ready');
+		$('#loadingImage').classList.remove('visible');
 		var modules = gitWatcher.getModules();
 		modules.forEach(function(module) {
 			UI.createModule(module);

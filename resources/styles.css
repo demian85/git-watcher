@@ -52,10 +52,18 @@ button {
     display: none;
 }
 
-#emptyMessage {
-    text-align: center;
-    margin: 1rem auto;
+#loadingImage {
     display: none;
+    margin: 1rem auto;
+}
+#loadingImage.visible {
+    display: block;
+}
+
+#emptyMessage {
+	text-align: center;
+	margin: 1rem auto;
+	display: none;
 }
 #emptyMessage button {
     font-size: 1.5rem;
