@@ -67,17 +67,6 @@ function initApp() {
 	AppMenus.init();
 }
 
-function updateStatus() {
-	log('Updating status...');
-	gitWatcher.getStatus(function(err, status) {
-		if (err) throw err;
-		log('Status:', status);
-		for (var module in status) {
-			UI.updateModule(module, status[module]);
-		}
-	});
-}
-
 function updateCurrentModuleStatus() {
 	log('Updating current module status...');
 	gitWatcher.getModuleStatus(currentModuleName, function(err, status) {
@@ -115,18 +104,12 @@ function openRepository(repositoryPath) {
 	});
 	gitWatcher.on('ready', function() {
 		log('Event: ready');
-		$('#loadingImage').classList.remove('visible');
-		var modules = gitWatcher.getModules();
-		modules.forEach(function(module) {
-			UI.createModule(module);
-		});
-		UI.showModule(modules[0]);
-		updateStatus();
+		UI.load();
 	});
 	gitWatcher.init();
-    
-    AppMenus.items['repositoryClose'].enabled = true;
-    $('#main').classList.remove('empty');
+	
+	AppMenus.items['repositoryClose'].enabled = true;
+	$('#main').classList.remove('empty');
 }
 
 function chooseRepository() {
@@ -146,6 +129,7 @@ function closeRepository() {
 		});
 		$('#gitModules').innerHTML = '';
         $('#main').classList.add('empty');
+		$('#repositoryChooser').value = '';
 	}
 }
 
@@ -211,6 +195,22 @@ var AppMenus = {
 };
 
 var UI = {
+	load: function() {
+		gitWatcher.getStatus(function(err, status) {
+			if (err) throw err;
+			log('Status:', status);
+			$('#loadingImage').classList.remove('visible');
+			var modules = gitWatcher.getModules();
+			modules.forEach(function(module) {
+				UI.createModule(module);
+			});
+			UI.showModule(modules[0]);
+			for (var module in status) {
+				UI.updateModule(module, status[module]);
+			}
+		});
+	},
+	
 	showModule: function(moduleName) {
 		currentModuleName = moduleName;
 		currentModulePath = require('path').dirname(baseRepoDirectory) + moduleName;
