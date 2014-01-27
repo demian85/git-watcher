@@ -42,7 +42,6 @@ button {
 	flex-flow: column nowrap;
 }
 #main > header {
-	overflow: auto;
 	flex: 0 0 auto;
 }
 #main.empty #emptyMessage {
@@ -192,7 +191,7 @@ button {
 
 #gitModules {
 	display: flex;
-	flex-flow: row wrap;
+	flex-flow: row nowrap;
 	flex: 0 0 auto;
 	list-style-type: none;
 	margin: 0.5rem 0 0 0;
@@ -213,6 +212,7 @@ button {
 	position: relative;
 	top: 1px;
 	transition: background-color 0.1s ease;
+	overflow: hidden;
 }
 #gitModules > li:focus {
 	outline: 0;
