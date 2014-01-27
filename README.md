@@ -42,9 +42,9 @@ I'll try to keep this updated.
 
 ## How to run the app
 
-Just extract file contents and just execute `./run.sh`
+Just extract file contents and execute `./run.sh`
 
-## Quick start for developers
+## Or build it yourself!
 
 Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) for details on how to run apps.
 
