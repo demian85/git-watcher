@@ -52,8 +52,12 @@ button {
 }
 
 #loadingImage {
-    display: none;
-    margin: 1rem auto;
+	display: none;
+	margin-top: -25px;
+	margin-left: -25px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
 }
 #loadingImage.visible {
     display: block;
