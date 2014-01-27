@@ -177,16 +177,16 @@ var AppMenus = {
 		gui.Window.get().menu = this.menubar;
 	},
 	
-	showFileListMenu: function(file, x, y) {
-		this.items['revert'].enabled = file.unstaged && file.status !== 'new';
+	showFileListMenu: function(file, type, x, y) {
+		this.items['revert'].enabled = type === 'unstaged' && file.unstaged && file.status !== 'new';
 		this.items['revert'].click = function() {
 			Git.revertFile(currentModulePath, file, _handleGitResponse);
 		};
-		this.items['stage'].enabled = file.unstaged;
+		this.items['stage'].enabled = type === 'unstaged' && file.unstaged;
 		this.items['stage'].click = function() {
 			Git.stageFile(currentModulePath, file, _handleGitResponse);
 		};
-		this.items['unstage'].enabled = file.staged;
+		this.items['unstage'].enabled = type === 'staged' && file.staged;
 		this.items['unstage'].click = function() {
 			Git.unstageFile(currentModulePath, file, _handleGitResponse);
 		};
@@ -395,7 +395,7 @@ function _renderFileDiff(file, type) {
 		}
 	}, false);
 	fileNode.addEventListener('contextmenu', function(e) {
-		AppMenus.showFileListMenu(file, e.clientX, e.clientY);
+		AppMenus.showFileListMenu(file, type, e.clientX, e.clientY);
 		e.preventDefault();
 	}, false);
 	
@@ -444,7 +444,7 @@ function _renderFileListItem(file, type) {
 	
 	// file list context menu
 	node.addEventListener('contextmenu', function(e) {
-		AppMenus.showFileListMenu(file, e.clientX, e.clientY);
+		AppMenus.showFileListMenu(file, type, e.clientX, e.clientY);
 		e.preventDefault();
 	}, false);
 	return node;
