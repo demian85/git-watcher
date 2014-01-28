@@ -17,9 +17,9 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 * System Tray support
 
 ## Screenshots
-![Overview 1](http://screencloud.net/img/screenshots/7532a5c724d8fba5d0f305106c2ff90d.png)
-![Overview 2](http://screencloud.net/img/screenshots/8585ba99bd331e2942bdb40fcf1906c5.png)
-![Overview 3](http://screencloud.net/img/screenshots/c796b264e0b55691410599d56e2e0d66.png)
+![Overview 1](http://screencloud.net/img/screenshots/d10102d44ddc040b2adb891b0ffdbffd.png)
+![Overview 2](http://screencloud.net/img/screenshots/91176b2babb1b4df89a6b3ca0347a620.png)
+![Overview 3](http://screencloud.net/img/screenshots/5b081d51fd0e1bef058ce68e73a832db.png)
 
 ## TODO
 
