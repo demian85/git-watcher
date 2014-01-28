@@ -1,6 +1,5 @@
 var GitWatcher = require('git-watcher'),
 	Git = require('git'),
-	gui = require('nw.gui'),
 	baseRepoDirectory = null, 
 	currentModulePath = null, 
 	currentModuleName = null, 
@@ -34,6 +33,11 @@ function initApp() {
     $('#repositoryChooser').setAttribute('nwworkingdir', process.env.HOME);    
     
 	AppMenus.init();
+	
+	gui.Window.get().on('close', function() {
+		Config.save();
+		this.close(true);
+	});
 }
 
 function updateCurrentModuleStatus() {

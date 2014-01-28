@@ -1,4 +1,27 @@
-var config = require('loader').loadConfig();
+var gui = require('nw.gui'),
+	config;
+
+var Config = {
+	
+	load: function() {
+		var configFile = require('path').join(gui.App.dataPath, 'config.json');
+		try {
+			config = JSON.parse(require('fs').readFileSync(configFile));
+		} catch(e) {
+			config = this._getDefaultConfig();
+		}
+	},
+	
+	save: function() {
+		var configFile = require('path').join(gui.App.dataPath, 'config.json');
+		require('fs').writeFileSync(configFile, JSON.stringify(config), {encoding: 'utf8'});
+	},
+	
+	_getDefaultConfig: function() {
+		var configFile = require('path').normalize('./config.json');
+		return JSON.parse(require('fs').readFileSync(configFile));
+	}
+};
 
 function $(s, ctx) {
 	ctx = ctx || document;
@@ -28,3 +51,5 @@ function logError() {
 		console.error.apply(console, arguments);
 	}
 }
+
+Config.load();
