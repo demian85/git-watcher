@@ -1,8 +1,6 @@
 var GitWatcher = require('git-watcher'),
 	Git = require('git'),
-	util = require('util'),
 	gui = require('nw.gui'),
-	config = require('loader').loadConfig(), 
 	baseRepoDirectory = null, 
 	currentModulePath = null, 
 	currentModuleName = null, 
@@ -13,35 +11,6 @@ var gitErrHandler = require('domain').create();
 gitErrHandler.on('error', function(err) {
 	UI.showError(err);
 });
-
-function $(s, ctx) {
-	ctx = ctx || document;
-	return ctx.querySelector(s);
-}
-
-function $$(s, ctx) {
-	ctx = ctx || document;
-	return [].slice.call(ctx.querySelectorAll(s));
-}
-
-function $m(moduleName, selector) {
-	return $('.module[data-name="' + moduleName + '"]').querySelector(selector);
-}
-
-function $$m(moduleName, selector) {
-	return $$(selector, $('.module[data-name="' + moduleName + '"]'));
-}
-
-function log() {
-	if (config.debugMode && console) {
-		console.log.apply(console, arguments);
-	}
-}
-function logError() {
-	if (config.debugMode && console) {
-		console.error.apply(console, arguments);
-	}
-}
 
 function init() {
 	initApp();
