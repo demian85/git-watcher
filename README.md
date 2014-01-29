@@ -49,14 +49,14 @@ Just extract file contents and execute `./run.sh`
 
 Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) for details on how to run apps.
 
-NodeJS >= 0.10 is required
+[NodeJS](http://nodejs.org/download/) >= 0.10 is required
 
 * [Download node-webkit](https://github.com/rogerwang/node-webkit#downloads) and extract its contents in `/opt/node-webkit`
 * Clone repo 
 * `cd ./resources`
-* `npm install`.
+* `npm install`
 * Install *nw-gyp*: `npm install -g nw-gyp`
-* Rebuild *git-utils* and *mmmagic* dependencies based on the node-webkit version you are running. Eg: `nw-gyp rebuild --target=0.8.4`
+* Rebuild *git-utils* and *mmmagic* dependencies based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.8.4`:
 * Run the app! `/opt/node-webkit/nw /path/to/git-watcher/resources`
 
 Also, in the resources folder, you will find a helper script `build.sh` that creates a Linux build. It asumes you have node-webkit installed on `/opt/node-webkit`.
