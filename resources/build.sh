@@ -12,4 +12,4 @@ mv ./nw.pak ../build/linux/nw.pak
 rm ./app.nw
 #copy useful files
 cp ./run.sh ../build/linux/run.sh
-cp ./config.json ../build/linux/config.json
+cp ./build-package.json ../build/linux/package.json

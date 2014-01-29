@@ -1,0 +1,20 @@
+{
+	"name": "git-watcher",
+	"version": "0.3.2",
+	"author": {
+    	"name": "Demián Rodriguez",
+		"email" : "demian85@gmail.com"
+  	},
+	"keywords": ["git", "gui", "diff", "tool", "commit", "push", "realtime"],
+	"description": "Git GUI desktop app that shows real-time diff file information for working directory and index",
+	"repositories": [
+		{
+			"type": "git", 
+			"url": "https://github.com/demian85/git-watcher.git"
+		}
+	],
+	"private": true,
+	"bin": {
+		"gitw": "./run.sh"
+	}
+}
