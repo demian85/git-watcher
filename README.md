@@ -36,9 +36,9 @@ I'm working on the following features
 
 ## Download
 
-For distributions older than Ubuntu 13.04, Fedora 18/19 or derivative, please download the 'Old dist' build.
+For distributions __older__ than *Ubuntu 13.04*, *Fedora 18/19* or derivative, please download the 'Old dist' build.
 
-Go for the 'New dist' if you have any of the distributions mentioned above or newer.
+Go for the 'New dist' if you have any of the distributions mentioned above or __newer__.
 
 * [Linux x64 - Old dist - v0.3.2](https://mega.co.nz/#!6RJzlTrL!1f7TkRzAuDK6KAQy3fpYFzGUqz5yqgfESj_BB2-NjQY)
 * [Linux x64 - New dist - v0.3.2](https://mega.co.nz/#!zQhjSBZT!Mxz8HoeCqcTdGIMcsMA27dA3epMxZ7pQMYLuxLdBxCM)
