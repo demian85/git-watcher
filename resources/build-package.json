@@ -15,6 +15,6 @@
 	],
 	"private": true,
 	"bin": {
-		"gitw": "./run.sh"
+		"gitw": "./app"
 	}
 }

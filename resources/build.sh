@@ -11,5 +11,4 @@ mv ./nw.pak ../build/linux/nw.pak
 #remove app.nw
 rm ./app.nw
 #copy useful files
-cp ./run.sh ../build/linux/run.sh
 cp ./build-package.json ../build/linux/package.json
