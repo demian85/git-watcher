@@ -36,14 +36,20 @@ I'm working on the following features
 
 ## Download
 
-I'll try to keep this updated.
+For distributions older than Ubuntu 13.04, Fedora 18/19 or derivative, please download the 'Old dist' build.
 
-* [Linux x64 v0.3.1 (latest build)](https://mega.co.nz/#!DUwGyJxD!-h-Wjw6rHpUEbIbk4XWb0uJAXN1GD09OGPUwmOGQjpw)
-* [Linux x64 v0.2.1](https://www.dropbox.com/s/rj7w3n80jrf21fu/git-watcher-linux-x64-v0.2.1.tar.gz)
+Go for the 'New dist' if you have any of the distributions mentioned above or newer.
+
+* [Linux x64 - Old dist - v0.3.2](https://mega.co.nz/#!6RJzlTrL!1f7TkRzAuDK6KAQy3fpYFzGUqz5yqgfESj_BB2-NjQY)
+* [Linux x64 - New dist - v0.3.2](https://mega.co.nz/#!zQhjSBZT!Mxz8HoeCqcTdGIMcsMA27dA3epMxZ7pQMYLuxLdBxCM)
 
 ## How to run the app
 
-Just extract file contents and execute `./run.sh`
+Just extract file contents and execute `./app`.
+
+You can also `npm link`. A link to the app will be added in `/usr/local/bin`, so you can run the app using `gitw` command.
+
+If it's a valid Git repository, the current working directory is used by default.
 
 ## Or build it yourself!
 
