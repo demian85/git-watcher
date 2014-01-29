@@ -17,7 +17,9 @@ function init() {
 	
 	baseRepoDirectory = gui.App.argv[0] || config.defaultRepository || null;
 	
-	if (baseRepoDirectory) {
+	if (!baseRepoDirectory && isValidRepository(process.env.PWD)) {
+		openRepository(process.env.PWD);
+	} else if (baseRepoDirectory) {
 		openRepository(baseRepoDirectory);
 	}
 }
