@@ -1,5 +1,6 @@
-var GitWatcher = require('git-watcher'),
-	Git = require('git'),
+var GitWatcher = require('./lib/GitWatcher'),
+	Git = require('./lib/Git'),
+	Highlighter = require('./lib/Highlighter'),
 	baseRepoDirectory = null, 
 	currentModulePath = null, 
 	currentModuleName = null, 
@@ -386,7 +387,7 @@ function _renderFileDiffLine(file, lineText) {
 	if (hlConf.enabled) {
 		var ext = require('path').extname(file.name);
 		if (hlConf.byFileExtension[ext] === undefined || hlConf.byFileExtension[ext]) {
-			var hl = require('highlighter').getInstance(ext);
+			var hl = Highlighter.getInstance(ext);
 			if (hl) {
 				return hl.highlight(lineText);
 			}

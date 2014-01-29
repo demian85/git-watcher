@@ -1,16 +1,13 @@
 {
 	"name": "git-watcher",
 	"main": "index.html",
-	"version": "0.3.1",
+	"version": "0.3.2",
+	"author": {
+    	"name": "Demián Rodriguez",
+		"email" : "demian85@gmail.com"
+  	},
 	"keywords": ["git", "gui", "diff", "tool", "commit", "push", "realtime"],
-	"window": {
-		"title": "Git Watcher",
-		"icon": "icons/git-watcher.png",
-		"width": 1024,
-		"height": 768,
-		"position": "center",
-		"toolbar": false
-	},
+	"description": "Git GUI desktop app that shows real-time diff file information for working directory and index",
 	"contributors": [
 		{
 			"name": "Demián Rodriguez",
@@ -20,7 +17,21 @@
 	"repositories": [
 		{
 			"type": "git", 
-			"url": "http://github.com/example.git"
+			"url": "https://github.com/demian85/git-watcher.git"
 		}
-	]
+	],
+	"dependencies": {
+		"async": "0.2.x",
+		"git-utils": "0.34.x",
+		"mmmagic": "0.3.x"
+	},
+	"private": true,
+	"window": {
+		"title": "Git Watcher",
+		"icon": "icons/git-watcher.png",
+		"width": 1024,
+		"height": 768,
+		"position": "center",
+		"toolbar": false
+	}
 }
