@@ -125,12 +125,15 @@ var AppMenus = {
 		this.items['stage'] = new gui.MenuItem({label: 'Stage file', icon: 'icons/stage.png'});
 		this.items['unstage'] = new gui.MenuItem({label: 'Unstage file', icon: 'icons/unstage.png'});
 		this.items['revert'] = new gui.MenuItem({label: 'Revert changes', icon: 'icons/revert.png'});
+		this.items['open'] = new gui.MenuItem({label: 'Open file', icon: 'icons/open-file.png'});
 		this.items['delete'] = new gui.MenuItem({label: 'Delete file', icon: 'icons/delete.png'});
 		this.items['viewHistory'] = new gui.MenuItem({label: 'View file history', icon: 'icons/view-history.png'});
 		this.menus.filesList = new gui.Menu();
 		this.menus.filesList.append(this.items['stage']);
 		this.menus.filesList.append(this.items['unstage']);
 		this.menus.filesList.append(this.items['revert']);
+		this.menus.filesList.append(new gui.MenuItem({type: 'separator'}));
+		this.menus.filesList.append(this.items['open']);
 		this.menus.filesList.append(this.items['delete']);
 		this.menus.filesList.append(new gui.MenuItem({type: 'separator'}));
 		this.menus.filesList.append(this.items['viewHistory']);
@@ -186,6 +189,10 @@ var AppMenus = {
 		this.items['unstage'].enabled = type === 'staged' && file.staged;
 		this.items['unstage'].click = function() {
 			Git.unstageFile(currentModulePath, file, _handleGitResponse);
+		};
+		this.items['open'].enabled = file.status !== 'deleted';
+		this.items['open'].click = function() {
+			gui.Shell.openItem(file.path);
 		};
 		this.items['delete'].enabled = type === 'unstaged' && file.unstaged;
 		this.items['delete'].click = function() {
