@@ -84,7 +84,8 @@ function openRepository(repositoryPath) {
 	});
 	gitWatcher.init();
 	
-	AppMenus.items['repositoryClose'].enabled = true;
+	AppMenus.enableRepoMenu(true);
+	
 	$('#main').classList.remove('empty');
 }
 
@@ -99,7 +100,9 @@ function closeRepository() {
         gitWatcher.removeAllListeners();
 		gitWatcher = null;
 		baseRepoDirectory = null;
-        AppMenus.items['repositoryClose'].enabled = false;
+		
+        AppMenus.enableRepoMenu(false);
+		
 		$$('.module').forEach(function(node) {
 			node.parentNode.removeChild(node);
 		});
@@ -123,11 +126,14 @@ var AppMenus = {
 		this.items['unstage'] = new gui.MenuItem({label: 'Unstage file', icon: 'icons/unstage.png'});
 		this.items['revert'] = new gui.MenuItem({label: 'Revert changes', icon: 'icons/revert.png'});
 		this.items['delete'] = new gui.MenuItem({label: 'Delete file', icon: 'icons/delete.png'});
+		this.items['viewHistory'] = new gui.MenuItem({label: 'View file history', icon: 'icons/view-history.png'});
 		this.menus.filesList = new gui.Menu();
 		this.menus.filesList.append(this.items['stage']);
 		this.menus.filesList.append(this.items['unstage']);
 		this.menus.filesList.append(this.items['revert']);
 		this.menus.filesList.append(this.items['delete']);
+		this.menus.filesList.append(new gui.MenuItem({type: 'separator'}));
+		this.menus.filesList.append(this.items['viewHistory']);
 	},
 	
 	_createMenuBar: function() {
@@ -144,15 +150,28 @@ var AppMenus = {
             enabled: false,
 			click: closeRepository
 		});
+		this.items['repositoryBrowse'] = new gui.MenuItem({
+			label: 'View branch history',
+			enabled: false,
+			click: function() {
+				Git.openGitk(currentModulePath);
+			}
+		});
 		this.menus.repository = new gui.Menu();
 		this.menus.repository.append(this.items['repositoryOpen']);
 		this.menus.repository.append(this.items['repositoryClose']);
+		this.menus.repository.append(this.items['repositoryBrowse']);
 		this.menubar = new gui.Menu({type: 'menubar'});
 		this.menubar.append(new gui.MenuItem({
 			label: 'Repository',
 			submenu: this.menus.repository
 		}));
 		gui.Window.get().menu = this.menubar;
+	},
+	
+	enableRepoMenu: function(enabled) {
+		AppMenus.items['repositoryClose'].enabled = enabled;
+		AppMenus.items['repositoryBrowse'].enabled = enabled;
 	},
 	
 	showFileListMenu: function(file, type, x, y) {
@@ -171,6 +190,10 @@ var AppMenus = {
 		this.items['delete'].enabled = type === 'unstaged' && file.unstaged;
 		this.items['delete'].click = function() {
 			Git.removeFileFromDisk(currentModulePath, file, _handleGitResponse);
+		};
+		this.items['viewHistory'].enabled = file.type !== 'submodule' && !(type === 'unstaged' && file.unstaged && file.status === 'new');
+		this.items['viewHistory'].click = function() {
+			Git.openGitk(currentModulePath, file);
 		};
 		this.menus.filesList.popup(x, y);
 	}

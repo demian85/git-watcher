@@ -34,6 +34,14 @@ var Git = {
 		this._exec(modulePath, 'rm -drf', [file.name], callback);
 	},
 	
+	openGitk: function(modulePath, file) {
+		chp.spawn('gitk', [file ? file.name : ''], {
+			cwd: modulePath,
+			detached: true, 
+			stdio: 'ignore'
+		}).unref();
+	},
+	
 	_exec: function(modulePath, cmd, args, callback) {
 		var escapedArgs = args.map(function(arg) {
 			return '"' + arg.replace(/["\\]/g, '\\$1') + '"';
