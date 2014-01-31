@@ -29,16 +29,16 @@ I'm working on the following features
 * Amend commit (Really hard to do without a proper API!)
 * Correctly show unmerged paths info. Alert when staging an unmerged file.
 * Configuration options
-* Utility options in menu bar: open gitk, browse, diff, etc.
+* Utility options in menu bar: browse, diff, etc.
 * UI improvements: render images in diff, shortcuts, more file options, better syntax highlighting, etc
 * Git log: show errors/warnings
 * Improve speed for large repositories
 
 ## Download
 
-For distributions __older__ than *Ubuntu 13.04*, *Fedora 18/19* or derivative, please download the 'Old dist' build.
+For distributions __older__ than *Ubuntu 13.04*, *Fedora 18/19* or derivative, please download the __*Old dist*__ build.
 
-Go for the 'New dist' if you have any of the distributions mentioned above or __newer__.
+Go for the __*New dist*__ if you have any of the distributions mentioned above or __newer__.
 
 * [Linux x64 - Old dist - v0.3.2](https://mega.co.nz/#!6RJzlTrL!1f7TkRzAuDK6KAQy3fpYFzGUqz5yqgfESj_BB2-NjQY) - Ubuntu 12.04 or 12.10
 * [Linux x64 - New dist - v0.3.2](https://mega.co.nz/#!zQhjSBZT!Mxz8HoeCqcTdGIMcsMA27dA3epMxZ7pQMYLuxLdBxCM) - Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
@@ -70,4 +70,4 @@ Also, in the resources folder, you will find a helper script `build.sh` that cre
 ## Troubleshooting
 
 * [The solution of lacking libudev.so.0](https://github.com/rogerwang/node-webkit/wiki/The-solution-of-lacking-libudev.so.0)
-* ENOSPC error: You may run into that error when browsing large repositories. You need to increase the maximum number of watches for inotify: `echo fs.inotify.max_user_watches=65536 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p`. That should be enough.
+* __ENOSPC error__: You may run into that error when browsing large repositories. You need to increase the maximum number of watches for inotify: `echo fs.inotify.max_user_watches=65536 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p`. That should be enough.
