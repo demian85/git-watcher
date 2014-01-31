@@ -119,13 +119,15 @@ var AppMenus = {
 	},
 	
 	_createMenus: function() {
-		this.items['revert'] = new gui.MenuItem({label: 'Revert changes', icon: 'icons/revert.png'});
 		this.items['stage'] = new gui.MenuItem({label: 'Stage file', icon: 'icons/stage.png'});
 		this.items['unstage'] = new gui.MenuItem({label: 'Unstage file', icon: 'icons/unstage.png'});
+		this.items['revert'] = new gui.MenuItem({label: 'Revert changes', icon: 'icons/revert.png'});
+		this.items['delete'] = new gui.MenuItem({label: 'Delete file', icon: 'icons/delete.png'});
 		this.menus.filesList = new gui.Menu();
-		this.menus.filesList.append(this.items['revert']);
 		this.menus.filesList.append(this.items['stage']);
 		this.menus.filesList.append(this.items['unstage']);
+		this.menus.filesList.append(this.items['revert']);
+		this.menus.filesList.append(this.items['delete']);
 	},
 	
 	_createMenuBar: function() {
@@ -165,6 +167,10 @@ var AppMenus = {
 		this.items['unstage'].enabled = type === 'staged' && file.staged;
 		this.items['unstage'].click = function() {
 			Git.unstageFile(currentModulePath, file, _handleGitResponse);
+		};
+		this.items['delete'].enabled = type === 'unstaged' && file.unstaged;
+		this.items['delete'].click = function() {
+			Git.removeFileFromDisk(currentModulePath, file, _handleGitResponse);
 		};
 		this.menus.filesList.popup(x, y);
 	}
