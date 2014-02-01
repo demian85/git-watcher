@@ -1,7 +1,7 @@
 {
 	"name": "git-watcher",
 	"main": "index.html",
-	"version": "0.3.3",
+	"version": "0.3.4",
 	"author": {
     	"name": "Demián Rodriguez",
 		"email" : "demian85@gmail.com"
@@ -25,7 +25,7 @@
 		"git-utils": "0.34.x",
 		"mmmagic": "0.3.x"
 	},
-	"private": true,
+	"preferGlobal": true,
 	"window": {
 		"title": "Git Watcher",
 		"icon": "icons/git-watcher.png",

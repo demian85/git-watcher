@@ -1,6 +1,6 @@
 {
 	"name": "git-watcher",
-	"version": "0.3.2",
+	"version": "0.3.4",
 	"author": {
     	"name": "Demián Rodriguez",
 		"email" : "demian85@gmail.com"
@@ -15,6 +15,6 @@
 	],
 	"private": true,
 	"bin": {
-		"gitw": "./app"
+		"gitw": "./gitw"
 	}
 }
