@@ -128,6 +128,7 @@ var AppMenus = {
 		this.items['open'] = new gui.MenuItem({label: 'Open file', icon: 'icons/open-file.png'});
 		this.items['delete'] = new gui.MenuItem({label: 'Delete file', icon: 'icons/delete.png'});
 		this.items['viewHistory'] = new gui.MenuItem({label: 'View file history', icon: 'icons/view-history.png'});
+		this.items['blame'] = new gui.MenuItem({label: 'Blame', icon: 'icons/view-history.png'});
 		this.menus.filesList = new gui.Menu();
 		this.menus.filesList.append(this.items['stage']);
 		this.menus.filesList.append(this.items['unstage']);
@@ -137,6 +138,7 @@ var AppMenus = {
 		this.menus.filesList.append(this.items['delete']);
 		this.menus.filesList.append(new gui.MenuItem({type: 'separator'}));
 		this.menus.filesList.append(this.items['viewHistory']);
+		this.menus.filesList.append(this.items['blame']);
 	},
 	
 	_createMenuBar: function() {
@@ -154,7 +156,7 @@ var AppMenus = {
 			click: closeRepository
 		});
 		this.items['repositoryBrowse'] = new gui.MenuItem({
-			label: 'View branch history',
+			label: 'View branch history (gitk)',
 			enabled: false,
 			click: function() {
 				Git.openGitk(currentModulePath);
@@ -178,7 +180,9 @@ var AppMenus = {
 	},
 	
 	showFileListMenu: function(file, type, x, y) {
-		this.items['revert'].enabled = type === 'unstaged' && file.unstaged && file.status !== 'new';
+		var isUnstagedNew = type === 'unstaged' && file.unstaged && file.status === 'new';
+		
+		this.items['revert'].enabled = !isUnstagedNew;
 		this.items['revert'].click = function() {
 			Git.revertFile(currentModulePath, file, _handleGitResponse);
 		};
@@ -198,10 +202,15 @@ var AppMenus = {
 		this.items['delete'].click = function() {
 			Git.removeFileFromDisk(currentModulePath, file, _handleGitResponse);
 		};
-		this.items['viewHistory'].enabled = file.type !== 'submodule' && !(type === 'unstaged' && file.unstaged && file.status === 'new');
+		this.items['viewHistory'].enabled = file.type !== 'submodule' && file.status !== 'deleted' && !isUnstagedNew;
 		this.items['viewHistory'].click = function() {
 			Git.openGitk(currentModulePath, file);
 		};
+		this.items['blame'].enabled = file.type !== 'submodule' && file.status !== 'deleted' && !isUnstagedNew;
+		this.items['blame'].click = function() {
+			Git.openGitBlame(currentModulePath, file);
+		};
+		
 		this.menus.filesList.popup(x, y);
 	}
 };
