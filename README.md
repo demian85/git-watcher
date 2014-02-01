@@ -53,15 +53,18 @@ If it's a valid Git repository, the current working directory is used by default
 
 Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) for details on how to run apps.
 
-[NodeJS](http://nodejs.org/download/) >= 0.10 is required
+Requirements:
+* [NodeJS >= 0.10](http://nodejs.org/download/)
+* [node-webkit](https://github.com/rogerwang/node-webkit#downloads). Download and extract its contents in `/opt/node-webkit`.
 
-* [Download node-webkit](https://github.com/rogerwang/node-webkit#downloads) and extract its contents in `/opt/node-webkit`
-* Run `npm install gitw`.
-* Install *nw-gyp*: `npm install -g nw-gyp`
+
+Then:
+* Clone repo and run `npm install` or just run `npm install gitw`.
+* Install *nw-gyp*: `npm install -g nw-gyp`.
 * Rebuild *git-utils* and *mmmagic* dependencies based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.8.4`. Do the same for *mmmagic*.
-* Run the app! `/opt/node-webkit/nw /path/to/git-watcher/resources`
+* Run the app! `/opt/node-webkit/nw /path/to/git-watcher/resources`.
 
-Also, in the resources folder, you will find a helper script `build.sh` that creates a Linux build. It asumes you have node-webkit installed on `/opt/node-webkit`.
+Also, you will find a helper script `build.sh` that automatically creates a distributable package for Linux. It asumes you have node-webkit installed on `/opt/node-webkit`.
 
 ## Troubleshooting
 
