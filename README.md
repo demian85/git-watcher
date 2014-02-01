@@ -45,7 +45,7 @@ Please consider downloading the proper build according to your distribution. See
 
 Just extract file contents and execute `./app`.
 
-You can also `sudo npm link`. A link to the app will be added in `/usr/local/bin`, so you can run the app using `gitw` command.
+You can also `sudo npm link`. A link to the app will be created in `/usr/local/bin`, so you can run the app using `gitw` command.
 
 If it's a valid Git repository, the current working directory is used by default.
 
@@ -56,8 +56,7 @@ Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) fo
 [NodeJS](http://nodejs.org/download/) >= 0.10 is required
 
 * [Download node-webkit](https://github.com/rogerwang/node-webkit#downloads) and extract its contents in `/opt/node-webkit`
-* Clone repo 
-* `npm install`
+* Run `npm install gitw`.
 * Install *nw-gyp*: `npm install -g nw-gyp`
 * Rebuild *git-utils* and *mmmagic* dependencies based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.8.4`. Do the same for *mmmagic*.
 * Run the app! `/opt/node-webkit/nw /path/to/git-watcher/resources`

@@ -1,7 +1,7 @@
 {
-	"name": "git-watcher",
+	"name": "gitw",
 	"main": "index.html",
-	"version": "0.3.4",
+	"version": "0.3.5",
 	"author": {
     	"name": "Demián Rodriguez",
 		"email" : "demian85@gmail.com"
@@ -14,18 +14,15 @@
 			"email": "demian85@gmail.com"
 		}
 	],
-	"repositories": [
-		{
-			"type": "git", 
-			"url": "https://github.com/demian85/git-watcher.git"
-		}
-	],
+	"repository": {
+		"type": "git", 
+		"url": "https://github.com/demian85/git-watcher.git"
+	},
 	"dependencies": {
 		"async": "0.2.x",
 		"git-utils": "0.34.x",
 		"mmmagic": "0.3.x"
 	},
-	"preferGlobal": true,
 	"window": {
 		"title": "Git Watcher",
 		"icon": "icons/git-watcher.png",
