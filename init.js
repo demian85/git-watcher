@@ -13,8 +13,9 @@ var Config = {
 	},
 	
 	save: function() {
+		var json = require("json-toolkit");
 		var configFile = require('path').join(gui.App.dataPath, 'config.json');
-		require('fs').writeFileSync(configFile, JSON.stringify(config), {encoding: 'utf8'});
+		require('fs').writeFileSync(configFile, json.prettify(config), {encoding: 'utf8'});
 	},
 	
 	_getDefaultConfig: function() {
