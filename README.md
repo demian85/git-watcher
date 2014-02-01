@@ -29,25 +29,23 @@ I'm working on the following features
 * Amend commit (Really hard to do without a proper API!)
 * Correctly show unmerged paths info. Alert when staging an unmerged file.
 * Configuration options
-* Utility options in menu bar: browse, diff, etc.
+* Utility options in menu bar: blame, browse, diff, etc.
 * UI improvements: render images in diff, shortcuts, more file options, better syntax highlighting, etc
 * Git log: show errors/warnings
 * Improve speed for large repositories
 
 ## Download
 
-For distributions __older__ than *Ubuntu 13.04*, *Fedora 18/19* or derivative, please download the __*Old dist*__ build.
+Please consider downloading the proper build according to your distribution. See __Troubleshooting__ if you cannot run the app.
 
-Go for the __*New dist*__ if you have any of the distributions mentioned above or __newer__.
-
-* [Linux x64 - Old dist - v0.3.2](https://mega.co.nz/#!6RJzlTrL!1f7TkRzAuDK6KAQy3fpYFzGUqz5yqgfESj_BB2-NjQY) - Ubuntu 12.04 or 12.10
+* [Linux x64 - Old dist - v0.3.2](https://mega.co.nz/#!6RJzlTrL!1f7TkRzAuDK6KAQy3fpYFzGUqz5yqgfESj_BB2-NjQY) - Ubuntu 12.04, 12.10 or derivative distributions
 * [Linux x64 - New dist - v0.3.2](https://mega.co.nz/#!zQhjSBZT!Mxz8HoeCqcTdGIMcsMA27dA3epMxZ7pQMYLuxLdBxCM) - Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
 
 ## How to run the app
 
 Just extract file contents and execute `./app`.
 
-You can also `npm link`. A link to the app will be added in `/usr/local/bin`, so you can run the app using `gitw` command.
+You can also `sudo npm link`. A link to the app will be added in `/usr/local/bin`, so you can run the app using `gitw` command.
 
 If it's a valid Git repository, the current working directory is used by default.
 
@@ -59,10 +57,9 @@ Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) fo
 
 * [Download node-webkit](https://github.com/rogerwang/node-webkit#downloads) and extract its contents in `/opt/node-webkit`
 * Clone repo 
-* `cd ./resources`
 * `npm install`
 * Install *nw-gyp*: `npm install -g nw-gyp`
-* Rebuild *git-utils* and *mmmagic* dependencies based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.8.4`:
+* Rebuild *git-utils* and *mmmagic* dependencies based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.8.4`. Do the same for *mmmagic*.
 * Run the app! `/opt/node-webkit/nw /path/to/git-watcher/resources`
 
 Also, in the resources folder, you will find a helper script `build.sh` that creates a Linux build. It asumes you have node-webkit installed on `/opt/node-webkit`.
