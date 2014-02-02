@@ -1,5 +1,5 @@
 #zip all files to nw archive
-zip -r gitw.nw ./* -x@.gitignore
+zip -r gitw.nw ./* -x"build/*"
 
 #copy nw.pak from current build node-webkit
 cp /opt/node-webkit/nw.pak ./nw.pak
