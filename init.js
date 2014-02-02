@@ -1,15 +1,19 @@
 var gui = require('nw.gui'),
+	Utils = require('./lib/Utils'),
 	config;
 
 var Config = {
 	
 	load: function() {
 		var configFile = require('path').join(gui.App.dataPath, 'config.json');
+		var defaultConfig = this._getDefaultConfig();
 		try {
-			config = JSON.parse(require('fs').readFileSync(configFile));
+			var userConfig = JSON.parse(require('fs').readFileSync(configFile));
+			config = Utils.merge(defaultConfig, userConfig);
 		} catch(e) {
-			config = this._getDefaultConfig();
+			config = defaultConfig;
 		}
+		global.config = config;
 	},
 	
 	save: function() {
@@ -47,6 +51,7 @@ function log() {
 		console.log.apply(console, arguments);
 	}
 }
+
 function logError() {
 	if (config.debugMode && console) {
 		console.error.apply(console, arguments);

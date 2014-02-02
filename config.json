@@ -3,12 +3,12 @@
 	"debugMode": false,
 	"diff": {
 		"contextLines": 3,
+		"ignoreEolWhitespace": false,
 		"highlight": {
 			"enabled": true,
 			"byFileExtension": {
 				".js": true,
-				".php": true,
-				".html": false
+				".php": true
 			}
 		}
 	}
