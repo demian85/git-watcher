@@ -27,11 +27,15 @@ I'm working on the following features
 (your help will be much appreciated!)
 
 * Amend commit (Really hard to do without a proper API!)
-* Correctly show unmerged paths info. Alert when staging an unmerged file.
-* Configuration options
-* Utility options in menu bar: blame, browse, diff, etc.
-* UI improvements: render images in diff, shortcuts, more file options, better syntax highlighting, etc
-* Git log: show errors/warnings
+* Correctly show unmerged paths info. Alert when staging an unmerged file. Allow to checkout local/remote version.
+* Browse local branches.
+* Configuration options. Currently stored in ~/.config/gitw/config.json
+* Utility options in menu bar: browse, diff, etc.
+* Render images in diff.
+* Better syntax highlighting.
+* Git stash.
+* Shortcuts.
+* Git log: show errors/warnings.
 
 ## Download
 
