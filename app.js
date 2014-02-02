@@ -162,15 +162,29 @@ var AppMenus = {
 				Git.openGitk(currentModulePath);
 			}
 		});
+		this.items['helpReportBugs'] = new gui.MenuItem({
+			label: 'Report bug...',
+			click: function() {
+				gui.Shell.openExternal('https://github.com/demian85/git-watcher/issues');
+			}
+		});
 		this.menus.repository = new gui.Menu();
 		this.menus.repository.append(this.items['repositoryOpen']);
 		this.menus.repository.append(this.items['repositoryClose']);
 		this.menus.repository.append(this.items['repositoryBrowse']);
+		this.menus.help = new gui.Menu();
+		this.menus.help.append(this.items['helpReportBugs']);
+		
 		this.menubar = new gui.Menu({type: 'menubar'});
 		this.menubar.append(new gui.MenuItem({
 			label: 'Repository',
 			submenu: this.menus.repository
 		}));
+		this.menubar.append(new gui.MenuItem({
+			label: 'Help',
+			submenu: this.menus.help
+		}));
+		
 		gui.Window.get().menu = this.menubar;
 	},
 	
