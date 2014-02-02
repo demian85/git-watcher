@@ -78,13 +78,16 @@ button {
 .file {
 	border: 2px solid #ddd;
 	border-radius: 6px;
-	margin: 0.2rem;
+	margin: 0 0.2rem 0.2rem 0;
 	display: flex;
 	flex-flow: column nowrap;
 	flex: 1 1 auto;
 	min-height: 8rem;
 	max-height: 90vh;
 	transition: border-color 0.1s ease;
+}
+.file:only-child {
+	margin: 0;
 }
 .file:hover {
 	border: 2px solid rgba(0, 0, 255, 0.4);
