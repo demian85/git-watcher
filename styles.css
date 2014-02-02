@@ -83,7 +83,7 @@ button {
 	flex-flow: column nowrap;
 	flex: 1 1 auto;
 	min-height: 8rem;
-	max-height: 100vh;
+	max-height: 90vh;
 	transition: border-color 0.1s ease;
 }
 .file:hover {
@@ -205,7 +205,7 @@ button {
 #gitModules > li {
 	flex: 1 1 auto;
 	margin: 0 0.5rem 0 0;
-	padding: 0.5rem 1rem 0.3rem 34px;
+	padding: 0.5rem 1rem 0.3rem 30px;
 	background-color: #ccc;
 	background-image: url(icons/folder.png);
 	background-repeat: no-repeat;
@@ -245,6 +245,7 @@ button {
 	flex-flow: column nowrap;
 	flex: 0 0 auto;
 	min-width: 180px;
+	max-width: 30vw;
 	margin-right: 0.5rem;
 	border: 1px solid gray;
 	border-radius: 6px;
@@ -299,20 +300,15 @@ button {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	flex: 1 0 auto;
+	flex: 1 1 auto;
 	overflow: auto;
 }
 .fileList > li {
 	margin: 0;
-	height: 20px;
-	padding: 0.2rem 0.5rem 0.2rem 25px;
+	padding: 0.5rem 0.5rem 0.5rem 25px;
 	transition: background-color 0.05s ease;
 	background-repeat: no-repeat;
 	background-position: 2px center;
-}
-.fileListItemLabel {
-	display: block;
-	margin-top: 3px;
 }
 .fileList > li:hover {
 	background-color: rgba(101,118,246, 0.3);
@@ -401,5 +397,5 @@ button {
 }
 .commitMessage:focus {
 	outline: 0;
-	height: 120px;
+	height: 100px;
 }
