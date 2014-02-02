@@ -14,7 +14,7 @@ cat /opt/node-webkit/nw ./gitw.nw > ./build/linux/gitw && chmod +x ./build/linux
 mv ./nw.pak ./build/linux/nw.pak
 
 #remove app.nw
-rm ./app.nw
+rm ./gitw.nw
 
 #copy useful files
 cp ./build-package.json ./build/linux/package.json
