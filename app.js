@@ -256,9 +256,6 @@ var UI = {
 		module.dataset.name = moduleName;
 		$('#main').appendChild(module);
 		this._addModuleControlEvents(moduleName);
-		$$m(moduleName, '.commitOption').forEach(function(node) {
-			node.name = moduleName;
-		});
 		var moduleLabel = document.importNode($('#gitModuleLabelTpl').content, true).querySelector('li');
 		moduleLabel.textContent = moduleName.replace(/^\//, '');
 		moduleLabel.dataset.name = moduleName;
