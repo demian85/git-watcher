@@ -278,9 +278,7 @@ var UI = {
 		items.forEach(function(node) {
 			if (node.dataset.name === name && node.dataset.type === type) {
 				node.classList.add('selected');
-				if (node.webkitMatchesSelector('.file')) {
-					me._scrollFileIntoView(node);
-				}
+				me._scrollFileIntoView(node);
 			} else {
 				node.classList.remove('selected');
 			}
