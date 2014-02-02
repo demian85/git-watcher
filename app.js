@@ -440,6 +440,9 @@ function _renderFileDiff(file, type) {
  */
 function _renderFileDiffLine(file, lineText) {
 	var hlConf = config.diff.highlight;
+	if (file.unmerged && (lineText.indexOf('<<<<<<<') === 0 || lineText.indexOf('=======') === 0 || lineText.indexOf('>>>>>>>') === 0)) {
+		return Highlighter.highlightConflict(lineText);
+	}
 	if (hlConf.enabled) {
 		var ext = require('path').extname(file.name);
 		if (hlConf.byFileExtension[ext] === undefined || hlConf.byFileExtension[ext]) {

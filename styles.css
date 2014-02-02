@@ -195,6 +195,10 @@ button {
 .fileDiff .string {
 	color: chocolate;
 }
+.fileDiff .conflict {
+	color: orange;
+	font-weight: bold;
+}
 
 #gitModules {
 	display: flex;
