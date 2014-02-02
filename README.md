@@ -32,7 +32,6 @@ I'm working on the following features
 * Utility options in menu bar: blame, browse, diff, etc.
 * UI improvements: render images in diff, shortcuts, more file options, better syntax highlighting, etc
 * Git log: show errors/warnings
-* Improve speed for large repositories
 
 ## Download
 
@@ -43,7 +42,7 @@ Please consider downloading the proper build according to your distribution. See
 
 ## How to run the app
 
-Just extract file contents and execute `./app`.
+Just extract file contents and execute `./gitw`.
 
 You can also `sudo npm link`. A link to the app will be created in `/usr/local/bin`, so you can run the app using `gitw` command.
 
