@@ -50,9 +50,9 @@ Please consider downloading the proper build according to your distribution. See
 
 Just extract file contents and execute `./gitw`.
 
-You can also `sudo npm link`. A link to the app will be created in `/usr/local/bin`, so you can run the app using `gitw` command.
+You can also `sudo npm link`. A link to the app will be created in `/usr/local/bin`, so you can run the app using `gitw` command. If it's a valid Git repository, the current working directory is used by default.
 
-If it's a valid Git repository, the current working directory is used by default.
+Or just create a desktop shortcut!
 
 ## Or build it yourself!
 
