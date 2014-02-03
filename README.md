@@ -41,8 +41,8 @@ I'm working on the following features
 
 Please consider downloading the proper build according to your distribution. See __Troubleshooting__ if you cannot run the app.
 
-* [Linux x64 - Old dist - v0.3.2](https://mega.co.nz/#!6RJzlTrL!1f7TkRzAuDK6KAQy3fpYFzGUqz5yqgfESj_BB2-NjQY) - Ubuntu 12.04, 12.10 or derivative distributions
-* [Linux x64 - New dist - v0.3.2](https://mega.co.nz/#!zQhjSBZT!Mxz8HoeCqcTdGIMcsMA27dA3epMxZ7pQMYLuxLdBxCM) - Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
+* [Linux x64 - Old dist - v0.3.7](https://mega.co.nz/#!aAom3KIK!9zGhoPQcHjzKfp1OYXfh1EzcubvZgJS2_1CoOh6dzT4) - Ubuntu 12.04, 12.10 or derivative distributions
+* [Linux x64 - New dist - v0.3.2 COMING SOON](https://mega.co.nz/#!zQhjSBZT!Mxz8HoeCqcTdGIMcsMA27dA3epMxZ7pQMYLuxLdBxCM) - Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
 
 ## How to run the app
 
