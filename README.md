@@ -44,6 +44,7 @@ Please consider downloading the proper build according to your distribution. See
 * [Linux x64 - Old dist - v0.3.7](https://drive.google.com/file/d/0BwAprEYudUlFdnF1R0xSSC1PbnM/edit?usp=sharing) - Ubuntu 12.04, 12.10 or derivative distributions
     * [Mirror](https://mega.co.nz/#!XJZSBSpB!z07rtjrJelkEesF9wrj4pPOYKkjkCvW1CPvg03HugG0)
 * [Linux x64 - New dist - v0.3.7](https://drive.google.com/file/d/0BwAprEYudUlFVmQyWmRjVTVEMzg/edit?usp=sharing) - Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
+    * [Mirror](https://mega.co.nz/#!SNgixABb!H3koKy4kcjFxO0TNq6nWRrMV-xzmSdPgXgqx1iV_Z4E)
 
 ## How to run the app
 
