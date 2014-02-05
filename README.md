@@ -30,7 +30,6 @@ I'm working on the following features
 * Correctly show unmerged paths info. Alert when staging an unmerged file. Allow to checkout local/remote version.
 * Browse local branches.
 * Configuration options. Currently stored in ~/.config/gitw/config.json
-* Utility options in menu bar: browse, diff, etc.
 * Render images in diff.
 * Better syntax highlighting.
 * Git stash.
@@ -41,18 +40,17 @@ I'm working on the following features
 
 Please consider downloading the proper build according to your distribution. See __Troubleshooting__ if you cannot run the app.
 
-* [Linux x64 - Old dist - v0.3.7](https://drive.google.com/file/d/0BwAprEYudUlFdnF1R0xSSC1PbnM/edit?usp=sharing) - Ubuntu 12.04, 12.10 or derivative distributions
-    * [Mirror](https://mega.co.nz/#!XJZSBSpB!z07rtjrJelkEesF9wrj4pPOYKkjkCvW1CPvg03HugG0)
-* [Linux x64 - New dist - v0.3.7](https://drive.google.com/file/d/0BwAprEYudUlFVmQyWmRjVTVEMzg/edit?usp=sharing) - Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
-    * [Mirror](https://mega.co.nz/#!SNgixABb!H3koKy4kcjFxO0TNq6nWRrMV-xzmSdPgXgqx1iV_Z4E)
+* [Linux x64 - Old dist - v0.3.8](https://drive.google.com/file/d/0BwAprEYudUlFUE13X2JWU2VKWWc/edit?usp=sharing) - Ubuntu 12.04, 12.10 or derivative distributions
+    * [Mirror](https://mega.co.nz/#!jJwVzSJL!pSogn8WtnZoM33UKba_oDyYujWrzn8d9MkRo0Z5he3I)
+* [Linux x64 - New dist - v0.3.8](https://drive.google.com/file/d/0BwAprEYudUlFZURUVUJXTXlXdGc/edit?usp=sharing) - Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
 
 ## How to run the app
 
 Just extract file contents and execute `./gitw`.
 
-You can also `sudo npm link`. A link to the app will be created in `/usr/local/bin`, so you can run the app using `gitw` command. If it's a valid Git repository, the current working directory is used by default.
-
-Or just create a desktop shortcut!
+You can also:
+* `sudo npm link`. A link to the app will be created in `/usr/local/bin`, so you can run the app using `gitw` command. If it's a valid Git repository, the current working directory is used by default.
+* Create a desktop shortcut.
 
 ## Or build it yourself!
 
