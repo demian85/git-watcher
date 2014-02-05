@@ -45,16 +45,25 @@ var AppMenus = {
 				Git.openGitk(currentModulePath);
 			}
 		});
+		this.items['repositoryRefresh'] = new gui.MenuItem({
+			label: 'Refresh',
+			enabled: false,
+			click: updateCurrentModuleStatus
+		});
 		this.items['helpReportBugs'] = new gui.MenuItem({
 			label: 'Report bug...',
 			click: function() {
 				gui.Shell.openExternal('https://github.com/demian85/git-watcher/issues');
 			}
 		});
+		
 		this.menus.repository = new gui.Menu();
 		this.menus.repository.append(this.items['repositoryOpen']);
 		this.menus.repository.append(this.items['repositoryClose']);
+		this.menus.repository.append(this.items['repositoryRefresh']);
+		this.menus.repository.append(new gui.MenuItem({type: 'separator'}));
 		this.menus.repository.append(this.items['repositoryBrowse']);
+		
 		this.menus.help = new gui.Menu();
 		this.menus.help.append(this.items['helpReportBugs']);
 		
@@ -74,6 +83,7 @@ var AppMenus = {
 	enableRepoMenu: function(enabled) {
 		this.items['repositoryClose'].enabled = enabled;
 		this.items['repositoryBrowse'].enabled = enabled;
+		this.items['repositoryRefresh'].enabled = enabled;
 	},
 	
 	showFileListMenu: function(file, type, x, y) {

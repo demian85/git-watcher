@@ -380,9 +380,6 @@ button {
 .controlPanel > button:hover {
 	background-color: #d3d3d3;
 }
-.refreshButton {
-	background-image: url(icons/refresh.png);
-}
 .commitButton {
 	background-image: url(icons/commit.png);
 }
