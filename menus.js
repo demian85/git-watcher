@@ -29,10 +29,6 @@ var AppMenus = {
 	},
 	
 	_createMenuBar: function() {
-		$('#repositoryChooser').addEventListener('change', function(e) {
-			openRepository(this.value);
-		}, false);
-		
 		this.items['repositoryOpen'] = new gui.MenuItem({
 			label: 'Open...',
 			click: chooseRepository

@@ -33,7 +33,10 @@ function initApp() {
 		gui.Window.get().focus();
 	});
     
-    $('#repositoryChooser').setAttribute('nwworkingdir', process.env.HOME);    
+    $('#repositoryChooser').setAttribute('nwworkingdir', process.env.HOME);
+	$('#repositoryChooser').addEventListener('change', function(e) {
+		openRepository(this.value);
+	}, false);
     
 	AppMenus.init();
 	
