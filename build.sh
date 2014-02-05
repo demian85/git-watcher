@@ -18,3 +18,4 @@ rm ./gitw.nw
 
 #copy useful files
 cp ./build-package.json ./build/linux/package.json
+cp ./icons/git-watcher.png ./build/linux/icon.png
