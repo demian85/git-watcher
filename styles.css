@@ -365,7 +365,7 @@ button {
 }
 .controlPanel > button {
 	flex: 1 1 auto;
-	padding: 0.3rem 0.5rem 0.3rem 25px;
+	padding: 0.3rem 0.5rem 0.3rem 27px;
 }
 .controlPanel > button {
 	border-radius: 3px;
@@ -379,6 +379,9 @@ button {
 }
 .controlPanel > button:hover {
 	background-color: #d3d3d3;
+}
+.stageButton {
+	background-image: url(icons/stage.png);
 }
 .commitButton {
 	background-image: url(icons/commit.png);
