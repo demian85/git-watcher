@@ -254,6 +254,9 @@ var UI = {
 		$m(moduleName,'.stageButton').addEventListener('click', function(e) {
 			Git.stageAll(currentModulePath, _handleGitResponse);
 		}, false);
+		$m(moduleName,'.unstageButton').addEventListener('click', function(e) {
+			Git.unstageAll(currentModulePath, _handleGitResponse);
+		}, false);
 		$m(moduleName,'.commitButton').addEventListener('click', function(e) {
 			var textarea = $m(moduleName, '.commitMessage');
 			var message = textarea.value.trim();

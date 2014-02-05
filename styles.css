@@ -283,8 +283,9 @@ button {
 	-webkit-user-select: initial;
 }
 .fileListTitle {
+	min-height: 16px;
 	font-size: 1rem;
-	padding: 0.3rem 0.5rem;
+	padding: 0.3rem 0.5rem 0.2rem 0.5rem;
 	border-radius: 6px 6px 0 0;
 	margin: 0.5rem 0 0 0;
 	flex: 0 0 auto;
@@ -302,6 +303,17 @@ button {
 }
 .fileListTitle.stagedTitle {
 	border-radius: 0;
+}
+.fileListTitleButton {
+	float: right;
+	margin-left: 0.5rem;
+	width: 16px;
+	height: 16px;
+	padding: 0;
+	border: 0;
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-color: transparent;
 }
 .fileList {
 	list-style-type: none;
@@ -381,7 +393,10 @@ button {
 	background-color: #d3d3d3;
 }
 .stageButton {
-	background-image: url(icons/stage.png);
+	background-image: url(icons/stage16.png);
+}
+.unstageButton {
+	background-image: url(icons/unstage16.png);
 }
 .commitButton {
 	background-image: url(icons/commit.png);
