@@ -295,7 +295,11 @@ var UI = {
  */
 function _renderFileDiff(file, type) {
 	var fileNode = document.importNode($('#gitModuleFileTpl').content, true).querySelector('.file');
+	var isNewOrDeleted = ['new', 'deleted'].indexOf(file.status) > -1;
 	fileNode.classList.add(type);
+	if (isNewOrDeleted) {
+		fileNode.classList.add('collapsed');
+	}
 	fileNode.dataset.type = type;
 	fileNode.dataset.name = file.name;
 	fileNode.dataset.path = file.path;
@@ -304,6 +308,7 @@ function _renderFileDiff(file, type) {
 	fileNode.querySelector('.fileStatus').classList.add(file.status);
 	fileNode.querySelector('.fileStatus').textContent = '[' + file.status + ']';
 	fileNode.querySelector('.fileType').textContent = file.info.mimeType || '';
+	
 	var diffHtml = '';
 	if (file.diff) {
 		diffHtml += '<table class="fileDiff">';
@@ -314,7 +319,10 @@ function _renderFileDiff(file, type) {
 				return '<tr class="lineRow ' + lineTypeStr + '"><td class="line oldLine">' + (line.type === '-' ? line.oldLine : '') + '</td><td class="line newLine">' + (line.type !== '-' ? line.newLine : '') + '</td><td>' + symbol + '</td><td>' + _renderFileDiffLine(file, line.content) + '</td></tr>';
 			}).join('\n') + '</tbody>';
 		}).join('');
-		diffHtml += '<table>';
+		if (isNewOrDeleted) {
+			diffHtml += '<tbody class="diffExpanderRow"><tr><td colspan="2"></td><td colspan="2"><span class="diffExpander">More...</span></td></tr></tbody>';
+		}
+		diffHtml += '</table>';
 	} else {
 		diffHtml += file.info.isBinary ? '<div class="emptyLabel">[binary]</div>' : '<div class="emptyLabel">[empty]</div>';
 	}
@@ -326,10 +334,24 @@ function _renderFileDiff(file, type) {
 			gui.Shell.openItem(file.path);
 		}
 	}, false);
+	
 	fileNode.addEventListener('contextmenu', function(e) {
 		AppMenus.showFileListMenu(file, type, e.clientX, e.clientY);
 		e.preventDefault();
 	}, false);
+	
+	if (isNewOrDeleted) {
+		fileNode.querySelector('.diffExpander').addEventListener('click', function(e) {
+			if (fileNode.classList.contains('collapsed')) {
+				fileNode.classList.remove('collapsed');
+				UI.selectFile(file.name, type);
+				this.textContent = 'Less...';
+			} else {
+				fileNode.classList.add('collapsed');
+				this.textContent = 'More...';
+			}
+		}, false);
+	}
 	
 	return fileNode;
 }

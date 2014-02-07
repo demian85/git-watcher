@@ -86,6 +86,9 @@ button {
 	max-height: 90vh;
 	transition: border-color 0.1s ease;
 }
+.file.collapsed .lineRow:nth-child(n+10) {
+	display: none;
+}
 .file:only-child {
 	margin: 0;
 }
@@ -149,7 +152,7 @@ button {
 .range {
 	border-bottom: 1px dotted #777;
 }
-.range:last-child {
+.range:last-of-type {
 	border-bottom: 0;
 }
 .fileDiff .lineRow {
@@ -198,6 +201,16 @@ button {
 .fileDiff .conflict {
 	color: orange;
 	font-weight: bold;
+}
+.diffExpanderRow {
+	border-top: 1px solid #ddd;
+}
+.diffExpander {
+	cursor: pointer;
+	color: #00f;
+}
+.diffExpander:hover {
+	text-decoration: underline;
 }
 
 #gitModules {
