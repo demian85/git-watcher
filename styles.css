@@ -84,6 +84,7 @@ button {
 	flex: 1 1 auto;
 	min-height: 8rem;
 	max-height: 90vh;
+	overflow: hidden;
 	transition: border-color 0.1s ease;
 }
 .file.collapsed .lineRow:nth-child(n+10) {
@@ -102,7 +103,6 @@ button {
 	display: block;
 	background: #eee;
 	padding: 0.3rem;
-	border-radius: 6px 6px 0 0;
 	flex: 0 0 auto;
 	white-space: nowrap;
 	overflow: hidden;
@@ -140,7 +140,7 @@ button {
 	overflow: auto;
 	font-family: "dejavu sans mono", monospace;
 	flex: 1 1 auto;
-	margin: 0 0.2rem 0.2rem 0.2rem;
+	margin: 0;
 	-webkit-user-select: initial;
 	tab-size: 4;
 }
