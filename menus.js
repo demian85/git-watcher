@@ -74,6 +74,15 @@ var AppMenus = {
 				updateGlobalStatus();
 			}
 		});
+		this.items['optionsSyntaxHighlighting'] = new gui.MenuItem({
+			type: 'checkbox',
+			checked: config.diff.highlight.enabled,
+			label: 'Syntax highlighting',
+			click: function() {
+				config.diff.highlight.enabled = this.checked;
+				updateGlobalStatus();
+			}
+		});
 		this.items['helpReportBugs'] = new gui.MenuItem({
 			label: 'Report bug...',
 			click: function() {
@@ -92,6 +101,7 @@ var AppMenus = {
 		this.menus.options.append(this.items['optionsLessContext']);
 		this.menus.options.append(this.items['optionsMoreContext']);
 		this.menus.options.append(this.items['optionsEolWhitespace']);
+		this.menus.options.append(this.items['optionsSyntaxHighlighting']);
 		
 		this.menus.help = new gui.Menu();
 		this.menus.help.append(this.items['helpReportBugs']);
