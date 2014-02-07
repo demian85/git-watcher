@@ -345,7 +345,7 @@ function _renderFileDiff(file, type) {
 			if (fileNode.classList.contains('collapsed')) {
 				fileNode.classList.remove('collapsed');
 				UI.selectFile(file.name, type);
-				this.textContent = 'Less...';
+				this.textContent = '...Less';
 			} else {
 				fileNode.classList.add('collapsed');
 				this.textContent = 'More...';
