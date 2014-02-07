@@ -51,6 +51,12 @@ var AppMenus = {
 			enabled: false,
 			click: updateCurrentModuleStatus
 		});
+		this.items['repositoryQuit'] = new gui.MenuItem({
+			label: 'Quit',
+			click: function() {
+				gui.Window.get().close();
+			}
+		});
 		
 		// Options items
 		this.items['optionsZoomIn'] = new gui.MenuItem({
@@ -119,6 +125,8 @@ var AppMenus = {
 		this.menus.repository.append(this.items['repositoryRefresh']);
 		this.menus.repository.append(new gui.MenuItem({type: 'separator'}));
 		this.menus.repository.append(this.items['repositoryBrowse']);
+		this.menus.repository.append(new gui.MenuItem({type: 'separator'}));
+		this.menus.repository.append(this.items['repositoryQuit']);
 		
 		this.menus.options = new gui.Menu();
 		this.menus.options.append(this.items['optionsZoomIn']);
