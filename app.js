@@ -96,6 +96,7 @@ function openRepository(repositoryPath) {
 	});
 	gitWatcher.init();
 	
+	gui.Window.get().title = gui.App.manifest.window.title + ' :: ' + repositoryPath;
 	AppMenus.enableRepoMenu(true);
 	
 	$('#main').classList.remove('empty');
@@ -113,6 +114,7 @@ function closeRepository() {
 		gitWatcher = null;
 		baseRepoDirectory = null;
 		
+		gui.Window.get().title = gui.App.manifest.window.title;
         AppMenus.enableRepoMenu(false);
 		
 		$$('.module').forEach(function(node) {
