@@ -46,6 +46,15 @@ function initApp() {
 	});
 }
 
+function updateGlobalStatus() {
+	gitWatcher.getStatus(function(err, status) {
+		if (err) throw err;
+		for (var module in status) {
+			UI.updateModule(module, status[module]);
+		}
+	});
+}
+
 function updateCurrentModuleStatus() {
 	log('Updating current module status...');
 	gitWatcher.getModuleStatus(currentModuleName, function(err, status) {

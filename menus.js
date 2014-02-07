@@ -50,6 +50,21 @@ var AppMenus = {
 			enabled: false,
 			click: updateCurrentModuleStatus
 		});
+		this.items['optionsLessContext'] = new gui.MenuItem({
+			label: 'Less context',
+			click: function() {
+				config.diff.contextLines--;
+				if (config.diff.contextLines < 2) config.diff.contextLines = 2;
+				updateGlobalStatus();
+			}
+		});
+		this.items['optionsMoreContext'] = new gui.MenuItem({
+			label: 'More context',
+			click: function() {
+				config.diff.contextLines++;
+				updateGlobalStatus();
+			}
+		});
 		this.items['helpReportBugs'] = new gui.MenuItem({
 			label: 'Report bug...',
 			click: function() {
@@ -64,14 +79,25 @@ var AppMenus = {
 		this.menus.repository.append(new gui.MenuItem({type: 'separator'}));
 		this.menus.repository.append(this.items['repositoryBrowse']);
 		
+		this.menus.options = new gui.Menu();
+		this.menus.options.append(this.items['optionsLessContext']);
+		this.menus.options.append(this.items['optionsMoreContext']);
+		
 		this.menus.help = new gui.Menu();
 		this.menus.help.append(this.items['helpReportBugs']);
+		
+		this.items['optionsMenu'] = new gui.MenuItem({
+			label: 'Options',
+			enabled: false,
+			submenu: this.menus.options
+		});
 		
 		this.menubar = new gui.Menu({type: 'menubar'});
 		this.menubar.append(new gui.MenuItem({
 			label: 'Repository',
 			submenu: this.menus.repository
 		}));
+		this.menubar.append(this.items['optionsMenu']);
 		this.menubar.append(new gui.MenuItem({
 			label: 'Help',
 			submenu: this.menus.help
@@ -84,6 +110,7 @@ var AppMenus = {
 		this.items['repositoryClose'].enabled = enabled;
 		this.items['repositoryBrowse'].enabled = enabled;
 		this.items['repositoryRefresh'].enabled = enabled;
+		this.items['optionsMenu'].enabled = enabled;
 	},
 	
 	showFileListMenu: function(file, type, x, y) {
