@@ -29,6 +29,7 @@ var AppMenus = {
 	},
 	
 	_createMenuBar: function() {
+		// Repository items
 		this.items['repositoryOpen'] = new gui.MenuItem({
 			label: 'Open...',
 			click: chooseRepository
@@ -49,6 +50,26 @@ var AppMenus = {
 			label: 'Refresh',
 			enabled: false,
 			click: updateCurrentModuleStatus
+		});
+		
+		// Options items
+		this.items['optionsZoomIn'] = new gui.MenuItem({
+			label: 'Zoom In',
+			click: function() {
+				try {
+					var zoom = gui.Window.get().zoomLevel;
+					gui.Window.get().zoomLevel = [zoom + 1]; // FIXME: this should not be an array! #node-webkit
+				} catch (e) {}
+			}
+		});
+		this.items['optionsZoomOut'] = new gui.MenuItem({
+			label: 'Zoom Out',
+			click: function() {
+				try {
+					var zoom = gui.Window.get().zoomLevel;
+					gui.Window.get().zoomLevel = [zoom - 1]; // FIXME: this should not be an array! #node-webkit
+				} catch (e) {}
+			}
 		});
 		this.items['optionsLessContext'] = new gui.MenuItem({
 			label: 'Less context',
@@ -83,6 +104,8 @@ var AppMenus = {
 				updateGlobalStatus();
 			}
 		});
+		
+		// Help items
 		this.items['helpReportBugs'] = new gui.MenuItem({
 			label: 'Report bug...',
 			click: function() {
@@ -98,6 +121,9 @@ var AppMenus = {
 		this.menus.repository.append(this.items['repositoryBrowse']);
 		
 		this.menus.options = new gui.Menu();
+		this.menus.options.append(this.items['optionsZoomIn']);
+		this.menus.options.append(this.items['optionsZoomOut']);
+		this.menus.options.append(new gui.MenuItem({type: 'separator'}));
 		this.menus.options.append(this.items['optionsLessContext']);
 		this.menus.options.append(this.items['optionsMoreContext']);
 		this.menus.options.append(this.items['optionsEolWhitespace']);
