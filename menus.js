@@ -65,6 +65,15 @@ var AppMenus = {
 				updateGlobalStatus();
 			}
 		});
+		this.items['optionsEolWhitespace'] = new gui.MenuItem({
+			type: 'checkbox',
+			checked: config.diff.ignoreEolWhitespace,
+			label: 'Ignore EOL whitespace',
+			click: function() {
+				config.diff.ignoreEolWhitespace = this.checked;
+				updateGlobalStatus();
+			}
+		});
 		this.items['helpReportBugs'] = new gui.MenuItem({
 			label: 'Report bug...',
 			click: function() {
@@ -82,6 +91,7 @@ var AppMenus = {
 		this.menus.options = new gui.Menu();
 		this.menus.options.append(this.items['optionsLessContext']);
 		this.menus.options.append(this.items['optionsMoreContext']);
+		this.menus.options.append(this.items['optionsEolWhitespace']);
 		
 		this.menus.help = new gui.Menu();
 		this.menus.help.append(this.items['helpReportBugs']);
