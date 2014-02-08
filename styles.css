@@ -87,7 +87,7 @@ button {
 	overflow: hidden;
 	transition: border-color 0.1s ease;
 }
-.file.collapsed .lineRow:nth-child(n+10) {
+.file.collapsed .lineRow:nth-child(n+11) {
 	display: none;
 }
 .file:only-child {
@@ -100,6 +100,7 @@ button {
 	border: 2px solid rgb(0, 0, 255);
 }
 .file > label {
+	font-family: "liberation mono", "dejavu sans mono", monospace;
 	display: block;
 	background: #eee;
 	padding: 0.3rem;
@@ -110,13 +111,14 @@ button {
 .fileName {
 	font-weight: bold;
 	cursor: pointer;
-	margin-right: 1rem;
+	margin-right: 0.5rem;
 }
 .fileName:hover {
 	text-decoration: underline;
 }
 .fileStatus {
-	margin-right: 1rem;
+	margin-right: 0.5rem;
+	font-weight: bold;
 }
 .fileStatus.deleted {
 	color: red;
@@ -127,9 +129,6 @@ button {
 .fileStatus.new {
 	color: #299C0F;
 }
-.fileType {
-	font-family: "dejavu sans mono", monospace;
-}
 .file .emptyLabel {
 	color: blue;
 	font-weight: bold;
@@ -138,7 +137,7 @@ button {
 
 .fileDiffContents {
 	overflow: auto;
-	font-family: "dejavu sans mono", monospace;
+	font-family: "liberation mono", "dejavu sans mono", monospace;
 	flex: 1 1 auto;
 	margin: 0;
 	-webkit-user-select: initial;
@@ -223,6 +222,7 @@ button {
 	border-bottom: 1px solid gray;
 }
 #gitModules > li {
+	font-family: "liberation mono", "dejavu sans mono", monospace;
 	flex: 1 1 auto;
 	margin: 0 0.5rem 0 0;
 	padding: 0.5rem 1rem 0.3rem 30px;
@@ -337,11 +337,13 @@ button {
 	overflow: auto;
 }
 .fileList > li {
+	font-family: "liberation mono", "dejavu sans mono", monospace;
 	margin: 0;
 	padding: 0.5rem 0.5rem 0.5rem 25px;
 	transition: background-color 0.05s ease;
 	background-repeat: no-repeat;
 	background-position: 2px center;
+	line-height: 100%;
 }
 .fileList > li:hover {
 	background-color: rgba(101,118,246, 0.3);
