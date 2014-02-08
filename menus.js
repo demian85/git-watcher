@@ -186,7 +186,7 @@ var AppMenus = {
 		};
 		this.items['open'].enabled = file.status !== 'deleted';
 		this.items['open'].click = function() {
-			gui.Shell.openItem(file.path);
+			External.openFile(file);
 		};
 		this.items['delete'].enabled = type === 'unstaged' && file.unstaged;
 		this.items['delete'].click = function() {

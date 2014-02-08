@@ -331,7 +331,8 @@ function _renderFileDiff(file, type) {
 	// events
 	fileNode.addEventListener('click', function(e) {
 		if (e.target.webkitMatchesSelector('.fileName, .newLine')) {
-			gui.Shell.openItem(file.path);
+			var line = e.target.webkitMatchesSelector('.newLine') ? e.target.textContent : '';
+			External.openFile(file, line);
 		}
 	}, false);
 	

@@ -58,4 +58,33 @@ function logError() {
 	}
 }
 
+var External = {
+	
+	openFile: function(file, line) {
+		var cmd, args;
+		if (file.type === 'submodule' && config.external.directoryOpener) {
+			cmd = config.external.directoryOpener.path;
+			args = config.external.directoryOpener.args || [];
+		} else if (file.type !== 'submodule' && config.external.fileOpener) {
+			cmd = config.external.fileOpener.path;
+			args = config.external.fileOpener.args || [];
+		} else {
+			gui.Shell.openItem(file.path);
+		}
+		if (cmd) {
+			args = args.map(function(value) {
+				return value.replace(/\$FILE/, file.path).replace(/\$LINE/, line);
+			});
+			var process = require('child_process').spawn(cmd, args, {
+				detached: true,
+				stdio: 'ignore'
+			});
+			process.unref();
+			process.on('error', function(err) {
+				console.error(err);
+			});
+		}
+	}
+};
+
 Config.load();

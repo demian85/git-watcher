@@ -11,5 +11,9 @@
 				".php": true
 			}
 		}
+	},
+	"external": {
+		"fileOpener": null,
+		"directoryOpener": null
 	}
 }
