@@ -287,13 +287,14 @@ var UI = {
 
 /**
  * 
- * @param {object} file {name, path, status, type, diff}
+ * @param {object} file {name, path, type, status, diff,staged, unstaged, unmerged, info, summary}
  * @param {String} type unstaged|staged
  * @returns {String}
  */
 function _renderFileDiff(file, type) {
 	var fileNode = document.importNode($('#gitModuleFileTpl').content, true).querySelector('.file');
 	var isNewOrDeleted = ['new', 'deleted'].indexOf(file.status) > -1;
+	var isSubmodule = file.type === 'submodule';
 	fileNode.classList.add(type);
 	if (isNewOrDeleted) {
 		fileNode.classList.add('collapsed');
@@ -305,7 +306,7 @@ function _renderFileDiff(file, type) {
 	fileNode.querySelector('.fileName').title = 'Open file';
 	fileNode.querySelector('.fileStatus').classList.add(file.status);
 	fileNode.querySelector('.fileStatus').textContent = '[' + file.status + ']';
-	fileNode.querySelector('.fileType').textContent = file.info.mimeType || '';
+	fileNode.querySelector('.fileType').textContent = isSubmodule ? '[submodule]' : (file.info.mimeType || '');
 	
 	var diffHtml = '';
 	if (file.diff) {
@@ -321,9 +322,9 @@ function _renderFileDiff(file, type) {
 			diffHtml += '<tbody class="diffExpanderRow"><tr><td colspan="2"></td><td colspan="2"><span class="diffExpander">More...</span></td></tr></tbody>';
 		}
 		diffHtml += '</table>';
-	} else if (file.type === 'submodule') {
-		diffHtml += '<div class="fileTypeLabel">[Submodule]</div>';
-	} else {
+	} else if (isSubmodule && file.summary) {
+		diffHtml += '<div class="summary">' + (file.summary) + '</div>';
+	} else if (!isSubmodule) {
 		diffHtml += file.info.isBinary ? '<div class="fileTypeLabel">[binary]</div>' : '<div class="fileTypeLabel">[empty]</div>';
 	}
 	fileNode.querySelector('.fileDiffContents').innerHTML = diffHtml;
