@@ -43,11 +43,11 @@ Please consider downloading the proper build according to your distribution.
 See __Troubleshooting__ if you cannot run the app.
 
 * Linux x64 - __Old dists__: Ubuntu 12.04, 12.10 or derivative distributions
+    * [v0.3.12](http://gitw.zedplan.com/gitw-linux-x64-v0.3.12.tar.gz)
     * [v0.3.10](http://gitw.zedplan.com/gitw-linux-x64-v0.3.10.tar.gz)
-    * [v0.3.8](https://drive.google.com/file/d/0BwAprEYudUlFUE13X2JWU2VKWWc/edit?usp=sharing)
 * Linux x64 - __New dists__: Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
+    * [v0.3.12](http://gitw.zedplan.com/gitw-linux-x64-v0.3.12-new-dist.tar.gz)
     * [v0.3.10](http://gitw.zedplan.com/gitw-linux-x64-v0.3.10-new-dist.tar.gz)
-    * [v0.3.8](https://drive.google.com/file/d/0BwAprEYudUlFZURUVUJXTXlXdGc/edit?usp=sharing)
 
 ## How to run the app
 
