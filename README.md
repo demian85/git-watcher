@@ -18,9 +18,9 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 * System Tray support
 
 ## Screenshots
-![Overview 1](http://i.imgur.com/sPpmjhO.png)
-![Overview 2](http://i.imgur.com/4QWxanD.png)
-![Overview 3](http://i.imgur.com/56Ou6Ju.png)
+![Overview 1](http://gitw.zedplan.com/screenshots/gitw1.png)
+![Overview 2](http://gitw.zedplan.com/screenshots/gitw2.png)
+![Overview 3](http://gitw.zedplan.com/screenshots/gitw3.png)
 
 ## TODO
 
@@ -43,11 +43,11 @@ Please consider downloading the proper build according to your distribution.
 See __Troubleshooting__ if you cannot run the app.
 
 * Linux x64 - __Old dists__: Ubuntu 12.04, 12.10 or derivative distributions
+    * [v0.3.13](http://gitw.zedplan.com/gitw-linux-x64-v0.3.13.tar.gz)
     * [v0.3.12](http://gitw.zedplan.com/gitw-linux-x64-v0.3.12.tar.gz)
-    * [v0.3.10](http://gitw.zedplan.com/gitw-linux-x64-v0.3.10.tar.gz)
 * Linux x64 - __New dists__: Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
+    * [v0.3.13](http://gitw.zedplan.com/gitw-linux-x64-v0.3.13-new-dist.tar.gz)
     * [v0.3.12](http://gitw.zedplan.com/gitw-linux-x64-v0.3.12-new-dist.tar.gz)
-    * [v0.3.10](http://gitw.zedplan.com/gitw-linux-x64-v0.3.10-new-dist.tar.gz)
 
 ## How to run the app
 
