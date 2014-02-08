@@ -169,8 +169,10 @@ var AppMenus = {
 	
 	showFileListMenu: function(file, type, x, y) {
 		var isUnstagedNew = type === 'unstaged' && file.unstaged && file.status === 'new';
+		var isDeleted = file.status === 'deleted';
+		var isSubmodule = file.type === 'submodule';
 		
-		this.items['revert'].enabled = !isUnstagedNew;
+		this.items['revert'].enabled = !isUnstagedNew && !isSubmodule;
 		this.items['revert'].click = function() {
 			Git.revertFile(currentModulePath, file, _handleGitResponse);
 		};
@@ -190,11 +192,11 @@ var AppMenus = {
 		this.items['delete'].click = function() {
 			Git.removeFileFromDisk(currentModulePath, file, _handleGitResponse);
 		};
-		this.items['viewHistory'].enabled = file.type !== 'submodule' && file.status !== 'deleted' && !isUnstagedNew;
+		this.items['viewHistory'].enabled = !isSubmodule && !isDeleted && !isUnstagedNew;
 		this.items['viewHistory'].click = function() {
 			Git.openGitk(currentModulePath, file);
 		};
-		this.items['blame'].enabled = file.type !== 'submodule' && file.status !== 'deleted' && !isUnstagedNew;
+		this.items['blame'].enabled = !isSubmodule && !isDeleted && !isUnstagedNew;
 		this.items['blame'].click = function() {
 			Git.openGitBlame(currentModulePath, file);
 		};
