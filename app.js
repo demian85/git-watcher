@@ -230,9 +230,7 @@ var UI = {
 		var diffNode = $m(moduleName, '.filesDiff');
 		diffNode.innerHTML = '';
 		function add(type) {
-			status[type].filter(function(file) {
-				return file.type !== 'submodule';
-			}).map(function(file) {
+			status[type].map(function(file) {
 				return _renderFileDiff(file, type);
 			}).forEach(function(node) {
 				diffNode.appendChild(node);
@@ -323,8 +321,10 @@ function _renderFileDiff(file, type) {
 			diffHtml += '<tbody class="diffExpanderRow"><tr><td colspan="2"></td><td colspan="2"><span class="diffExpander">More...</span></td></tr></tbody>';
 		}
 		diffHtml += '</table>';
+	} else if (file.type === 'submodule') {
+		diffHtml += '<div class="fileTypeLabel">[Submodule]</div>';
 	} else {
-		diffHtml += file.info.isBinary ? '<div class="emptyLabel">[binary]</div>' : '<div class="emptyLabel">[empty]</div>';
+		diffHtml += file.info.isBinary ? '<div class="fileTypeLabel">[binary]</div>' : '<div class="fileTypeLabel">[empty]</div>';
 	}
 	fileNode.querySelector('.fileDiffContents').innerHTML = diffHtml;
 	
@@ -340,8 +340,9 @@ function _renderFileDiff(file, type) {
 		e.preventDefault();
 	}, false);
 	
-	if (isNewOrDeleted) {
-		fileNode.querySelector('.diffExpander').addEventListener('click', function(e) {
+	var diffExpander = fileNode.querySelector('.diffExpander');
+	if (diffExpander) {
+		diffExpander.addEventListener('click', function(e) {
 			if (fileNode.classList.contains('collapsed')) {
 				fileNode.classList.remove('collapsed');
 				UI.selectFile(file.name, type);

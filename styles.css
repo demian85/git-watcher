@@ -129,7 +129,7 @@ button {
 .fileStatus.new {
 	color: #299C0F;
 }
-.file .emptyLabel {
+.file .fileTypeLabel {
 	color: blue;
 	font-weight: bold;
 	margin: 0.5rem 0;
