@@ -38,11 +38,15 @@ I'm working on the following features
 
 ## Download
 
-Please consider downloading the proper build according to your distribution. See __Troubleshooting__ if you cannot run the app.
+Please consider downloading the proper build according to your distribution. 
+See __Troubleshooting__ if you cannot run the app.
 
-* [Linux x64 - Old dist - v0.3.8](https://drive.google.com/file/d/0BwAprEYudUlFUE13X2JWU2VKWWc/edit?usp=sharing) - Ubuntu 12.04, 12.10 or derivative distributions
-    * [Mirror](https://mega.co.nz/#!jJwVzSJL!pSogn8WtnZoM33UKba_oDyYujWrzn8d9MkRo0Z5he3I)
-* [Linux x64 - New dist - v0.3.8](https://drive.google.com/file/d/0BwAprEYudUlFZURUVUJXTXlXdGc/edit?usp=sharing) - Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
+* Linux x64 - __Old dists__: Ubuntu 12.04, 12.10 or derivative distributions
+    * [v0.3.10](http://gitw.zedplan.com/gitw-linux-x64-v0.3.10.tar.gz)
+    * [v0.3.8](https://drive.google.com/file/d/0BwAprEYudUlFUE13X2JWU2VKWWc/edit?usp=sharing)
+* Linux x64 - __New dists__: Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
+    * [v0.3.10](http://gitw.zedplan.com/gitw-linux-x64-v0.3.10-new-dist.tar.gz)
+    * [v0.3.8](https://drive.google.com/file/d/0BwAprEYudUlFZURUVUJXTXlXdGc/edit?usp=sharing)
 
 ## How to run the app
 
