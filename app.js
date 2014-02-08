@@ -276,7 +276,6 @@ var UI = {
 			}
 			Git.commit(currentModulePath, message, gitErrHandler.intercept(function() {
 				textarea.value = '';
-				updateCurrentModuleStatus();
 			}));
 		}, false);
 		$m(moduleName,'.pushButton').addEventListener('click', function(e) {
