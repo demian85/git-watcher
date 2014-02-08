@@ -28,21 +28,25 @@ I'm working on the following features
 
 * Amend commit (Really hard to do without a proper API!)
 * Correctly show unmerged paths info. Alert when staging an unmerged file. Allow to checkout local/remote version.
-* Browse local branches.
-* Configuration options. Currently stored in ~/.config/gitw/config.json
-* Render images in diff.
+* Browse local recent branches.
 * Better syntax highlighting.
-* Git stash.
+* More configuration options.
+* Git stash/pop.
 * Shortcuts.
+* Render images in diff.
 * Git log: show errors/warnings.
 
 ## Download
 
-Please consider downloading the proper build according to your distribution. See __Troubleshooting__ if you cannot run the app.
+Please consider downloading the proper build according to your distribution. 
+See __Troubleshooting__ if you cannot run the app.
 
-* [Linux x64 - Old dist - v0.3.8](https://drive.google.com/file/d/0BwAprEYudUlFUE13X2JWU2VKWWc/edit?usp=sharing) - Ubuntu 12.04, 12.10 or derivative distributions
-    * [Mirror](https://mega.co.nz/#!jJwVzSJL!pSogn8WtnZoM33UKba_oDyYujWrzn8d9MkRo0Z5he3I)
-* [Linux x64 - New dist - v0.3.8](https://drive.google.com/file/d/0BwAprEYudUlFZURUVUJXTXlXdGc/edit?usp=sharing) - Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
+* Linux x64 - __Old dists__: Ubuntu 12.04, 12.10 or derivative distributions
+    * [v0.3.10](http://gitw.zedplan.com/gitw-linux-x64-v0.3.10.tar.gz)
+    * [v0.3.8](https://drive.google.com/file/d/0BwAprEYudUlFUE13X2JWU2VKWWc/edit?usp=sharing)
+* Linux x64 - __New dists__: Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
+    * [v0.3.10](http://gitw.zedplan.com/gitw-linux-x64-v0.3.10-new-dist.tar.gz)
+    * [v0.3.8](https://drive.google.com/file/d/0BwAprEYudUlFZURUVUJXTXlXdGc/edit?usp=sharing)
 
 ## How to run the app
 
@@ -50,7 +54,7 @@ Just extract file contents and execute `./gitw`.
 
 You can also:
 * `sudo npm link`. A link to the app will be created in `/usr/local/bin`, so you can run the app using `gitw` command. If it's a valid Git repository, the current working directory is used by default.
-* Create a desktop shortcut.
+* Create a desktop shortcut :P
 
 ## Or build it yourself!
 
