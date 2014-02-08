@@ -323,7 +323,7 @@ function _renderFileDiff(file, type) {
 		}
 		diffHtml += '</table>';
 	} else if (isSubmodule && file.summary) {
-		diffHtml += '<div class="summary">' + (file.summary) + '</div>';
+		diffHtml += '<div class="summary">' + file.summary + '</div>';
 	} else if (!isSubmodule) {
 		diffHtml += file.info.isBinary ? '<div class="fileTypeLabel">[binary]</div>' : '<div class="fileTypeLabel">[empty]</div>';
 	}
