@@ -172,7 +172,7 @@ var AppMenus = {
 		var isDeleted = file.status === 'deleted';
 		var isSubmodule = file.type === 'submodule';
 		
-		this.items['revert'].enabled = !isUnstagedNew && !isSubmodule;
+		this.items['revert'].enabled = file.status !== 'new' && !isSubmodule;
 		this.items['revert'].click = function() {
 			Git.revertFile(currentModulePath, file, _handleGitResponse);
 		};
