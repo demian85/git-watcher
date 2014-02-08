@@ -188,7 +188,7 @@ var AppMenus = {
 		this.items['open'].click = function() {
 			External.openFile(file);
 		};
-		this.items['delete'].enabled = type === 'unstaged' && file.unstaged;
+		this.items['delete'].enabled = type === 'unstaged' && file.unstaged && !isDeleted;
 		this.items['delete'].click = function() {
 			Git.removeFileFromDisk(currentModulePath, file, _handleGitResponse);
 		};
