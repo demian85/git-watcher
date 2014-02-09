@@ -44,10 +44,8 @@ See __Troubleshooting__ if you cannot run the app.
 
 * Linux x64 - __Old dists__: Ubuntu 12.04, 12.10 or derivative distributions
     * [v0.3.13 - latest build](http://gitw.zedplan.com/gitw-linux-x64-v0.3.13.tar.gz)
-    * [v0.3.12](http://gitw.zedplan.com/gitw-linux-x64-v0.3.12.tar.gz)
 * Linux x64 - __New dists__: Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
     * [v0.3.13 - latest build](http://gitw.zedplan.com/gitw-linux-x64-v0.3.13-new-dist.tar.gz)
-    * [v0.3.12](http://gitw.zedplan.com/gitw-linux-x64-v0.3.12-new-dist.tar.gz)
 
 Windows & Mac binaries coming soon!
 
