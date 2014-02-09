@@ -68,12 +68,10 @@ var External = {
 		} else if (file.type !== 'submodule' && config.external.fileOpener) {
 			cmd = config.external.fileOpener.path;
 			args = config.external.fileOpener.args || [];
-		} else {
-			gui.Shell.openItem(file.path);
 		}
 		if (cmd) {
 			args = args.map(function(value) {
-				return value.replace(/\$FILE/, file.path).replace(/\$LINE/, line);
+				return value.replace(/\$FILE/, file.path).replace(/\$LINE/, line || 1);
 			});
 			var process = require('child_process').spawn(cmd, args, {
 				detached: true,
@@ -83,6 +81,8 @@ var External = {
 			process.on('error', function(err) {
 				console.error(err);
 			});
+		} else {
+			gui.Shell.openItem(file.path);
 		}
 	}
 };

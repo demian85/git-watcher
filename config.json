@@ -13,7 +13,13 @@
 		}
 	},
 	"external": {
-		"fileOpener": null,
-		"directoryOpener": null
+		"fileOpener": {
+			"path": "",
+			"args": []
+		},
+		"directoryOpener": {
+			"path": "",
+			"args": []
+		}
 	}
 }
