@@ -22,21 +22,6 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 ![Overview 2](http://gitw.zedplan.com/screenshots/gitw2.png)
 ![Overview 3](http://gitw.zedplan.com/screenshots/gitw3.png)
 
-## TODO
-
-I'm working on the following features
-(your help will be much appreciated!)
-
-* Amend commit (Really hard to do without a proper API!)
-* Alert when staging an unmerged file. Allow to checkout local/remote version.
-* Allow to browse and checkout local recent branches.
-* Better syntax highlighting.
-* More configuration options.
-* Git stash/pop.
-* Shortcuts.
-* Render images in diff.
-* Git log: show errors/warnings.
-
 ## Download
 
 Please consider downloading the proper build according to your distribution. 
@@ -58,7 +43,22 @@ You can also:
 * `sudo npm link`. A link to the app will be created in `/usr/local/bin`, so you can run the app using `gitw` command. If it's a valid Git repository, the current working directory is used by default.
 * Create a desktop shortcut :P
 
-## Or build it yourself!
+## TODO
+
+I'm working on the following features
+(your help will be much appreciated!)
+
+* Amend commit (Really hard to do without a proper API!)
+* Alert when staging an unmerged file. Allow to checkout local/remote version.
+* Allow to browse and checkout local recent branches.
+* Better syntax highlighting.
+* More configuration options.
+* Git stash/pop.
+* Shortcuts.
+* Render images in diff.
+* Git log: show errors/warnings.
+
+## Create your own build - Quick start for developers
 
 Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) for details on how to run apps.
 
