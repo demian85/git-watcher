@@ -28,8 +28,8 @@ I'm working on the following features
 (your help will be much appreciated!)
 
 * Amend commit (Really hard to do without a proper API!)
-* Correctly show unmerged paths info. Alert when staging an unmerged file. Allow to checkout local/remote version.
-* Browse local recent branches.
+* Alert when staging an unmerged file. Allow to checkout local/remote version.
+* Allow to browse and checkout local recent branches.
 * Better syntax highlighting.
 * More configuration options.
 * Git stash/pop.
@@ -43,17 +43,20 @@ Please consider downloading the proper build according to your distribution.
 See __Troubleshooting__ if you cannot run the app.
 
 * Linux x64 - __Old dists__: Ubuntu 12.04, 12.10 or derivative distributions
-    * [v0.3.13](http://gitw.zedplan.com/gitw-linux-x64-v0.3.13.tar.gz)
+    * [v0.3.13 - latest build](http://gitw.zedplan.com/gitw-linux-x64-v0.3.13.tar.gz)
     * [v0.3.12](http://gitw.zedplan.com/gitw-linux-x64-v0.3.12.tar.gz)
 * Linux x64 - __New dists__: Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
-    * [v0.3.13](http://gitw.zedplan.com/gitw-linux-x64-v0.3.13-new-dist.tar.gz)
+    * [v0.3.13 - latest build](http://gitw.zedplan.com/gitw-linux-x64-v0.3.13-new-dist.tar.gz)
     * [v0.3.12](http://gitw.zedplan.com/gitw-linux-x64-v0.3.12-new-dist.tar.gz)
+
+Windows & Mac binaries coming soon!
 
 ## How to run the app
 
 Just extract file contents and execute `./gitw`.
 
 You can also:
+
 * `sudo npm link`. A link to the app will be created in `/usr/local/bin`, so you can run the app using `gitw` command. If it's a valid Git repository, the current working directory is used by default.
 * Create a desktop shortcut :P
 
@@ -62,11 +65,13 @@ You can also:
 Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) for details on how to run apps.
 
 Requirements:
+
 * [NodeJS >= 0.10](http://nodejs.org/download/)
 * [node-webkit](https://github.com/rogerwang/node-webkit#downloads). Download and extract its contents in `/opt/node-webkit`.
 
 
 Then:
+
 * Clone repo and run `npm install` or just run `npm install gitw`.
 * Install *nw-gyp*: `npm install -g nw-gyp`.
 * Rebuild *git-utils* and *mmmagic* dependencies based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.8.4`. Do the same for *mmmagic*.
