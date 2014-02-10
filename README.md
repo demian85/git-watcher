@@ -43,6 +43,41 @@ You can also:
 * `sudo npm link`. A link to the app will be created in `/usr/local/bin`, so you can run the app using `gitw` command. If it's a valid Git repository, the current working directory is used by default.
 * Create a desktop shortcut :P
 
+## Configuration options
+
+The application stores configuration data as a JSON file in `~./config/gitw/config.json`.
+Certain config values can be modified using the app `options` menu. Until the UI provides a complete way of customizing these values, you can edit the file yourself.
+
+Current config file structure EXAMPLE:
+
+```Javascript
+{
+	"defaultRepository": "~/www/myproject",    // default git repository to load on startup
+	"debugMode": false,    // enable debugging
+	"diff": {
+		"contextLines": 4,
+		"ignoreEolWhitespace": true,
+		"highlight": {
+			"enabled": true,
+			"byFileExtension": {    // enable/disable syntax highlighting by file extension
+				".js": true,
+				".php": true
+			}
+		}
+	},
+	"external": {    // custom commands
+		"fileOpener": {    // handle file opening, empty path uses system default application
+			"path": "/usr/local/netbeans-7.4/bin/netbeans",
+			"args": ["--open", "$FILE:$LINE"]    // $FILE is replaced by the file path. $LINE is replaced by line number (if available)
+		},
+		"directoryOpener": {    // handle directory opening, empty path uses system default application
+			"path": "",
+			"args": []
+		}
+	}
+}
+```
+
 ## TODO
 
 I'm working on the following features
