@@ -84,13 +84,13 @@ I'm working on the following features
 (your help will be much appreciated!)
 
 * Amend commit (Really hard to do without a proper API!)
+* Stash lines and hunks (harder!)
 * Alert when staging an unmerged file. Allow to checkout local/remote version.
 * Allow to browse and checkout local recent branches.
 * Better syntax highlighting.
 * More configuration options.
 * Git stash/pop.
 * Shortcuts.
-* Render images in diff.
 * Git log: show errors/warnings.
 
 ## Create your own build - Quick start for developers
