@@ -1,3 +1,6 @@
+## UPDATES
+I'm currently working on 'stash hunks & lines' functionality. I may have found a way to implement it using native git commands. Stay in touch for updates!
+
 ## Introduction
 
 Git Watcher is a multi-platform desktop app written in pure HTML and Javascript using node-webkit.
