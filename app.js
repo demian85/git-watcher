@@ -337,7 +337,15 @@ function _renderFileDiff(file, type) {
 	}, false);
 	
 	fileNode.addEventListener('contextmenu', function(e) {
-		AppMenus.showFileListMenu(file, type, e.clientX, e.clientY);
+		var lineNumber = null;
+		if (e.target.webkitMatchesSelector('.fileDiff .lineRow *')) {
+			var node = e.target.parentNode;
+			while (!node.webkitMatchesSelector('.lineRow')) {
+				node = node.parentNode;
+			}
+			lineNumber = node.querySelector('.oldLine').textContent || node.querySelector('.newLine').textContent;
+		}
+		AppMenus.showFileListMenu(file, type, e.clientX, e.clientY, lineNumber);
 		e.preventDefault();
 	}, false);
 	

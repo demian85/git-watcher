@@ -159,6 +159,9 @@ button {
 .range:last-of-type {
 	border-bottom: 0;
 }
+.range:hover {
+	background-color: #F8F5EC;
+}
 .fileDiff .lineRow {
 	white-space: pre;
 	transition: background-color 0.05s ease;

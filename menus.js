@@ -11,6 +11,7 @@ var AppMenus = {
 	_createMenus: function() {
 		this.items['stage'] = new gui.MenuItem({label: 'Stage file', icon: 'icons/stage.png'});
 		this.items['unstage'] = new gui.MenuItem({label: 'Unstage file', icon: 'icons/unstage.png'});
+		this.items['stageHunk'] = new gui.MenuItem({label: 'Stage hunk', icon: 'icons/stage.png'});
 		this.items['revert'] = new gui.MenuItem({label: 'Revert changes', icon: 'icons/revert.png'});
 		this.items['open'] = new gui.MenuItem({label: 'Open file', icon: 'icons/open-file.png'});
 		this.items['delete'] = new gui.MenuItem({label: 'Delete file', icon: 'icons/delete.png'});
@@ -20,6 +21,8 @@ var AppMenus = {
 		this.menus.filesList.append(this.items['stage']);
 		this.menus.filesList.append(this.items['unstage']);
 		this.menus.filesList.append(this.items['revert']);
+		this.menus.filesList.append(new gui.MenuItem({type: 'separator'}));
+		this.menus.filesList.append(this.items['stageHunk']);
 		this.menus.filesList.append(new gui.MenuItem({type: 'separator'}));
 		this.menus.filesList.append(this.items['open']);
 		this.menus.filesList.append(this.items['delete']);
@@ -167,7 +170,7 @@ var AppMenus = {
 		this.items['optionsMenu'].enabled = enabled;
 	},
 	
-	showFileListMenu: function(file, type, x, y) {
+	showFileListMenu: function(file, type, x, y, line) {
 		var isUnstagedNew = type === 'unstaged' && file.unstaged && file.status === 'new';
 		var isDeleted = file.status === 'deleted';
 		var isSubmodule = file.type === 'submodule';
@@ -179,6 +182,10 @@ var AppMenus = {
 		this.items['stage'].enabled = type === 'unstaged' && file.unstaged;
 		this.items['stage'].click = function() {
 			Git.stageFile(currentModulePath, file, _handleGitResponse);
+		};
+		this.items['stageHunk'].enabled = line !== null && type === 'unstaged' && file.unstaged && !isSubmodule && !isDeleted;
+		this.items['stageHunk'].click = function() {
+			Git.stageHunk(currentModulePath, file, line, _handleGitResponse);
 		};
 		this.items['unstage'].enabled = type === 'staged' && file.staged;
 		this.items['unstage'].click = function() {
