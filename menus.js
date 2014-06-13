@@ -183,7 +183,7 @@ var AppMenus = {
 		this.items['stage'].click = function() {
 			Git.stageFile(currentModulePath, file, _handleGitResponse);
 		};
-		this.items['stageHunk'].enabled = line !== null && type === 'unstaged' && file.unstaged && !isSubmodule && !isDeleted;
+		this.items['stageHunk'].enabled = line !== null && type === 'unstaged' && file.unstaged && !isSubmodule && file.status === 'modified';
 		this.items['stageHunk'].click = function() {
 			Git.stageHunk(currentModulePath, file, line, _handleGitResponse);
 		};
