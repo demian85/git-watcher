@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "async": "0.2.x",
-    "git-utils": "0.34.x",
+    "git-utils": "1.4.x",
     "mmmagic": "0.3.x",
     "json-toolkit": "1.1.x"
   },
