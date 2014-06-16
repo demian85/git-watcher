@@ -260,6 +260,23 @@ var UI = {
 	},
 	
 	_addModuleControlEvents: function(moduleName) {
+		var commitMessageInput = $m(moduleName, '.commitMessage');
+		commitMessageInput.addEventListener('keydown', function(e) {
+			if (e.ctrlKey && e.keyCode === 13) {
+				commit();
+			}
+		}, false);
+		function commit() {
+			var message = commitMessageInput.value.trim();
+			if (!message) {
+				alert('Please enter a valid commit message!');
+				commitMessageInput.focus();
+				return;
+			}
+			Git.commit(currentModulePath, message, gitErrHandler.intercept(function() {
+				commitMessageInput.value = '';
+			}));
+		}
 		$m(moduleName,'.stageButton').addEventListener('click', function(e) {
 			Git.stageAll(currentModulePath, _handleGitResponse);
 		}, false);
@@ -267,16 +284,7 @@ var UI = {
 			Git.unstageAll(currentModulePath, _handleGitResponse);
 		}, false);
 		$m(moduleName,'.commitButton').addEventListener('click', function(e) {
-			var textarea = $m(moduleName, '.commitMessage');
-			var message = textarea.value.trim();
-			if (!message) {
-				alert('Please enter a valid commit message!');
-				textarea.focus();
-				return;
-			}
-			Git.commit(currentModulePath, message, gitErrHandler.intercept(function() {
-				textarea.value = '';
-			}));
+			commit();
 		}, false);
 		$m(moduleName,'.pushButton').addEventListener('click', function(e) {
 			Git.push(currentModulePath, _handleGitResponse);
