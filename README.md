@@ -1,6 +1,3 @@
-## UPDATES
-I'm currently working on 'stash hunks & lines' functionality. I may have found a way to implement it using native git commands. Stay in touch for updates!
-
 ## Introduction
 
 Git Watcher is a multi-platform desktop app written in pure HTML and Javascript using node-webkit.
@@ -15,6 +12,7 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 
 * **Real-time** multiple file diff information with line numbers and **syntax highlighting**
 * Allows you to work with **submodules organized in tabs**.
+* Support for hunk staging
 * Allows you to **open files** by clicking on its name or lines numbers. You can even use your preferred editor!
 * Shows current **branch information**: upstream branch and ahead/behind commit count.
 * Menu bar with configuration options and utilities.
@@ -86,14 +84,13 @@ Current config file structure EXAMPLE:
 I'm working on the following features
 (your help will be much appreciated!)
 
-* Amend commit (Really hard to do without a proper API!)
-* Stash lines and hunks (harder!)
+* Amend commit (Really hard to do!)
 * Alert when staging an unmerged file. Allow to checkout local/remote version.
 * Allow to browse and checkout local recent branches.
-* Better syntax highlighting.
 * More configuration options.
 * Git stash/pop.
 * Shortcuts.
+* Better syntax highlighting.
 * Git log: show errors/warnings.
 
 ## Create your own build - Quick start for developers
