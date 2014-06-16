@@ -13,7 +13,14 @@ var Config = {
 		} catch(e) {
 			config = defaultConfig;
 		}
+		
 		global.config = config;
+		
+		if (config.debugMode) {
+			var devTools = gui.Window.get().showDevTools();
+			devTools.resizeTo(900, 500);
+			devTools.moveTo(0, 0);
+		}
 	},
 	
 	save: function() {
