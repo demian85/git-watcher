@@ -411,7 +411,7 @@ function _renderFileListItem(file, type) {
 	
 	// file list context menu
 	node.addEventListener('contextmenu', function(e) {
-		AppMenus.showFileListMenu(file, type, e.clientX, e.clientY);
+		AppMenus.showFileListMenu(file, type, e.clientX, e.clientY, null);
 		e.preventDefault();
 	}, false);
 	return node;
