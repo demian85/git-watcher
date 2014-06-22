@@ -44,6 +44,12 @@ var AppMenus = {
             enabled: false,
 			click: closeRepository
 		});
+		this.items['repositoryExplore'] = new gui.MenuItem({
+			label: 'Explore...',
+			click: function() {
+				gui.Shell.openItem(currentModulePath);
+			}
+		});
 		this.items['repositoryBrowse'] = new gui.MenuItem({
 			label: 'View branch history (gitk)',
 			enabled: false,
@@ -129,6 +135,7 @@ var AppMenus = {
 		this.menus.repository.append(this.items['repositoryClose']);
 		this.menus.repository.append(this.items['repositoryRefresh']);
 		this.menus.repository.append(new gui.MenuItem({type: 'separator'}));
+		this.menus.repository.append(this.items['repositoryExplore']);
 		this.menus.repository.append(this.items['repositoryBrowse']);
 		this.menus.repository.append(new gui.MenuItem({type: 'separator'}));
 		this.menus.repository.append(this.items['repositoryQuit']);
@@ -167,6 +174,7 @@ var AppMenus = {
 	
 	enableRepoMenu: function(enabled) {
 		this.items['repositoryClose'].enabled = enabled;
+		this.items['repositoryExplore'].enabled = enabled;
 		this.items['repositoryBrowse'].enabled = enabled;
 		this.items['repositoryRefresh'].enabled = enabled;
 		this.items['optionsMenu'].enabled = enabled;
