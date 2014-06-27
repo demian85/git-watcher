@@ -1,0 +1,93 @@
+/* Dialog */
+#dialog {
+	position: fixed;
+	top: -100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	transition: top 0.25s ease, opacity 0.25s ease;
+	opacity: 0;
+	font-size: 1.25rem;
+	z-index: 100;
+	-webkit-user-select: initial;
+}
+
+#dialog.visible {
+	opacity: 1;
+	top: 0;
+}
+
+#dialogContents {
+	position: absolute;
+	display: flex;
+	flex-flow: column nowrap;
+	left: 50%;
+	top: 50%;
+	margin-left: -25vw;
+	margin-top: -35vh;
+	width: 50vw;
+	height: 70vh;
+	overflow: auto;
+	border: 2px solid rgba(0, 0, 255, 0.4);
+	border-radius: 6px;
+	background-color: #fff;
+}
+
+@media screen and (max-width: 800px) {
+	#dialogContents {
+		left: 2rem;
+		top: 2rem;
+		right: 2rem;
+		bottom: 2rem;
+		margin: 0;
+		width: auto;
+		height: auto;
+	}
+}
+
+#dialogHeader {
+	display: flex;
+	flex-flow: row nowrap;
+	flex: 0 0 auto;
+	padding: 1rem;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: 1px solid rgba(0, 0, 255, 0.4);
+}
+
+#dialogTitle {
+	flex: 1 0 auto;
+}
+
+#dialogCloseBtn {
+	flex: 0 0 auto;
+	transition: color, background-color 0.1s ease;
+	cursor: pointer;
+}
+
+#dialogCloseBtn:hover {
+	color: #ff0000;
+}
+
+#dialogMain {
+	display: flex;
+	flex-flow: row nowrap;
+	flex: 4 0 auto;
+	padding: 1rem;
+	overflow: auto;
+	position: relative;
+}
+
+#dialogOutput {
+	flex: 1 1 auto;
+	overflow: auto;
+	min-height: 10vh;
+	padding: 1rem;
+	border-top: 1px solid rgba(0, 0, 255, 0.4);
+	white-space: pre;
+	background-color: #333;
+	color: #eee;
+	font-size: 0.75em;
+	font-family: "liberation mono", "dejavu sans mono", monospace;
+}
