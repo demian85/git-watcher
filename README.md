@@ -88,8 +88,9 @@ I'm working on the following features
 
 * Amend commit (Really hard to do!)
 * Alert when staging an unmerged file. Allow to checkout local/remote version.
-* Allow to browse and checkout local recent branches.
 * More configuration options.
+* Delete, rename and create branches
+* Delete, edit and add remotes
 * Git stash/pop.
 * Shortcuts.
 * Better syntax highlighting.
@@ -109,7 +110,7 @@ Then:
 
 * Clone repo and run `npm install` or just run `npm install gitw`.
 * Install *nw-gyp*: `npm install -g nw-gyp`.
-* Rebuild *git-utils* and *mmmagic* dependencies based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.8.4`. Do the same for *mmmagic*.
+* Rebuild *git-utils* and *mmmagic* dependencies based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.8.6`. Do the same for *mmmagic*.
 * Run the app! `/opt/node-webkit/nw /path/to/gitw`.
 
 Also, you will find a helper script `./build.sh` that creates a distributable package for Linux. It asumes you have node-webkit installed on `/opt/node-webkit`.
