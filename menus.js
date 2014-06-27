@@ -69,6 +69,14 @@ var AppMenus = {
 			}
 		});
 		
+		// Branch items
+		this.items['branchCheckout'] = new gui.MenuItem({
+			label: 'Checkout...',
+			click: function() {
+				BranchCheckoutDialog.open();
+			}
+		});
+		
 		// Options items
 		this.items['optionsZoomIn'] = new gui.MenuItem({
 			label: 'Zoom In',
@@ -140,6 +148,9 @@ var AppMenus = {
 		this.menus.repository.append(new gui.MenuItem({type: 'separator'}));
 		this.menus.repository.append(this.items['repositoryQuit']);
 		
+		this.menus.branch = new gui.Menu();
+		this.menus.branch.append(this.items['branchCheckout']);
+		
 		this.menus.options = new gui.Menu();
 		this.menus.options.append(this.items['optionsZoomIn']);
 		this.menus.options.append(this.items['optionsZoomOut']);
@@ -162,6 +173,10 @@ var AppMenus = {
 		this.menubar.append(new gui.MenuItem({
 			label: 'Repository',
 			submenu: this.menus.repository
+		}));
+		this.menubar.append(new gui.MenuItem({
+			label: 'Branch',
+			submenu: this.menus.branch
 		}));
 		this.menubar.append(this.items['optionsMenu']);
 		this.menubar.append(new gui.MenuItem({

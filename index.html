@@ -4,10 +4,12 @@
 		<title>Git Watcher</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="styles.css" />
+		<link rel="stylesheet" href="ui/Dialog.css" />
 		<script src="init.js"></script>
 		<script src="menus.js"></script>
+		<script src="ui/Dialog.js"></script>
 		<script src="app.js"></script>
-		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body onload="init()">
 		
@@ -31,7 +33,7 @@
 							<div class="controlPanel">
 								<button class="commitButton">Commit</button>
 								<button class="pushButton">Push</button>
-							</div>					
+							</div>
 						</div>
 					</div>
 					<div class="filesDiff"></div>
@@ -56,6 +58,33 @@
 	
 		<template id="gitFileListItemTpl">
 			<li><label class="fileListItemLabel"></label></li>
+		</template>
+	
+		<template id="branchCheckoutTpl">
+			<div class="branchCheckout">
+				<select class="branchList" size="10"></select>
+				<fieldset class="branchCheckoutOptions">
+					<legend>Options</legend>
+					<label><input type="checkbox" value="1" checked /> Fetch from tracking branch</label>
+				</fieldset>
+				<div class="branchCheckoutControls">
+					<button class="branchCheckoutAccept">Checkout</button>
+					<button class="branchCheckoutCancel">Cancel</button>
+				</div>
+			</div>
+		</template>
+	
+		<template id="dialogTpl">
+			<div id="dialog">
+				<div id="dialogContents">
+					<header id="dialogHeader">
+						<span id="dialogTitle"></span>
+						<span id="dialogCloseBtn">x</span>
+					</header>
+					<div id="dialogMain"></div>
+					<div id="dialogOutput"></div>
+				</div>
+			</div>
 		</template>
 	
 		<div id="main" class="empty">
