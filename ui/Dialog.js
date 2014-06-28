@@ -16,7 +16,7 @@ var Dialog = (function() {
 			$('#dialog').classList.add('visible');
 		},
 		writeOutput: function(str) {
-			$('#dialogOutput').textContent += str;
+			$('#dialogOutput').textContent += str + '\n';
 		},
 		close: function() {
 			$('#dialogTitle').textContent = '';
@@ -34,27 +34,36 @@ var Dialog = (function() {
 var BranchCheckoutDialog = {
 	
 	open: function() {
+		var me = this, dialog = Dialog();
 		Git.getLocalBranches(currentModulePath, gitErrHandler.intercept(function(branches) {
-			var dialog = Dialog();
 			var node = document.importNode($('#branchCheckoutTpl').content, true).querySelector('.branchCheckout');
 			var listNode = $('.branchList', node);
-			listNode.addEventListener('dblclick', function(e) {
-				Git.checkoutBranch(currentModulePath, listNode.value, gitErrHandler.intercept(function(output) {
-					dialog.writeOutput(output);
-				}));
-			});
 			listNode.innerHTML = branches.map(function(branch) {
-				return '<option value="' + branch + '">' + branch + '</option>';
+				return '<option value="' + branch.name + '" data-upstream="' + branch.upstream + '">' + branch.name + '</option>';
 			}).join('');
 			$('.branchCheckoutAccept', node).addEventListener('click', function() {
-				Git.checkoutBranch(currentModulePath, listNode.value, gitErrHandler.intercept(function(output) {
-					dialog.writeOutput(output);
-				}));
+				var branchName = listNode.value;
+				var upstream = listNode.options[listNode.selectedIndex].dataset.upstream || '';
+				var doFetch = $('.branchCheckoutFetchOption', node).checked && upstream;
+				if (doFetch) {
+					Git.fetch(currentModulePath, upstream.split('/')[0], upstream.split('/')[1], gitErrHandler.intercept(function(output) {
+						dialog.writeOutput(output);
+						me._doCheckout(branchName);
+					}));
+				} else {
+					me._doCheckout(branchName);
+				}
 			});
 			$('.branchCheckoutCancel', node).addEventListener('click', function() {
 				dialog.close();
 			});
 			dialog.open('Checkout branch', node);
 		}));
-	}	
+	},
+	
+	_doCheckout: function(branchName) {
+		Git.checkoutBranch(currentModulePath, branchName, gitErrHandler.intercept(function(output) {
+			Dialog().writeOutput(output);
+		}));
+	}
 };
