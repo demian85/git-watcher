@@ -17,6 +17,7 @@ var Dialog = (function() {
 		},
 		writeOutput: function(str) {
 			$('#dialogOutput').textContent += str + '\n';
+			$('#dialogOutput').scrollTop = $('#dialogOutput').scrollHeight;
 		},
 		close: function() {
 			$('#dialogTitle').textContent = '';
