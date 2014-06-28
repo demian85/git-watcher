@@ -29,10 +29,10 @@ Please consider downloading the proper build according to your distribution.
 See __Troubleshooting__ if you cannot run the app.
 
 * Linux x64 - __Old dists__: Ubuntu 12.04, 12.10 or derivative distributions
-	* [v0.4](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-0.4.tar.gz)
+	* [v0.4.4](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-v0.4.4.tar.gz)
     * [v0.3.13](http://gitw.zedplan.com/gitw-linux-x64-v0.3.13.tar.gz) - [Mirror](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-v0.3.13.tar.gz)
 * Linux x64 - __New dists__: Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
-	* [v0.4](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-v0.4-new-dist.tar.gz)
+	* [v0.4.4](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-new-v0.4.4.tar.gz)
     * [v0.3.13](http://gitw.zedplan.com/gitw-linux-x64-v0.3.13-new-dist.tar.gz) - [Mirror](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-v0.3.13-new-dist.tar.gz)
 
 Windows & Mac binaries coming soon!
