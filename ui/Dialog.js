@@ -42,6 +42,7 @@ var BranchCheckoutDialog = {
 				return '<option value="' + branch.name + '" data-upstream="' + branch.upstream + '">' + branch.name + '</option>';
 			}).join('');
 			$('.branchCheckoutAccept', node).addEventListener('click', function() {
+				if (listNode.selectedIndex === -1) return;
 				var branchName = listNode.value;
 				var upstream = listNode.options[listNode.selectedIndex].dataset.upstream || '';
 				var doFetch = $('.branchCheckoutFetchOption', node).checked && upstream;
