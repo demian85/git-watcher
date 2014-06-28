@@ -188,14 +188,18 @@ var AppMenus = {
 		this.menus.help = new gui.Menu();
 		this.menus.help.append(this.items['helpReportBugs']);
 		
-		this.items['optionsMenu'] = new gui.MenuItem({
-			label: 'Options',
-			enabled: false,
-			submenu: this.menus.options
+		this.items['branchMenu'] = new gui.MenuItem({
+			label: 'Branch',
+			submenu: this.menus.branch
 		});
 		this.items['stashMenu'] = new gui.MenuItem({
 			label: 'Stash',
 			submenu: this.menus.stash
+		});
+		this.items['optionsMenu'] = new gui.MenuItem({
+			label: 'Options',
+			enabled: false,
+			submenu: this.menus.options
 		});
 		
 		this.menubar = new gui.Menu({type: 'menubar'});
@@ -203,10 +207,7 @@ var AppMenus = {
 			label: 'Repository',
 			submenu: this.menus.repository
 		}));
-		this.menubar.append(new gui.MenuItem({
-			label: 'Branch',
-			submenu: this.menus.branch
-		}));
+		this.menubar.append(this.items['branchMenu']);
 		this.menubar.append(this.items['stashMenu']);
 		this.menubar.append(this.items['optionsMenu']);
 		this.menubar.append(new gui.MenuItem({
@@ -222,8 +223,9 @@ var AppMenus = {
 		this.items['repositoryExplore'].enabled = enabled;
 		this.items['repositoryBrowse'].enabled = enabled;
 		this.items['repositoryRefresh'].enabled = enabled;
-		this.items['optionsMenu'].enabled = enabled;
+		this.items['branchMenu'].enabled = enabled;
 		this.items['stashMenu'].enabled = enabled;
+		this.items['optionsMenu'].enabled = enabled;
 	},
 	
 	showFileListMenu: function(file, type, x, y, line) {
