@@ -74,6 +74,22 @@
 			</div>
 		</template>
 	
+		<template id="branchCreateTpl">
+			<div class="branchCreate">
+				<div class="branchCreateContent">
+					<input type="text" class="branchCreateName" placeholder="Enter name..." required autofocus />
+				</div>
+				<fieldset class="branchCreateOptions">
+					<legend>Options</legend>
+					<label><input type="checkbox" value="1" class="branchCreateCheckoutOption" checked /> Checkout branch</label>
+				</fieldset>
+				<div class="branchCreateControls">
+					<button class="branchCreateAccept">Create</button>
+					<button class="branchCreateCancel">Cancel</button>
+				</div>
+			</div>
+		</template>
+	
 		<template id="dialogTpl">
 			<div id="dialog">
 				<div id="dialogContents">

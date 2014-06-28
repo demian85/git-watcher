@@ -82,7 +82,6 @@
 #dialogOutput {
 	flex: 1 1 auto;
 	overflow: auto;
-	min-height: 10vh;
 	padding: 1rem;
 	border-top: 1px solid rgba(0, 0, 255, 0.4);
 	white-space: pre;
@@ -90,4 +89,8 @@
 	color: #eee;
 	font-size: 0.75em;
 	font-family: "liberation mono", "dejavu sans mono", monospace;
+}
+
+#dialogOutput:empty {
+	display: none;
 }

@@ -76,6 +76,12 @@ var AppMenus = {
 				BranchCheckoutDialog.open();
 			}
 		});
+		this.items['branchCreate'] = new gui.MenuItem({
+			label: 'Create...',
+			click: function() {
+				BranchCreateDialog();
+			}
+		});
 		
 		// Options items
 		this.items['optionsZoomIn'] = new gui.MenuItem({
@@ -150,6 +156,7 @@ var AppMenus = {
 		
 		this.menus.branch = new gui.Menu();
 		this.menus.branch.append(this.items['branchCheckout']);
+		this.menus.branch.append(this.items['branchCreate']);
 		
 		this.menus.options = new gui.Menu();
 		this.menus.options.append(this.items['optionsZoomIn']);

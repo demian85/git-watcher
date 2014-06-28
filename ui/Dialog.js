@@ -3,6 +3,7 @@ var Dialog = (function() {
 	function Dialog() {
 		var node = document.importNode($('#dialogTpl').content, true).querySelector('#dialog');
 		document.body.appendChild(node);
+		window.getComputedStyle($('#dialog')).cssText; // hack to trigger layout and make transitions work
 		$('#dialogCloseBtn').addEventListener('click', function(e) {
 			instance.close();
 		});
@@ -69,3 +70,21 @@ var BranchCheckoutDialog = {
 		}));
 	}
 };
+
+var BranchCreateDialog = (function() {
+	return function() {
+		var node = document.importNode($('#branchCreateTpl').content, true).querySelector('.branchCreate');
+		$('.branchCreateAccept', node).addEventListener('click', function() {
+			var branchName = $('.branchCreateName', node).value.trim();
+			var doCheckout = $('.branchCreateCheckoutOption', node).checked;
+			Git.createBranch(currentModulePath, branchName, doCheckout, gitErrHandler.intercept(function(output) {
+				Dialog().writeOutput(output);
+				$('.branchCreateName', node).value = '';
+			}));
+		});
+		$('.branchCreateCancel', node).addEventListener('click', function() {
+			Dialog().close();
+		});
+		Dialog().open('Create branch', node);
+	};
+})();
