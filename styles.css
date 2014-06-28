@@ -49,7 +49,7 @@ input, select, button {
 	box-sizing: border-box;
 	border: 1px solid #ccc;
 	color: #333;
-	font-size: 1rem;
+	font-size: 1em;
 	margin: 0;
 }
 
@@ -420,12 +420,11 @@ input, button, fieldset {
 .controlPanel > button {
 	flex: 1 1 auto;
 	padding: 0.3rem 0.5rem 0.3rem 27px;
-}
-.controlPanel > button {
 	background-position: 2px center;
 	background-repeat: no-repeat;
 	cursor: pointer;
 	margin: 0.2rem;
+	font-size: 1.25em;
 }
 .stageButton {
 	background-image: url(icons/stage16.png);
