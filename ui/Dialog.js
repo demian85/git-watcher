@@ -33,10 +33,13 @@ var Dialog = (function() {
 })();
 
 
-var BranchCheckoutDialog = {
-	
-	open: function() {
-		var me = this, dialog = Dialog();
+var BranchCheckoutDialog = (function() {
+	function doCheckout(branchName) {
+		Git.checkoutBranch(currentModulePath, branchName, gitErrHandler.intercept(function(output) {
+			Dialog().writeOutput(output);
+		}));
+	}
+	return function() {
 		Git.getLocalBranches(currentModulePath, gitErrHandler.intercept(function(branches) {
 			var node = document.importNode($('#branchCheckoutTpl').content, true).querySelector('.branchCheckout');
 			var listNode = $('.branchList', node);
@@ -50,26 +53,20 @@ var BranchCheckoutDialog = {
 				var doFetch = $('.branchCheckoutFetchOption', node).checked && upstream;
 				if (doFetch) {
 					Git.fetch(currentModulePath, upstream.split('/')[0], upstream.split('/')[1], gitErrHandler.intercept(function(output) {
-						dialog.writeOutput(output);
-						me._doCheckout(branchName);
+						Dialog().writeOutput(output);
+						doCheckout(branchName);
 					}));
 				} else {
-					me._doCheckout(branchName);
+					doCheckout(branchName);
 				}
 			});
 			$('.branchCheckoutCancel', node).addEventListener('click', function() {
-				dialog.close();
+				Dialog().close();
 			});
-			dialog.open('Checkout branch', node);
+			Dialog().open('Checkout branch', node);
 		}));
-	},
-	
-	_doCheckout: function(branchName) {
-		Git.checkoutBranch(currentModulePath, branchName, gitErrHandler.intercept(function(output) {
-			Dialog().writeOutput(output);
-		}));
-	}
-};
+	};
+})();
 
 var BranchCreateDialog = (function() {
 	return function() {

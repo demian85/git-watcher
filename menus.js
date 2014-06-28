@@ -73,7 +73,7 @@ var AppMenus = {
 		this.items['branchCheckout'] = new gui.MenuItem({
 			label: 'Checkout...',
 			click: function() {
-				BranchCheckoutDialog.open();
+				BranchCheckoutDialog();
 			}
 		});
 		this.items['branchCreate'] = new gui.MenuItem({
