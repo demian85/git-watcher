@@ -3,7 +3,7 @@ var Dialog = (function() {
 	function Dialog() {
 		var node = document.importNode($('#dialogTpl').content, true).querySelector('#dialog');
 		document.body.appendChild(node);
-		window.getComputedStyle($('#dialog')).cssText; // hack to trigger layout and make transitions work
+		window.getComputedStyle(node).cssText; // hack to trigger layout and make transitions work
 		$('#dialogCloseBtn').addEventListener('click', function(e) {
 			instance.close();
 		});
@@ -17,7 +17,7 @@ var Dialog = (function() {
 			$('#dialog').classList.add('visible');
 		},
 		writeOutput: function(str) {
-			$('#dialogOutput').textContent += str + '\n';
+			$('#dialogOutput').textContent += str.trim() + '\n';
 			$('#dialogOutput').scrollTop = $('#dialogOutput').scrollHeight;
 		},
 		close: function() {
