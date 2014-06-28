@@ -4,6 +4,9 @@ var Dialog = (function() {
 		var node = document.importNode($('#dialogTpl').content, true).querySelector('#dialog');
 		document.body.appendChild(node);
 		window.getComputedStyle(node).cssText; // hack to trigger layout and make transitions work
+		document.addEventListener('keydown', function(e) {
+			if (e.keyCode === 27) instance.close();
+		});
 		$('#dialogCloseBtn').addEventListener('click', function(e) {
 			instance.close();
 		});
