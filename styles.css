@@ -49,7 +49,7 @@ input, select, button {
 	box-sizing: border-box;
 	border: 1px solid #ccc;
 	color: #333;
-	font-size: 1em;
+	font-size: 1rem;
 	margin: 0;
 }
 
