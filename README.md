@@ -91,7 +91,6 @@ I'm working on the following features
 * More configuration options.
 * Delete, rename and create branches
 * Delete, edit and add remotes
-* Git stash/pop.
 * Shortcuts.
 * Better syntax highlighting.
 * Git log: show errors/warnings.
