@@ -83,6 +83,20 @@ var AppMenus = {
 			}
 		});
 		
+		// Stash items
+		this.items['stashSave'] = new gui.MenuItem({
+			label: 'Save',
+			click: function() {
+				Git.stashSave(currentModulePath, _handleGitResponse);
+			}
+		});
+		this.items['stashPop'] = new gui.MenuItem({
+			label: 'Pop',
+			click: function() {
+				Git.stashPop(currentModulePath, _handleGitResponse);
+			}
+		});
+		
 		// Options items
 		this.items['optionsZoomIn'] = new gui.MenuItem({
 			label: 'Zoom In',
@@ -158,6 +172,10 @@ var AppMenus = {
 		this.menus.branch.append(this.items['branchCheckout']);
 		this.menus.branch.append(this.items['branchCreate']);
 		
+		this.menus.stash = new gui.Menu();
+		this.menus.stash.append(this.items['stashSave']);
+		this.menus.stash.append(this.items['stashPop']);
+		
 		this.menus.options = new gui.Menu();
 		this.menus.options.append(this.items['optionsZoomIn']);
 		this.menus.options.append(this.items['optionsZoomOut']);
@@ -175,6 +193,10 @@ var AppMenus = {
 			enabled: false,
 			submenu: this.menus.options
 		});
+		this.items['stashMenu'] = new gui.MenuItem({
+			label: 'Stash',
+			submenu: this.menus.stash
+		});
 		
 		this.menubar = new gui.Menu({type: 'menubar'});
 		this.menubar.append(new gui.MenuItem({
@@ -185,6 +207,7 @@ var AppMenus = {
 			label: 'Branch',
 			submenu: this.menus.branch
 		}));
+		this.menubar.append(this.items['stashMenu']);
 		this.menubar.append(this.items['optionsMenu']);
 		this.menubar.append(new gui.MenuItem({
 			label: 'Help',
@@ -200,6 +223,7 @@ var AppMenus = {
 		this.items['repositoryBrowse'].enabled = enabled;
 		this.items['repositoryRefresh'].enabled = enabled;
 		this.items['optionsMenu'].enabled = enabled;
+		this.items['stashMenu'].enabled = enabled;
 	},
 	
 	showFileListMenu: function(file, type, x, y, line) {
