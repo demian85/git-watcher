@@ -12,7 +12,7 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 
 * **Real-time** multiple file diff information with line numbers and **syntax highlighting**
 * Allows you to work with **submodules organized in tabs**.
-* Support for hunk staging
+* Support for **hunk staging**
 * Allows you to **open files** by clicking on its name or lines numbers. You can even use your preferred editor!
 * Shows current **branch information**: upstream branch and ahead/behind commit count.
 * Menu bar with configuration options and utilities.
@@ -77,7 +77,14 @@ Current config file structure EXAMPLE:
 			"path": "",
 			"args": []
 		}
-	}
+	},
+	"tools": [	// custom tools to be included in the menu bar under the "Tools" menu
+		{
+			"name": "My custom command",
+			"cmd": "/path/to/script.sh",
+			"args": []
+		}
+	]
 }
 ```
 
@@ -88,10 +95,10 @@ I'm working on the following features
 
 * Amend commit (Really hard to do!)
 * Alert when staging an unmerged file. Allow to checkout local/remote version.
-* Delete, rename branches
+* Delete and rename branches
 * Delete, edit and add remotes
 * Shortcuts (waiting for native support from node-webkit)
-* More configuration options.
+* More configuration options: restrict submodule watching to improve performance for large repositories
 * Better syntax highlighting.
 * Git log: show errors/warnings.
 
