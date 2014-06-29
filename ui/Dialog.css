@@ -66,8 +66,9 @@
 
 #dialogCloseBtn {
 	flex: 0 0 auto;
-	transition: color, background-color 0.1s ease;
+	transition: color 0.1s ease;
 	cursor: pointer;
+	line-height: 1em;
 }
 
 #dialogCloseBtn:hover {
