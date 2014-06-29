@@ -12,12 +12,19 @@ var Dialog = (function() {
 		});
 	}
 	Dialog.prototype = {
-		open: function(title, childNode) {
+		open: function(title, contentNode) {
 			$('#dialogTitle').textContent = title;
 			$('#dialogMain').innerHTML = '';
-			$('#dialogMain').appendChild(childNode);
+			if (contentNode) {
+				$('#dialogMain').appendChild(contentNode);
+			} else {
+				$('#dialog').classList.add('empty');
+			}
 			$('#dialogOutput').textContent = '';
 			$('#dialog').classList.add('visible');
+		},
+		clearOutput: function() {
+			$('#dialogOutput').textContent = '';
 		},
 		writeOutput: function(str) {
 			$('#dialogOutput').textContent += str.trim() + '\n';
@@ -26,7 +33,7 @@ var Dialog = (function() {
 		close: function() {
 			$('#dialogTitle').textContent = '';
 			$('#dialogOutput').textContent = '';
-			$('#dialog').classList.remove('visible');
+			$('#dialog').classList.remove('visible', 'empty');
 		}
 	};
 	return function() {

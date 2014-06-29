@@ -185,6 +185,8 @@ var AppMenus = {
 		this.menus.options.append(this.items['optionsEolWhitespace']);
 		this.menus.options.append(this.items['optionsSyntaxHighlighting']);
 		
+		this._createToolsMenu();
+		
 		this.menus.help = new gui.Menu();
 		this.menus.help.append(this.items['helpReportBugs']);
 		
@@ -201,6 +203,10 @@ var AppMenus = {
 			enabled: false,
 			submenu: this.menus.options
 		});
+		this.items['toolsMenu'] = new gui.MenuItem({
+			label: 'Tools',
+			submenu: this.menus.tools
+		});
 		
 		this.menubar = new gui.Menu({type: 'menubar'});
 		this.menubar.append(new gui.MenuItem({
@@ -210,12 +216,45 @@ var AppMenus = {
 		this.menubar.append(this.items['branchMenu']);
 		this.menubar.append(this.items['stashMenu']);
 		this.menubar.append(this.items['optionsMenu']);
+		this.menubar.append(this.items['toolsMenu']);
 		this.menubar.append(new gui.MenuItem({
 			label: 'Help',
 			submenu: this.menus.help
 		}));
 		
 		gui.Window.get().menu = this.menubar;
+	},
+	
+	_createToolsMenu: function() {
+		this.menus.tools = new gui.Menu();
+		
+		function output(str) {
+			Dialog().writeOutput(str);
+		}
+		
+		function spawn(name, cmd, args) {
+			var process = require('child_process').spawn(cmd, args, {
+				cwd: currentModulePath
+			});
+			process.on('error', function(err) {
+				UI.showError(err);
+			});
+			process.stdout.setEncoding('utf8');
+			process.stdout.on('data', output);
+			process.stderr.setEncoding('utf8');
+			process.stderr.on('data', output);
+			Dialog().open('Executing tool: ' + name);
+		}
+		
+		config.tools.forEach(function(tool) {
+			if (!tool.name || !tool.cmd) return;
+			this.menus.tools.append(new gui.MenuItem({
+				label: tool.name,
+				click: function() {
+					spawn(tool.name, tool.cmd, tool.args || []);
+				}
+			}));
+		}, this);
 	},
 	
 	enableRepoMenu: function(enabled) {
@@ -226,6 +265,7 @@ var AppMenus = {
 		this.items['branchMenu'].enabled = enabled;
 		this.items['stashMenu'].enabled = enabled;
 		this.items['optionsMenu'].enabled = enabled;
+		this.items['toolsMenu'].enabled = enabled;
 	},
 	
 	showFileListMenu: function(file, type, x, y, line) {

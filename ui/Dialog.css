@@ -18,6 +18,10 @@
 	top: 0;
 }
 
+#dialog.empty #dialogMain {
+	display: none;
+}
+
 #dialogContents {
 	position: absolute;
 	display: flex;
@@ -93,4 +97,8 @@
 
 #dialogOutput:empty {
 	display: none;
+}
+
+#dialog.empty #dialogOutput {
+	display: block;
 }

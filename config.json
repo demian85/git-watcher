@@ -21,5 +21,12 @@
 			"path": "",
 			"args": []
 		}
-	}
+	},
+	"tools": [
+		{
+			"name": "Pull",
+			"cmd": "git",
+			"args": ["pull"]
+		}
+	]
 }
