@@ -43,6 +43,7 @@ var Dialog = (function() {
 })();
 
 
+
 var BranchCheckoutDialog = (function() {
 	function doCheckout(branchName) {
 		Git.checkoutBranch(currentModulePath, branchName, gitErrHandler.intercept(function(output) {
@@ -77,6 +78,8 @@ var BranchCheckoutDialog = (function() {
 		}));
 	};
 })();
+
+
 
 var BranchCreateDialog = (function() {
 	return function() {
