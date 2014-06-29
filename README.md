@@ -88,10 +88,10 @@ I'm working on the following features
 
 * Amend commit (Really hard to do!)
 * Alert when staging an unmerged file. Allow to checkout local/remote version.
-* More configuration options.
-* Delete, rename and create branches
+* Delete, rename branches
 * Delete, edit and add remotes
-* Shortcuts.
+* Shortcuts (waiting for native support from node-webkit)
+* More configuration options.
 * Better syntax highlighting.
 * Git log: show errors/warnings.
 
@@ -112,7 +112,7 @@ Then:
 * Rebuild *git-utils* and *mmmagic* dependencies based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.8.6`. Do the same for *mmmagic*.
 * Run the app! `/opt/node-webkit/nw /path/to/gitw`.
 
-Also, you will find a helper script `./build.sh` that creates a distributable package for Linux. It asumes you have node-webkit installed on `/opt/node-webkit`.
+Also, you will find two helper scripts `./build.sh` and `build-new.sh`. Those creates distributable packages for Linux. It asumes you have node-webkit installed on `/opt/node-webkit`.
 
 ## Troubleshooting
 
