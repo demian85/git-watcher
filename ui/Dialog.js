@@ -106,17 +106,17 @@ var BranchCheckoutDialog = (function() {
 var BranchCreateDialog = (function() {
 	return function() {
 		var node = document.importNode($('#branchCreateTpl').content, true).querySelector('.branchCreate');
-		$('.branchCreateAccept', node).addEventListener('click', function() {
-			var branchName = $('.branchCreateName', node).value.trim();
-			var doCheckout = $('.branchCreateCheckoutOption', node).checked;
+		Dialog().open('Create branch', node);
+		$('.branchCreateAccept').addEventListener('click', function() {
+			var branchName = $('.branchCreateName').value.trim();
+			var doCheckout = $('.branchCreateCheckoutOption').checked;
 			Git.createBranch(currentModulePath, branchName, doCheckout, gitErrHandler.intercept(function(output) {
 				Dialog().writeOutput(output);
-				$('.branchCreateName', node).value = '';
+				$('.branchCreateName').value = '';
 			}));
 		});
-		$('.branchCreateCancel', node).addEventListener('click', function() {
+		$('.branchCreateCancel').addEventListener('click', function() {
 			Dialog().close();
 		});
-		Dialog().open('Create branch', node);
 	};
 })();
