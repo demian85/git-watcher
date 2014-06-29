@@ -27,7 +27,8 @@ var Dialog = (function() {
 			$('#dialogOutput').textContent = '';
 		},
 		writeOutput: function(str) {
-			$('#dialogOutput').textContent += str.trim() + '\n';
+			str = str.trim();
+			if (str) $('#dialogOutput').textContent += str + '\n';
 			$('#dialogOutput').scrollTop = $('#dialogOutput').scrollHeight;
 		},
 		close: function() {
