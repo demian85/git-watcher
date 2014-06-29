@@ -8,7 +8,6 @@
 	background-color: rgba(0, 0, 0, 0.5);
 	transition: top 0.25s ease, opacity 0.25s ease;
 	opacity: 0;
-	font-size: 1.25rem;
 	z-index: 100;
 	-webkit-user-select: initial;
 }
@@ -38,12 +37,12 @@
 	background-color: #fff;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1024px) {
 	#dialogContents {
-		left: 2rem;
-		top: 2rem;
-		right: 2rem;
-		bottom: 2rem;
+		left: 5rem;
+		top: 5rem;
+		right: 5rem;
+		bottom: 5rem;
 		margin: 0;
 		width: auto;
 		height: auto;
@@ -55,6 +54,7 @@
 	flex-flow: row nowrap;
 	flex: 0 0 auto;
 	padding: 1rem;
+	font-size: 1.25rem;
 	font-weight: bold;
 	text-align: center;
 	border-bottom: 1px solid rgba(0, 0, 255, 0.4);
@@ -91,7 +91,6 @@
 	white-space: pre;
 	background-color: #333;
 	color: #eee;
-	font-size: 0.75em;
 	font-family: "liberation mono", "dejavu sans mono", monospace;
 }
 

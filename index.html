@@ -62,7 +62,18 @@
 	
 		<template id="branchCheckoutTpl">
 			<div class="branchCheckout">
-				<select class="branchList" size="10"></select>
+				<div class="branchListContent">
+					<table class="branchList">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Upstream</th>
+								<th>Last commit</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
 				<fieldset class="branchCheckoutOptions">
 					<legend>Options</legend>
 					<label><input type="checkbox" value="1" class="branchCheckoutFetchOption" checked /> Fetch from tracking branch</label>
@@ -72,6 +83,14 @@
 					<button class="branchCheckoutCancel">Cancel</button>
 				</div>
 			</div>
+		</template>
+	
+		<template id="branchCheckoutItemTpl">
+			<tr>
+				<td class="branchCheckoutItemName"></td>
+				<td class="branchCheckoutItemUpstream"></td>
+				<td class="branchCheckoutItemCommit"></td>
+			</tr>
 		</template>
 	
 		<template id="branchCreateTpl">

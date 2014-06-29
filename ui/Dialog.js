@@ -51,18 +51,40 @@ var BranchCheckoutDialog = (function() {
 			Dialog().writeOutput(output);
 		}));
 	}
+	function selectRow() {
+		var row = this, items = $$('.branchList tbody > tr');
+		items.forEach(function(item) {
+			if (row === item) item.classList.add('selected');
+			else item.classList.remove('selected');
+		});
+	}
 	return function() {
 		Git.getLocalBranches(currentModulePath, gitErrHandler.intercept(function(branches) {
 			var node = document.importNode($('#branchCheckoutTpl').content, true).querySelector('.branchCheckout');
-			var listNode = $('.branchList', node);
-			listNode.innerHTML = branches.map(function(branch) {
-				return '<option value="' + branch.name + '" data-upstream="' + branch.upstream + '">' + branch.name + '</option>';
-			}).join('');
-			$('.branchCheckoutAccept', node).addEventListener('click', function() {
-				if (listNode.selectedIndex === -1) return;
-				var branchName = listNode.value;
-				var upstream = listNode.options[listNode.selectedIndex].dataset.upstream || '';
-				var doFetch = $('.branchCheckoutFetchOption', node).checked && upstream;
+			Dialog().open('Checkout branch', node);
+			var branchListNode = $('.branchList tbody');
+			branches.forEach(function(branch) {
+				var row = document.importNode($('#branchCheckoutItemTpl').content, true).querySelector('tr');
+				row.addEventListener('click', selectRow);
+				row.dataset.branchName = branch.name;
+				row.dataset.upstreamBranch = branch.upstream;
+				var commitContents = [
+					'<strong>Commit</strong> ' + branch.lastCommit.objectName,
+					'<em>' + branch.lastCommit.date + '</em>',
+					'by <em>' + branch.lastCommit.authorName + ' &lt;' + branch.lastCommit.authorEmail + '&gt;</em>',
+					branch.lastCommit.subject
+				];
+				$('.branchCheckoutItemName', row).textContent = branch.name;
+				$('.branchCheckoutItemUpstream', row).textContent = branch.upstream;
+				$('.branchCheckoutItemCommit', row).innerHTML = commitContents.join('\n');
+				branchListNode.appendChild(row);
+			});
+			$('.branchCheckoutAccept').addEventListener('click', function() {
+				var selectedBranch = $('.branchList tr.selected');
+				if (!selectedBranch) return;
+				var branchName = selectedBranch.dataset.branchName;
+				var upstream = selectedBranch.dataset.upstreamBranch || '';
+				var doFetch = $('.branchCheckoutFetchOption').checked && upstream;
 				if (doFetch) {
 					Git.fetch(currentModulePath, upstream.split('/')[0], upstream.split('/')[1], gitErrHandler.intercept(function(output) {
 						Dialog().writeOutput(output);
@@ -72,10 +94,9 @@ var BranchCheckoutDialog = (function() {
 					doCheckout(branchName);
 				}
 			});
-			$('.branchCheckoutCancel', node).addEventListener('click', function() {
+			$('.branchCheckoutCancel').addEventListener('click', function() {
 				Dialog().close();
 			});
-			Dialog().open('Checkout branch', node);
 		}));
 	};
 })();
