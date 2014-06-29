@@ -239,6 +239,9 @@ var AppMenus = {
 			process.on('error', function(err) {
 				UI.showError(err);
 			});
+			process.on('exit', function(code) {
+				output('\nProcess exited with code: ' + code);
+			});
 			process.stdout.setEncoding('utf8');
 			process.stdout.on('data', output);
 			process.stderr.setEncoding('utf8');
