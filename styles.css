@@ -475,6 +475,7 @@ input, button, fieldset {
 	position: relative;
 }
 table.branchList {
+	table-layout: fixed;
 	border-collapse: collapse;
 	width: 100%;
 	position: absolute;
@@ -495,14 +496,16 @@ table.branchList th,
 table.branchList td {
 	padding: 0.3em;
 	border: 1px solid #ccc;
-}
-.branchCheckoutItemName,
-.branchCheckoutItemUpstream {
-	font-size: 1.25em;
-}
-.branchCheckoutItemCommit {
-	white-space: pre;
 	font-family: "liberation mono", "dejavu sans mono", monospace;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.branchCheckoutItemCommitSubject {
+	margin-top: 0.5em;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .branchCheckoutOptions,

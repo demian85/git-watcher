@@ -69,14 +69,13 @@ var BranchCheckoutDialog = (function() {
 				row.dataset.branchName = branch.name;
 				row.dataset.upstreamBranch = branch.upstream;
 				var commitContents = [
-					'<strong>Commit</strong> ' + branch.lastCommit.objectName,
-					'<em>' + branch.lastCommit.date + '</em>',
-					'by <em>' + branch.lastCommit.authorName + ' &lt;' + branch.lastCommit.authorEmail + '&gt;</em>',
-					branch.lastCommit.subject
+					'<div><strong>Commit</strong> ' + branch.lastCommit.objectName + '</div>',
+					'<div><em>' + branch.lastCommit.date + '</em></div>',
+					'<div>by <em>' + branch.lastCommit.authorName + ' &lt;' + branch.lastCommit.authorEmail + '&gt;</em></div>',
+					'<div class="branchCheckoutItemCommitSubject">' + branch.lastCommit.subject + '</div>'
 				];
 				$('.branchCheckoutItemName', row).textContent = branch.name;
-				$('.branchCheckoutItemUpstream', row).textContent = branch.upstream;
-				$('.branchCheckoutItemCommit', row).innerHTML = commitContents.join('\n');
+				$('.branchCheckoutItemCommit', row).innerHTML = commitContents.join('');
 				branchListNode.appendChild(row);
 			});
 			$('.branchCheckoutAccept').addEventListener('click', function() {
