@@ -17,8 +17,9 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 * Shows current **branch information**: upstream branch and ahead/behind commit count.
 * Menu bar with configuration options and utilities.
 * System Tray support
+* Support for custom tools (external commands)
 
-## Screenshots
+## Screenshots (outdated)
 ![Overview 1](http://gitw.zedplan.com/screenshots/gitw1.png)
 ![Overview 2](http://gitw.zedplan.com/screenshots/gitw2.png)
 ![Overview 3](http://gitw.zedplan.com/screenshots/gitw3.png)
@@ -94,15 +95,16 @@ I'm working on the following features
 (your help will be much appreciated!)
 
 * Amend commit (Really hard to do!)
+* Line staging
 * Alert when staging an unmerged file. Allow to checkout local/remote version.
 * Delete and rename branches
 * Delete, edit and add remotes
 * Shortcuts (waiting for native support from node-webkit)
 * More configuration options: restrict submodule watching to improve performance for large repositories
 * Better syntax highlighting.
-* Git log: show errors/warnings.
+* Hooks/tools: allow to add external commands to interact with branches or files.
 
-## Create your own build - Quick start for developers
+## Create your own build
 
 Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) for details on how to run apps.
 
