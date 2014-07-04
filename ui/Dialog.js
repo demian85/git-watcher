@@ -4,15 +4,16 @@ var Dialog = (function() {
 		var node = document.importNode($('#dialogTpl').content, true).querySelector('#dialog');
 		document.body.appendChild(node);
 		window.getComputedStyle(node).cssText; // hack to trigger layout and make transitions work
-		document.addEventListener('keydown', function(e) {
-			if (e.keyCode === 27) instance.close();
-		});
 		$('#dialogCloseBtn').addEventListener('click', function(e) {
 			instance.close();
 		});
 	}
+	function closeListener(e) {
+		if (e.keyCode === 27) instance.close();
+	}
 	Dialog.prototype = {
 		open: function(title, contentNode) {
+			document.addEventListener('keydown', closeListener);
 			$('#dialogTitle').textContent = title;
 			$('#dialogMain').innerHTML = '';
 			if (contentNode) {
@@ -32,6 +33,7 @@ var Dialog = (function() {
 			$('#dialogOutput').scrollTop = $('#dialogOutput').scrollHeight;
 		},
 		close: function() {
+			document.removeEventListener('keydown', closeListener);
 			$('#dialogTitle').textContent = '';
 			$('#dialogOutput').textContent = '';
 			$('#dialog').classList.remove('visible', 'empty');
