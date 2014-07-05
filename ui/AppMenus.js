@@ -228,33 +228,12 @@ var AppMenus = {
 	_createToolsMenu: function() {
 		this.menus.tools = new gui.Menu();
 		
-		function output(str) {
-			Dialog().writeOutput(str);
-		}
-		
-		function spawn(name, cmd, args) {
-			var process = require('child_process').spawn(cmd, args, {
-				cwd: currentModulePath
-			});
-			process.on('error', function(err) {
-				UI.showError(err);
-			});
-			process.on('exit', function(code) {
-				output('\nProcess exited with code: ' + code);
-			});
-			process.stdout.setEncoding('utf8');
-			process.stdout.on('data', output);
-			process.stderr.setEncoding('utf8');
-			process.stderr.on('data', output);
-			Dialog().open('Executing tool: ' + name);
-		}
-		
 		config.tools.forEach(function(tool) {
 			if (!tool.name || !tool.cmd) return;
 			this.menus.tools.append(new gui.MenuItem({
 				label: tool.name,
 				click: function() {
-					spawn(tool.name, tool.cmd, tool.args || []);
+					External.execTool(currentModulePath, tool);
 				}
 			}));
 		}, this);

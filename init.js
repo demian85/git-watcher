@@ -115,6 +115,28 @@ var External = {
 		process.on('error', function(err) {
 			logError(err);
 		});
+	},
+	
+	execTool: function(modulePath, tool) {
+		function output(str) {
+			Dialog().writeOutput(str);
+		}
+		
+		var process = require('child_process').spawn(tool.cmd, tool.args || [], {
+			cwd: modulePath
+		});
+		process.on('error', function(err) {
+			logError(err);
+			UI.showError(err);
+		});
+		process.on('exit', function(code) {
+			output('\nProcess exited with code: ' + code);
+		});
+		process.stdout.setEncoding('utf8');
+		process.stdout.on('data', output);
+		process.stderr.setEncoding('utf8');
+		process.stderr.on('data', output);
+		Dialog().open('Executing tool: ' + tool.name);
 	}
 };
 
