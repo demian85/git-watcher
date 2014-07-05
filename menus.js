@@ -54,7 +54,7 @@ var AppMenus = {
 			label: 'View branch history (gitk)',
 			enabled: false,
 			click: function() {
-				Git.openGitk(currentModulePath);
+				External.openGitk(currentModulePath);
 			}
 		});
 		this.items['repositoryRefresh'] = new gui.MenuItem({
@@ -306,11 +306,11 @@ var AppMenus = {
 		};
 		this.items['viewHistory'].enabled = !isSubmodule && !isDeleted && !isUnstagedNew;
 		this.items['viewHistory'].click = function() {
-			Git.openGitk(currentModulePath, file);
+			External.openGitk(currentModulePath, file);
 		};
 		this.items['blame'].enabled = !isSubmodule && !isDeleted && !isUnstagedNew;
 		this.items['blame'].click = function() {
-			Git.openGitBlame(currentModulePath, file);
+			External.openGitBlame(currentModulePath, file);
 		};
 		
 		this.menus.filesList.popup(x, y);

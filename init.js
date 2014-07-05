@@ -86,11 +86,35 @@ var External = {
 			});
 			process.unref();
 			process.on('error', function(err) {
-				console.error(err);
+				logError(err);
 			});
 		} else {
 			gui.Shell.openItem(file.path);
 		}
+	},
+	
+	openGitk: function(modulePath, file) {
+		var process = require('child_process').spawn('gitk', [file ? file.name : ''], {
+			cwd: modulePath,
+			detached: true,
+			stdio: 'ignore'
+		});
+		process.unref();
+		process.on('error', function(err) {
+			logError(err);
+		});
+	},
+	
+	openGitBlame: function(modulePath, file) {
+		var process = require('child_process').spawn('git', ['gui', 'blame', '--', file.name], {
+			cwd: modulePath,
+			detached: true,
+			stdio: 'ignore'
+		});
+		process.unref();
+		process.on('error', function(err) {
+			logError(err);
+		});
 	}
 };
 
