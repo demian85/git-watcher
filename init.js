@@ -80,37 +80,27 @@ var External = {
 			args = args.map(function(value) {
 				return value.replace(/\$FILE/, file.path).replace(/\$LINE/, line || 1);
 			});
-			var process = require('child_process').spawn(cmd, args, {
-				detached: true,
-				stdio: 'ignore'
-			});
-			process.unref();
-			process.on('error', function(err) {
-				logError(err);
-			});
+			this.openApp(cmd, args);
 		} else {
 			gui.Shell.openItem(file.path);
 		}
 	},
 	
 	openGitk: function(modulePath, file) {
-		var process = require('child_process').spawn('gitk', [file ? file.name : ''], {
-			cwd: modulePath,
-			detached: true,
-			stdio: 'ignore'
-		});
-		process.unref();
-		process.on('error', function(err) {
-			logError(err);
-		});
+		this.openApp('gitk', [file ? file.name : ''], modulePath);
 	},
 	
 	openGitBlame: function(modulePath, file) {
-		var process = require('child_process').spawn('git', ['gui', 'blame', '--', file.name], {
-			cwd: modulePath,
+		this.openApp('git', ['gui', 'blame', '--', file.name], modulePath);
+	},
+	
+	openApp: function(cmd, args, cwd) {
+		var options = {
 			detached: true,
 			stdio: 'ignore'
-		});
+		};
+		if (cwd) options.cwd = cwd;
+		var process = require('child_process').spawn(cmd, args || [], options);
 		process.unref();
 		process.on('error', function(err) {
 			logError(err);
@@ -121,7 +111,7 @@ var External = {
 		function output(str) {
 			Dialog().writeOutput(str);
 		}
-		
+		// FIXME: allow to cancel process?
 		var process = require('child_process').spawn(tool.cmd, tool.args || [], {
 			cwd: modulePath
 		});
