@@ -18,13 +18,13 @@ function init() {
 	
 	commander = new Commander();
 	commander.on('cmdstart', function() {
-		log('cmdstart')
+		log('cmdstart');
 		$$('.actionBtn').forEach(function(node) {
 			node.disabled = true;
 		});
 	});
 	commander.on('cmdend', function() {
-		log('cmdend')
+		log('cmdend');
 		$$('.actionBtn').forEach(function(node) {
 			node.disabled = false;
 		});
