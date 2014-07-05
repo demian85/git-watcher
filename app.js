@@ -1,10 +1,11 @@
 var GitWatcher = require('./lib/GitWatcher'),
-	Git = require('./lib/Git'),
+	Commander = require('./lib/Commander'),
 	Highlighter = require('./lib/Highlighter'),
 	baseRepoDirectory = null, 
 	currentModulePath = null, 
 	currentModuleName = null, 
 	gitWatcher = null,
+	commander = null,
 	appTray;
 	
 var gitErrHandler = require('domain').create();
@@ -14,6 +15,20 @@ gitErrHandler.on('error', function(err) {
 
 function init() {
 	initApp();
+	
+	commander = new Commander();
+	commander.on('cmdstart', function() {
+		log('cmdstart')
+		$$('.actionBtn').forEach(function(node) {
+			node.disabled = true;
+		});
+	});
+	commander.on('cmdend', function() {
+		log('cmdend')
+		$$('.actionBtn').forEach(function(node) {
+			node.disabled = false;
+		});
+	});
 	
 	baseRepoDirectory = gui.App.argv[0] || config.defaultRepository || null;
 	
@@ -146,6 +161,7 @@ var UI = {
 	showModule: function(moduleName) {
 		currentModuleName = moduleName;
 		currentModulePath = require('path').dirname(baseRepoDirectory) + moduleName;
+		commander.setModulePath(currentModulePath);
 		$$('.moduleLabel, .module').forEach(function(node) {
 			if (node.dataset.name === currentModuleName) {
 				node.classList.add('visible');
@@ -273,21 +289,19 @@ var UI = {
 				commitMessageInput.focus();
 				return;
 			}
-			Git.commit(currentModulePath, message, gitErrHandler.intercept(function() {
+			commander.commit(message, gitErrHandler.intercept(function() {
 				commitMessageInput.value = '';
 			}));
 		}
 		$m(moduleName,'.stageButton').addEventListener('click', function(e) {
-			Git.stageAll(currentModulePath, _handleGitResponse);
+			commander.stageAll(_handleGitResponse);
 		}, false);
 		$m(moduleName,'.unstageButton').addEventListener('click', function(e) {
-			Git.unstageAll(currentModulePath, _handleGitResponse);
+			commander.unstageAll(_handleGitResponse);
 		}, false);
-		$m(moduleName,'.commitButton').addEventListener('click', function(e) {
-			commit();
-		}, false);
+		$m(moduleName,'.commitButton').addEventListener('click', commit, false);
 		$m(moduleName,'.pushButton').addEventListener('click', function(e) {
-			Git.push(currentModulePath, _handleGitResponse);
+			commander.push(_handleGitResponse);
 		}, false);
 	}
 };
@@ -411,9 +425,9 @@ function _renderFileListItem(file, type) {
 	node.dataset.type = type;
 	node.addEventListener('dblclick', function(e) {
 		if (type === 'staged') {
-			Git.unstageFile(currentModulePath, file, _handleGitResponse);
+			commander.unstageFile(file, _handleGitResponse);
 		} else {
-			Git.stageFile(currentModulePath, file, _handleGitResponse);
+			commander.stageFile(file, _handleGitResponse);
 		}
 	}, false);
 	

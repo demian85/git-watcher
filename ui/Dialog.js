@@ -49,7 +49,7 @@ var Dialog = (function() {
 
 var BranchCheckoutDialog = (function() {
 	function doCheckout(branchName) {
-		Git.checkoutBranch(currentModulePath, branchName, gitErrHandler.intercept(function(output) {
+		commander.checkoutBranch(branchName, gitErrHandler.intercept(function(output) {
 			Dialog().writeOutput(output);
 		}));
 	}
@@ -61,7 +61,7 @@ var BranchCheckoutDialog = (function() {
 		});
 	}
 	return function() {
-		Git.getLocalBranches(currentModulePath, gitErrHandler.intercept(function(branches) {
+		commander.getLocalBranches(gitErrHandler.intercept(function(branches) {
 			var node = document.importNode($('#branchCheckoutTpl').content, true).querySelector('.branchCheckout');
 			Dialog().open('Checkout branch', node);
 			var branchListNode = $('.branchList tbody');
@@ -87,7 +87,7 @@ var BranchCheckoutDialog = (function() {
 				var upstream = selectedBranch.dataset.upstreamBranch || '';
 				var doFetch = $('.branchCheckoutFetchOption').checked && upstream;
 				if (doFetch) {
-					Git.fetch(currentModulePath, upstream.split('/')[0], upstream.split('/')[1], gitErrHandler.intercept(function(output) {
+					commander.fetch(upstream.split('/')[0], upstream.split('/')[1], gitErrHandler.intercept(function(output) {
 						Dialog().writeOutput(output);
 						doCheckout(branchName);
 					}));
@@ -111,7 +111,7 @@ var BranchCreateDialog = (function() {
 		$('.branchCreateAccept').addEventListener('click', function() {
 			var branchName = $('.branchCreateName').value.trim();
 			var doCheckout = $('.branchCreateCheckoutOption').checked;
-			Git.createBranch(currentModulePath, branchName, doCheckout, gitErrHandler.intercept(function(output) {
+			commander.createBranch(branchName, doCheckout, gitErrHandler.intercept(function(output) {
 				Dialog().writeOutput(output);
 				$('.branchCreateName').value = '';
 			}));

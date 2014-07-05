@@ -87,13 +87,13 @@ var AppMenus = {
 		this.items['stashSave'] = new gui.MenuItem({
 			label: 'Save',
 			click: function() {
-				Git.stashSave(currentModulePath, _handleGitResponse);
+				commander.stashSave(_handleGitResponse);
 			}
 		});
 		this.items['stashPop'] = new gui.MenuItem({
 			label: 'Pop',
 			click: function() {
-				Git.stashPop(currentModulePath, _handleGitResponse);
+				commander.stashPop(_handleGitResponse);
 			}
 		});
 		
@@ -278,23 +278,23 @@ var AppMenus = {
 		
 		this.items['revert'].enabled = file.status !== 'new' && !isSubmodule;
 		this.items['revert'].click = function() {
-			Git.revertFile(currentModulePath, file, _handleGitResponse);
+			commander.revertFile(file, _handleGitResponse);
 		};
 		this.items['stage'].enabled = type === 'unstaged' && file.unstaged;
 		this.items['stage'].click = function() {
-			Git.stageFile(currentModulePath, file, _handleGitResponse);
+			commander.stageFile(file, _handleGitResponse);
 		};
 		this.items['stageHunk'].enabled = line !== null && type === 'unstaged' && file.unstaged && !isSubmodule && file.status === 'modified';
 		this.items['stageHunk'].click = function() {
-			Git.stageHunk(currentModulePath, file, line, _handleGitResponse);
+			commander.stageHunk(file, line, _handleGitResponse);
 		};
 		this.items['unstage'].enabled = type === 'staged' && file.staged;
 		this.items['unstage'].click = function() {
-			Git.unstageFile(currentModulePath, file, _handleGitResponse);
+			commander.unstageFile(file, _handleGitResponse);
 		};
 		this.items['unstageHunk'].enabled = line !== null && type === 'staged' && file.staged && !isSubmodule && file.status === 'modified';
 		this.items['unstageHunk'].click = function() {
-			Git.unstageHunk(currentModulePath, file, line, _handleGitResponse);
+			commander.unstageHunk(file, line, _handleGitResponse);
 		};
 		this.items['open'].enabled = file.status !== 'deleted';
 		this.items['open'].click = function() {
@@ -302,7 +302,7 @@ var AppMenus = {
 		};
 		this.items['delete'].enabled = type === 'unstaged' && file.unstaged && !isDeleted;
 		this.items['delete'].click = function() {
-			Git.removeFileFromDisk(currentModulePath, file, _handleGitResponse);
+			commander.removeFileFromDisk(file, _handleGitResponse);
 		};
 		this.items['viewHistory'].enabled = !isSubmodule && !isDeleted && !isUnstagedNew;
 		this.items['viewHistory'].click = function() {
