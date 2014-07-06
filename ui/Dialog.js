@@ -125,13 +125,31 @@ var BranchCreateDialog = (function() {
 
 
 var FileStatisticsDialog = (function() {
+	function getData(file, callback) {
+		var limitNumberNode = $('.fileStatisticsTopCommittersOptions input[name=fileStatisticsTopCommittersLimitOption]');
+		commander.getFileTopCommitters(file, limitNumberNode ? limitNumberNode.value : 20, getExtraOptions(), gitErrHandler.intercept(callback));
+	}
+	function updateData(items) {
+		$('.fileStatisticsTopCommitters tbody').innerHTML = items.map(function(item) {
+			return '<tr><td>' + item.count + '</td><td>' + item.name + '</td><td><a href="mailto:' + item.email + '">' + item.email + '</a></td></tr>';
+		}).join('');
+	}
+	function getExtraOptions() {
+		var mergesOption = $('.fileStatisticsTopCommittersOptions input:checked');
+		var extraOptions = [];
+		if (mergesOption) extraOptions.push(mergesOption.value);
+		return extraOptions;
+	}
 	return function(file) {
-		commander.getFileTopCommitters(file, 20, gitErrHandler.intercept(function(items) {
-			var node = document.importNode($('#fileStatisticsTpl').content, true).querySelector('.fileStatistics');
+		var node = document.importNode($('#fileStatisticsTpl').content, true).querySelector('.fileStatistics');
+		$$('.fileStatisticsTopCommittersOptions input', node).forEach(function(input) {
+			input.addEventListener('change', function() {
+				getData(file, updateData);
+			});
+		});
+		getData(file, function(items) {
 			Dialog().open(file.name + ' statistics', node);
-			$('.fileStatisticsTopCommitters tbody').innerHTML = items.map(function(item) {
-				return '<tr><td>' + item.count + '</td><td>' + item.name + '</td><td>' + item.email + '</td></tr>';
-			}).join('');
-		}));
+			updateData(items);
+		});
 	};
 })();

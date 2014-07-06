@@ -110,6 +110,13 @@
 		<template id="fileStatisticsTpl">
 			<div class="fileStatistics">
 				<h2 class="fileStatisticsHeader">Top committers</h2>
+				<fieldset class="fileStatisticsOptions fileStatisticsTopCommittersOptions">
+					<legend>Options</legend>
+					<label><input type="radio" name="fileStatisticsTopCommittersMergesOption" class="actionInput" value="" checked /> All</label>
+					<label><input type="radio" name="fileStatisticsTopCommittersMergesOption" class="actionInput" value="--no-merges" /> Exclude merges</label>
+					<label><input type="radio" name="fileStatisticsTopCommittersMergesOption" class="actionInput" value="--merges" /> Only merges</label>
+					<label>Limit: <input type="number" size="2" name="fileStatisticsTopCommittersLimitOption" class="actionInput" min="5" max="50" value="20" /></label>
+				</fieldset>
 				<table class="fileStatisticsTable fileStatisticsTopCommitters">
 					<thead>
 						<tr>
