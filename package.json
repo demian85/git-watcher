@@ -36,7 +36,7 @@
     "title": "Git Watcher",
     "icon": "icons/git-watcher.png",
     "width": 1024,
-    "height": 768,
+    "height": 600,
     "position": "center",
     "toolbar": false
   }
