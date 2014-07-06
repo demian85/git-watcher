@@ -291,7 +291,7 @@ var AppMenus = {
 		};
 		this.items['blame'].enabled = !isSubmodule && !isDeleted && !isUnstagedNew;
 		this.items['blame'].click = function() {
-			External.openGitBlame(currentModulePath, file);
+			External.openGitBlame(currentModulePath, file, line);
 		};
 		this.items['stats'].enabled = !isDeleted && !isUnstagedNew;
 		this.items['stats'].click = function() {

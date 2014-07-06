@@ -90,8 +90,12 @@ var External = {
 		this.openApp('gitk', [file ? file.name : ''], modulePath);
 	},
 	
-	openGitBlame: function(modulePath, file) {
-		this.openApp('git', ['gui', 'blame', '--', file.name], modulePath);
+	openGitBlame: function(modulePath, file, line) {
+		var args = ['gui', 'blame'];
+		if (line !== null) args.push('--line=' + line);
+		args.push('--');
+		args.push(file.name);
+		this.openApp('git', args, modulePath);
 	},
 	
 	openApp: function(cmd, args, cwd) {
