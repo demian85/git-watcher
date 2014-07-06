@@ -78,7 +78,7 @@
 #dialogMain {
 	display: flex;
 	flex-flow: row nowrap;
-	flex: 4 0 auto;
+	flex: 4 1 auto;
 	padding: 1rem;
 	overflow: auto;
 	position: relative;

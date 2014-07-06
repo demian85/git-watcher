@@ -532,3 +532,31 @@ table.branchList td {
 .branchCreateContent {
 	flex: 1 0 auto;
 }
+
+
+.fileStatisticsHeader {
+	margin: 0 0 1em 0;
+	text-align: center;
+}
+.fileStatisticsTable {
+	table-layout: fixed;
+	border-collapse: collapse;
+	width: 100%;
+}
+.fileStatisticsTable tr {
+	cursor: default;
+	transition: background-color 0.1s ease;
+}
+.fileStatisticsTable tbody > tr:hover {
+	background-color: rgba(101, 118, 246, 0.3);
+}
+.fileStatisticsTable th,
+.fileStatisticsTable td {
+	padding: 0.3em;
+	border: 1px solid #ccc;
+	font-family: "liberation mono", "dejavu sans mono", monospace;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-align: center;
+}

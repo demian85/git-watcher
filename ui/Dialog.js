@@ -121,3 +121,17 @@ var BranchCreateDialog = (function() {
 		});
 	};
 })();
+
+
+
+var FileStatisticsDialog = (function() {
+	return function(file) {
+		commander.getFileTopCommitters(file, 20, gitErrHandler.intercept(function(items) {
+			var node = document.importNode($('#fileStatisticsTpl').content, true).querySelector('.fileStatistics');
+			Dialog().open(file.name + ' statistics', node);
+			$('.fileStatisticsTopCommitters tbody').innerHTML = items.map(function(item) {
+				return '<tr><td>' + item.count + '</td><td>' + item.name + '</td><td>' + item.email + '</td></tr>';
+			}).join('');
+		}));
+	};
+})();

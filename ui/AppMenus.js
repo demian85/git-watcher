@@ -18,6 +18,7 @@ var AppMenus = {
 		this.items['delete'] = new gui.MenuItem({label: 'Delete file', icon: 'icons/delete.png'});
 		this.items['viewHistory'] = new gui.MenuItem({label: 'View file history', icon: 'icons/view-history.png'});
 		this.items['blame'] = new gui.MenuItem({label: 'Blame', icon: 'icons/view-history.png'});
+		this.items['stats'] = new gui.MenuItem({label: 'Statistics', icon: 'icons/statistics.png'});
 		this.menus.filesList = new gui.Menu();
 		this.menus.filesList.append(this.items['stage']);
 		this.menus.filesList.append(this.items['unstage']);
@@ -31,6 +32,7 @@ var AppMenus = {
 		this.menus.filesList.append(new gui.MenuItem({type: 'separator'}));
 		this.menus.filesList.append(this.items['viewHistory']);
 		this.menus.filesList.append(this.items['blame']);
+		this.menus.filesList.append(this.items['stats']);
 	},
 	
 	_createMenuBar: function() {
@@ -290,6 +292,10 @@ var AppMenus = {
 		this.items['blame'].enabled = !isSubmodule && !isDeleted && !isUnstagedNew;
 		this.items['blame'].click = function() {
 			External.openGitBlame(currentModulePath, file);
+		};
+		this.items['stats'].enabled = !isDeleted && !isUnstagedNew;
+		this.items['stats'].click = function() {
+			FileStatisticsDialog(file);
 		};
 		
 		this.menus.filesList.popup(x, y);
