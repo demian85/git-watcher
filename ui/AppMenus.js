@@ -1,38 +1,106 @@
 var AppMenus = {
 	
-	menus: {},
-	items: {},
+	menus: Object.create(null),
+	items: Object.create(null),
 	
 	init: function() {
 		this._createMenuBar();
-		this._createMenus();
 	},
 	
-	_createMenus: function() {
-		this.items['stage'] = new gui.MenuItem({label: 'Stage file', icon: 'icons/stage.png'});
-		this.items['unstage'] = new gui.MenuItem({label: 'Unstage file', icon: 'icons/unstage.png'});
-		this.items['stageHunk'] = new gui.MenuItem({label: 'Stage hunk', icon: 'icons/stage.png'});
-		this.items['unstageHunk'] = new gui.MenuItem({label: 'Unstage hunk', icon: 'icons/unstage.png'});
-		this.items['revert'] = new gui.MenuItem({label: 'Revert changes', icon: 'icons/revert.png'});
-		this.items['open'] = new gui.MenuItem({label: 'Open file', icon: 'icons/open-file.png'});
-		this.items['delete'] = new gui.MenuItem({label: 'Delete file', icon: 'icons/delete.png'});
-		this.items['viewHistory'] = new gui.MenuItem({label: 'View file history', icon: 'icons/view-history.png'});
-		this.items['blame'] = new gui.MenuItem({label: 'Blame', icon: 'icons/view-history.png'});
-		this.items['stats'] = new gui.MenuItem({label: 'Statistics', icon: 'icons/statistics.png'});
-		this.menus.filesList = new gui.Menu();
-		this.menus.filesList.append(this.items['stage']);
-		this.menus.filesList.append(this.items['unstage']);
-		this.menus.filesList.append(this.items['revert']);
-		this.menus.filesList.append(new gui.MenuItem({type: 'separator'}));
-		this.menus.filesList.append(this.items['stageHunk']);
-		this.menus.filesList.append(this.items['unstageHunk']);
-		this.menus.filesList.append(new gui.MenuItem({type: 'separator'}));
-		this.menus.filesList.append(this.items['open']);
-		this.menus.filesList.append(this.items['delete']);
-		this.menus.filesList.append(new gui.MenuItem({type: 'separator'}));
-		this.menus.filesList.append(this.items['viewHistory']);
-		this.menus.filesList.append(this.items['blame']);
-		this.menus.filesList.append(this.items['stats']);
+	_createFileMenu: function(file, type, line) {
+		var items = Object.create(null);
+		
+		items['stage'] = new gui.MenuItem({
+			label: 'Stage file', 
+			icon: 'icons/stage.png',
+			click: function() {
+				commander.stageFile(file, _handleGitResponse);
+			}
+		});
+		items['unstage'] = new gui.MenuItem({
+			label: 'Unstage file', 
+			icon: 'icons/unstage.png',
+			click: function() {
+				commander.unstageFile(file, _handleGitResponse);
+			}
+		});
+		items['stageHunk'] = new gui.MenuItem({
+			label: 'Stage hunk', 
+			icon: 'icons/stage.png',
+			click: function() {
+				commander.stageHunk(file, line, _handleGitResponse);
+			}
+		});
+		items['unstageHunk'] = new gui.MenuItem({
+			label: 'Unstage hunk', 
+			icon: 'icons/unstage.png',
+			click: function() {
+				commander.unstageHunk(file, line, _handleGitResponse);
+			}
+		});
+		items['revert'] = new gui.MenuItem({
+			label: 'Revert changes', 
+			icon: 'icons/revert.png',
+			click: function() {
+				commander.revertFile(file, _handleGitResponse);
+			}
+		});
+		items['open'] = new gui.MenuItem({
+			label: 'Open file', 
+			icon: 'icons/open-file.png',
+			click: function() {
+				External.openFile(file);
+			}
+		});
+		items['delete'] = new gui.MenuItem({
+			label: 'Delete file', 
+			icon: 'icons/delete.png',
+			click: function() {
+				commander.removeFileFromDisk(file, _handleGitResponse);
+			}
+		});
+		items['viewHistory'] = new gui.MenuItem({
+			label: 'View file history', 
+			icon: 'icons/view-history.png',
+			click: function() {
+				External.openGitk(currentModulePath, file);
+			}
+		});
+		items['blame'] = new gui.MenuItem({
+			label: 'Blame', 
+			icon: 'icons/view-history.png',
+			click: function() {
+				External.openGitBlame(currentModulePath, file, line);
+			}
+		});
+		items['stats'] = new gui.MenuItem({
+			label: 'Statistics', 
+			icon: 'icons/statistics.png',
+			click: function() {
+				FileStatisticsDialog(file);
+			}
+		});
+		
+		var isUnstagedNew = type === 'unstaged' && file.unstaged && file.status === 'new';
+		var isDeleted = file.status === 'deleted';
+		var isSubmodule = file.type === 'submodule';
+		var menu = new gui.Menu();
+		
+		if (type === 'unstaged' && file.unstaged) menu.append(items['stage']);
+		if (type === 'staged' && file.staged) menu.append(items['unstage']);
+		if (line !== null && type === 'unstaged' && file.unstaged && !isSubmodule && file.status === 'modified') menu.append(items['stageHunk']);
+		if (line !== null && type === 'staged' && file.staged && !isSubmodule && file.status === 'modified') menu.append(items['unstageHunk']);
+		if (file.status !== 'new' && !isSubmodule) menu.append(items['revert']);
+		if (file.status !== 'deleted') menu.append(items['open']);
+		if (type === 'unstaged' && file.unstaged && !isDeleted) menu.append(items['delete']);
+		if (!isUnstagedNew && !isDeleted) {
+			menu.append(new gui.MenuItem({type: 'separator'}));
+			if (file.status !== 'new') menu.append(items['viewHistory']);
+			if (!isSubmodule) menu.append(items['blame']);
+			menu.append(items['stats']);
+		}
+		
+		return menu;
 	},
 	
 	_createMenuBar: function() {
@@ -229,7 +297,6 @@ var AppMenus = {
 	
 	_createToolsMenu: function() {
 		this.menus.tools = new gui.Menu();
-		
 		config.tools.forEach(function(tool) {
 			if (!tool.name || !tool.cmd) return;
 			this.menus.tools.append(new gui.MenuItem({
@@ -253,51 +320,7 @@ var AppMenus = {
 	},
 	
 	showFileListMenu: function(file, type, x, y, line) {
-		var isUnstagedNew = type === 'unstaged' && file.unstaged && file.status === 'new';
-		var isDeleted = file.status === 'deleted';
-		var isSubmodule = file.type === 'submodule';
-		
-		this.items['revert'].enabled = file.status !== 'new' && !isSubmodule;
-		this.items['revert'].click = function() {
-			commander.revertFile(file, _handleGitResponse);
-		};
-		this.items['stage'].enabled = type === 'unstaged' && file.unstaged;
-		this.items['stage'].click = function() {
-			commander.stageFile(file, _handleGitResponse);
-		};
-		this.items['stageHunk'].enabled = line !== null && type === 'unstaged' && file.unstaged && !isSubmodule && file.status === 'modified';
-		this.items['stageHunk'].click = function() {
-			commander.stageHunk(file, line, _handleGitResponse);
-		};
-		this.items['unstage'].enabled = type === 'staged' && file.staged;
-		this.items['unstage'].click = function() {
-			commander.unstageFile(file, _handleGitResponse);
-		};
-		this.items['unstageHunk'].enabled = line !== null && type === 'staged' && file.staged && !isSubmodule && file.status === 'modified';
-		this.items['unstageHunk'].click = function() {
-			commander.unstageHunk(file, line, _handleGitResponse);
-		};
-		this.items['open'].enabled = file.status !== 'deleted';
-		this.items['open'].click = function() {
-			External.openFile(file);
-		};
-		this.items['delete'].enabled = type === 'unstaged' && file.unstaged && !isDeleted;
-		this.items['delete'].click = function() {
-			commander.removeFileFromDisk(file, _handleGitResponse);
-		};
-		this.items['viewHistory'].enabled = !isSubmodule && !isDeleted && !isUnstagedNew;
-		this.items['viewHistory'].click = function() {
-			External.openGitk(currentModulePath, file);
-		};
-		this.items['blame'].enabled = !isSubmodule && !isDeleted && !isUnstagedNew;
-		this.items['blame'].click = function() {
-			External.openGitBlame(currentModulePath, file, line);
-		};
-		this.items['stats'].enabled = !isDeleted && !isUnstagedNew;
-		this.items['stats'].click = function() {
-			FileStatisticsDialog(file);
-		};
-		
-		this.menus.filesList.popup(x, y);
+		var menu = this._createFileMenu(file, type, line);
+		menu.popup(x, y);
 	}
 };
