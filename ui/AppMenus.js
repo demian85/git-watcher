@@ -45,6 +45,13 @@ var AppMenus = {
 				commander.revertFile(file, _handleGitResponse);
 			}
 		});
+		items['submoduleUpdate'] = new gui.MenuItem({
+			label: 'Submodule update', 
+			icon: 'icons/submodule-update.png',
+			click: function() {
+				commander.submoduleUpdate(file, _handleGitResponse);
+			}
+		});
 		items['open'] = new gui.MenuItem({
 			label: 'Open file', 
 			icon: 'icons/open-file.png',
@@ -90,6 +97,7 @@ var AppMenus = {
 		if (type === 'staged' && file.staged) menu.append(items['unstage']);
 		if (line !== null && type === 'unstaged' && file.unstaged && !isSubmodule && file.status === 'modified') menu.append(items['stageHunk']);
 		if (line !== null && type === 'staged' && file.staged && !isSubmodule && file.status === 'modified') menu.append(items['unstageHunk']);
+		if (isSubmodule && file.status === 'modified') menu.append(items['submoduleUpdate']);
 		if (file.status !== 'new' && !isSubmodule) menu.append(items['revert']);
 		if (file.status !== 'deleted') menu.append(items['open']);
 		if (type === 'unstaged' && file.unstaged && !isDeleted) menu.append(items['delete']);
