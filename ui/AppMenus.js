@@ -122,6 +122,12 @@ var AppMenus = {
             enabled: false,
 			click: closeRepository
 		});
+		this.items['repositorySubmoduleUpdate'] = new gui.MenuItem({
+			label: 'Submodule update',
+			click: function() {
+				commander.submoduleUpdate(null, _handleGitResponse);
+			}
+		});
 		this.items['repositoryExplore'] = new gui.MenuItem({
 			label: 'Explore...',
 			click: function() {
@@ -241,6 +247,7 @@ var AppMenus = {
 		this.menus.repository.append(this.items['repositoryClose']);
 		this.menus.repository.append(this.items['repositoryRefresh']);
 		this.menus.repository.append(new gui.MenuItem({type: 'separator'}));
+		this.menus.repository.append(this.items['repositorySubmoduleUpdate']);
 		this.menus.repository.append(this.items['repositoryExplore']);
 		this.menus.repository.append(this.items['repositoryBrowse']);
 		this.menus.repository.append(new gui.MenuItem({type: 'separator'}));
