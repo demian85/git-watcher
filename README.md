@@ -94,12 +94,12 @@ I'm working on the following features
 
 * Amend commit (Really hard to do!)
 * Line staging
-* Alert when staging an unmerged file. Allow to checkout local/remote version.
 * Delete and rename branches
 * Delete, edit and add remotes
-* Shortcuts (waiting for native support from node-webkit)
+* More shortcuts (waiting for native support from node-webkit)
 * More configuration options: restrict submodule watching to improve performance for large repositories
 * Better syntax highlighting.
+* UI improvements: allow to view diff one file at a time to avoid "confusion".
 * Hooks/tools: allow to add external commands to interact with branches or files.
 
 ## Create your own build
