@@ -34,7 +34,7 @@ See __Troubleshooting__ if you cannot run the app.
 * Linux x64 - __New dists__: Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
 	* [v0.4.8](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-new-v0.4.8.tar.gz)
 
-Windows & Mac binaries coming soon!
+**Someone please help me to create Windows & Mac binaries!**
 
 ## How to run the app
 
