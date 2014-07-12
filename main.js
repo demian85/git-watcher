@@ -229,9 +229,9 @@ var UI = {
 		function update(type) {
 			var listNode = $m(moduleName, '.' + type + 'Files');
 			listNode.innerHTML = '';
-			status[type].map(function(file) {
+			status[type].map(function mapper(file) {
 				return _renderFileListItem(file, type);
-			}).forEach(function(node) {
+			}).forEach(function iterator(node) {
 				listNode.appendChild(node);
 			});
 		}
@@ -246,7 +246,7 @@ var UI = {
 		var diffNode = $m(moduleName, '.filesDiff');
 		diffNode.innerHTML = '';
 		function add(type) {
-			status[type].map(function renderFileDiff(file) {
+			status[type].map(function mapper(file) {
 				return _renderFileDiff(file, type);
 			}).forEach(function iterator(node) {
 				diffNode.appendChild(node);
@@ -332,8 +332,8 @@ function _renderFileDiff(file, type) {
 	var diffHtml = '';
 	if (file.diff) {
 		diffHtml += '<table class="fileDiff">';
-		diffHtml += file.diff.map(function(range) {
-			return '<tbody class="range">' + range.map(function(line) {
+		diffHtml += file.diff.map(function processRange(range) {
+			return '<tbody class="range">' + range.map(function processLine(line) {
 				var lineTypeStr = (line.type === '-' ? 'deleted' : (line.type === '+' ? 'added' : 'neutral'));
 				var symbol = (line.type === '-' ? '-' : (line.type === '+' ? '+' : ' '));
 				return '<tr class="lineRow ' + lineTypeStr + '"><td class="line oldLine">' + (line.type === '-' ? line.oldLine : '') + '</td><td class="line newLine">' + (line.type !== '-' ? line.newLine : '') + '</td><td>' + symbol + '</td><td>' + _renderFileDiffLine(file, line.content) + '</td></tr>';
