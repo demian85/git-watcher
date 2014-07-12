@@ -346,6 +346,7 @@ var AppMenus = {
 		this.items['repositoryExplore'].enabled = enabled;
 		this.items['repositoryBrowse'].enabled = enabled;
 		this.items['repositoryRefresh'].enabled = enabled;
+		this.items['repositorySubmoduleUpdate'].enabled = enabled;
 		this.items['branchMenu'].enabled = enabled;
 		this.items['stashMenu'].enabled = enabled;
 		this.items['optionsMenu'].enabled = enabled;
