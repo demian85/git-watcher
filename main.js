@@ -132,7 +132,7 @@ function closeRepository() {
 		gui.Window.get().title = gui.App.manifest.window.title;
         AppMenus.enableRepoMenu(false);
 		
-		$$('.module').forEach(function(node) {
+		$$('.module').forEach(function iterator(node) {
 			node.parentNode.removeChild(node);
 		});
 		$('#gitModules').innerHTML = '';
@@ -143,12 +143,12 @@ function closeRepository() {
 
 var UI = {
 	load: function() {
-		gitWatcher.getStatus(function(err, status) {
+		gitWatcher.getStatus(function getStatusCallback(err, status) {
 			if (err) throw err;
 			log('Status:', status);
 			$('#loadingImage').classList.remove('visible');
 			var modules = gitWatcher.getModules();
-			modules.forEach(function(module) {
+			modules.forEach(function createModule(module) {
 				UI.createModule(module);
 			});
 			UI.showModule(modules[0]);
@@ -162,7 +162,7 @@ var UI = {
 		currentModuleName = moduleName;
 		currentModulePath = require('path').dirname(baseRepoDirectory) + moduleName;
 		commander.setModulePath(currentModulePath);
-		$$('.moduleLabel, .module').forEach(function(node) {
+		$$('.moduleLabel, .module').forEach(function iterator(node) {
 			if (node.dataset.name === currentModuleName) {
 				node.classList.add('visible');
 			} else {
@@ -186,7 +186,7 @@ var UI = {
 		var moduleLabel = document.importNode($('#gitModuleLabelTpl').content, true).querySelector('li');
 		moduleLabel.textContent = moduleName.replace(/^\//, '');
 		moduleLabel.dataset.name = moduleName;
-		moduleLabel.addEventListener('focus', function(e) {
+		moduleLabel.addEventListener('focus', function onModuleFocus(e) {
 			UI.showModule(this.dataset.name);
 		}, false);
 		$('#gitModules').appendChild(moduleLabel);
@@ -199,7 +199,7 @@ var UI = {
 	selectFile: function(name, type) {
 		var me = this;
 		var items = $$('.fileList > li, .file');
-		items.forEach(function(node) {
+		items.forEach(function iterator(node) {
 			if (node.dataset.name === name && node.dataset.type === type) {
 				node.classList.add('selected');
 				me._scrollFileIntoView(node);
@@ -246,9 +246,9 @@ var UI = {
 		var diffNode = $m(moduleName, '.filesDiff');
 		diffNode.innerHTML = '';
 		function add(type) {
-			status[type].map(function(file) {
+			status[type].map(function renderFileDiff(file) {
 				return _renderFileDiff(file, type);
-			}).forEach(function(node) {
+			}).forEach(function iterator(node) {
 				diffNode.appendChild(node);
 			});
 		}
@@ -266,7 +266,7 @@ var UI = {
 	_addFileSelectionEvents: function(moduleName) {
 		var me = this;
 		var items = $$m(moduleName, '.fileList > li, .file');
-		items.forEach(function(node) {
+		items.forEach(function iterator(node) {
 			node.addEventListener('mousedown', function(e) {
 				if (!this.classList.contains('selected')) {
 					me.selectFile(this.dataset.name, this.dataset.type);
