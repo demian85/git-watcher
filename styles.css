@@ -133,7 +133,7 @@ input, button, fieldset {
 	border: 2px solid rgb(0, 0, 255);
 }
 .file > label {
-	font-family: "liberation mono", "dejavu sans mono", monospace;
+	font-family: "dejavu sans mono", "liberation mono", monospace;
 	display: block;
 	background: #eee;
 	padding: 0.3rem;
@@ -175,7 +175,7 @@ input, button, fieldset {
 
 .fileDiffContents {
 	overflow: auto;
-	font-family: "liberation mono", "dejavu sans mono", monospace;
+	font-family: "dejavu sans mono", "liberation mono", monospace;
 	flex: 1 1 auto;
 	margin: 0;
 	-webkit-user-select: initial;
@@ -260,7 +260,7 @@ input, button, fieldset {
 	border-bottom: 1px solid gray;
 }
 #gitModules > li {
-	font-family: "liberation mono", "dejavu sans mono", monospace;
+	font-family: "dejavu sans mono", "liberation mono", monospace;
 	flex: 1 1 auto;
 	margin: 0 0.5rem 0 0;
 	padding: 0.5rem 1rem 0.3rem 30px;
@@ -375,7 +375,7 @@ input, button, fieldset {
 	overflow: auto;
 }
 .fileList > li {
-	font-family: "liberation mono", "dejavu sans mono", monospace;
+	font-family: "dejavu sans mono", "liberation mono", monospace;
 	margin: 0;
 	padding: 0.5rem 0.5rem 0.5rem 25px;
 	transition: background-color 0.05s ease;
@@ -505,7 +505,7 @@ table.branchList th,
 table.branchList td {
 	padding: 0.3em;
 	border: 1px solid #ccc;
-	font-family: "liberation mono", "dejavu sans mono", monospace;
+	font-family: "dejavu sans mono", "liberation mono", monospace;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -562,7 +562,7 @@ table.branchList td {
 .fileStatisticsTable td {
 	padding: 0.3em;
 	border: 1px solid #ccc;
-	font-family: "liberation mono", "dejavu sans mono", monospace;
+	font-family: "dejavu sans mono", "liberation mono", monospace;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
