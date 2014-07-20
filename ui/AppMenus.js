@@ -24,20 +24,38 @@ var AppMenus = {
 				commander.unstageFile(file, _handleGitResponse);
 			}
 		});
-		items['stageHunk'] = new gui.MenuItem({
-			label: 'Stage hunk', 
-			icon: 'icons/stage.png',
-			click: function() {
-				commander.stageHunk(file, line, _handleGitResponse);
+		if (line !== null) {
+			items['stageHunk'] = new gui.MenuItem({
+				label: 'Stage hunk', 
+				icon: 'icons/stage.png',
+				click: function() {
+					commander.stageHunk(file, line, _handleGitResponse);
+				}
+			});
+			items['unstageHunk'] = new gui.MenuItem({
+				label: 'Unstage hunk', 
+				icon: 'icons/unstage.png',
+				click: function() {
+					commander.unstageHunk(file, line, _handleGitResponse);
+				}
+			});
+			if (line.type !== null) {
+				items['stageLine'] = new gui.MenuItem({
+					label: 'Stage line ' + line.number, 
+					icon: 'icons/stage.png',
+					click: function() {
+						commander.stageLine(file, line, _handleGitResponse);
+					}
+				});
+				items['unstageLine'] = new gui.MenuItem({
+					label: 'Unstage line ' + line.number, 
+					icon: 'icons/unstage.png',
+					click: function() {
+						commander.unstageLine(file, line, _handleGitResponse);
+					}
+				});
 			}
-		});
-		items['unstageHunk'] = new gui.MenuItem({
-			label: 'Unstage hunk', 
-			icon: 'icons/unstage.png',
-			click: function() {
-				commander.unstageHunk(file, line, _handleGitResponse);
-			}
-		});
+		}
 		items['revert'] = new gui.MenuItem({
 			label: 'Revert changes', 
 			icon: 'icons/revert.png',
@@ -109,8 +127,16 @@ var AppMenus = {
 		
 		if (type === 'unstaged' && file.unstaged) menu.append(items['stage']);
 		if (type === 'staged' && file.staged) menu.append(items['unstage']);
-		if (line !== null && type === 'unstaged' && file.unstaged && !isSubmodule && file.status === 'modified') menu.append(items['stageHunk']);
-		if (line !== null && type === 'staged' && file.staged && !isSubmodule && file.status === 'modified') menu.append(items['unstageHunk']);
+		if (line !== null && !isSubmodule && file.status === 'modified') {
+			if (type === 'unstaged' && file.unstaged) {
+				menu.append(items['stageHunk']);
+				if (line.type) menu.append(items['stageLine']);
+			}
+			if (type === 'staged' && file.staged) {
+				menu.append(items['unstageHunk']);
+				if (line.type) menu.append(items['unstageLine']);
+			}
+		}
 		if (file.unmerged) {
 			menu.append(items['checkoutTheirs']);
 			menu.append(items['checkoutOurs']);

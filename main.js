@@ -366,7 +366,7 @@ function _renderFileDiff(file, type) {
 				node = node.parentNode;
 			}
 			line = {
-				type: node.querySelector('.lineType').textContent,
+				type: node.querySelector('.lineType').textContent.trim() || null,
 				number: parseInt(node.querySelector('.oldLine').textContent || node.querySelector('.newLine').textContent)
 			};
 		}
