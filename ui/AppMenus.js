@@ -91,7 +91,7 @@ var AppMenus = {
 			label: 'Blame', 
 			icon: 'icons/view-history.png',
 			click: function() {
-				External.openGitBlame(currentModulePath, file, line);
+				External.openGitBlame(currentModulePath, file, line.number);
 			}
 		});
 		items['stats'] = new gui.MenuItem({

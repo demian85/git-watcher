@@ -335,8 +335,8 @@ function _renderFileDiff(file, type) {
 		diffHtml += file.diff.map(function processRange(range) {
 			return '<tbody class="range">' + range.map(function processLine(line) {
 				var lineTypeStr = (line.type === '-' ? 'deleted' : (line.type === '+' ? 'added' : 'neutral'));
-				var symbol = (line.type === '-' ? '-' : (line.type === '+' ? '+' : ' '));
-				return '<tr class="lineRow ' + lineTypeStr + '"><td class="line oldLine">' + (line.type === '-' ? line.oldLine : '') + '</td><td class="line newLine">' + (line.type !== '-' ? line.newLine : '') + '</td><td>' + symbol + '</td><td>' + _renderFileDiffLine(file, line.content) + '</td></tr>';
+				var symbol = line.type || ' ';
+				return '<tr class="lineRow ' + lineTypeStr + '"><td class="line oldLine">' + (line.type === '-' ? line.oldLine : '') + '</td><td class="line newLine">' + (line.type !== '-' ? line.newLine : '') + '</td><td class="lineType">' + symbol + '</td><td>' + _renderFileDiffLine(file, line.content) + '</td></tr>';
 			}).join('\n') + '</tbody>';
 		}).join('');
 		if (isNewOrDeleted) {
@@ -359,15 +359,18 @@ function _renderFileDiff(file, type) {
 	}, false);
 	
 	fileNode.addEventListener('contextmenu', function(e) {
-		var lineNumber = null;
+		var line = null;
 		if (e.target.webkitMatchesSelector('.fileDiff .lineRow *')) {
 			var node = e.target.parentNode;
 			while (!node.webkitMatchesSelector('.lineRow')) {
 				node = node.parentNode;
 			}
-			lineNumber = node.querySelector('.oldLine').textContent || node.querySelector('.newLine').textContent;
+			line = {
+				type: node.querySelector('.lineType').textContent,
+				number: node.querySelector('.oldLine').textContent || node.querySelector('.newLine').textContent
+			};
 		}
-		AppMenus.showFileListMenu(file, type, e.clientX, e.clientY, lineNumber);
+		AppMenus.showFileListMenu(file, type, e.clientX, e.clientY, line);
 		e.preventDefault();
 	}, false);
 	
