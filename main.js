@@ -367,7 +367,7 @@ function _renderFileDiff(file, type) {
 			}
 			line = {
 				type: node.querySelector('.lineType').textContent,
-				number: node.querySelector('.oldLine').textContent || node.querySelector('.newLine').textContent
+				number: parseInt(node.querySelector('.oldLine').textContent || node.querySelector('.newLine').textContent)
 			};
 		}
 		AppMenus.showFileListMenu(file, type, e.clientX, e.clientY, line);
