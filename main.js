@@ -247,11 +247,13 @@ var UI = {
 		function update(type) {
 			var listNode = $m(moduleName, '.' + type + 'Files');
 			listNode.innerHTML = '';
+			var documentFragment = document.createDocumentFragment();
 			status[type].map(function mapper(file) {
 				return _renderFileListItem(file, type);
 			}).forEach(function iterator(node) {
-				listNode.appendChild(node);
+				documentFragment.appendChild(node);
 			});
+			listNode.appendChild(documentFragment);
 		}
 		update('unstaged');
 		update('staged');
