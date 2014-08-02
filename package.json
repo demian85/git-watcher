@@ -27,9 +27,9 @@
     "url": "https://github.com/demian85/git-watcher.git"
   },
   "dependencies": {
-    "async": "0.2.x",
-    "git-utils": "1.4.x",
-    "mmmagic": "0.3.x",
+    "async": "0.9.x",
+    "git-utils": "2.1.x",
+    "mime-types": "1.0.x",
     "json-toolkit": "1.1.x"
   },
   "window": {
