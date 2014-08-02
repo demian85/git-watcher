@@ -116,7 +116,7 @@ Then:
 
 * Clone repo and run `npm install` or just run `npm install gitw`.
 * Install *nw-gyp*: `npm install -g nw-gyp`.
-* Rebuild *git-utils* and *mmmagic* dependencies based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.8.6`. Do the same for *mmmagic*.
+* Rebuild *git-utils* dependency based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.8.6`.
 * Run the app! `/opt/node-webkit/nw /path/to/gitw`.
 
 Also, you will find two helper scripts `./build.sh` and `build-new.sh`. Those creates distributable packages for Linux. It asumes you have node-webkit installed on `/opt/node-webkit`.
