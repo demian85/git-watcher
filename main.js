@@ -16,6 +16,11 @@ gitErrHandler.on('error', function(err) {
 function init() {
 	initApp();
 	
+	var me = this;
+	window.addEventListener('resize', function() {
+		if (currentModuleName) UI.updateModuleLayout(currentModuleName);
+	});
+	
 	commander = new Commander();
 	commander.on('cmdstart', function() {
 		log('cmdstart');
@@ -169,6 +174,7 @@ var UI = {
 				node.classList.remove('visible');
 			}
 		});
+		this.updateModuleLayout(currentModuleName);
 	},
 	
 	updateModule: function(moduleName, status) {
@@ -209,6 +215,18 @@ var UI = {
 		});
 	},
 	
+	/**
+	 * Adjust files max-height according to its container clientHeight
+	 */
+	updateModuleLayout: function(moduleName) {
+		var diffNode = $m(moduleName, '.filesDiff');
+		var fileNodes = $$m(moduleName, '.file');
+		var maxHeight = diffNode.clientHeight;
+		fileNodes.forEach(function(node) {
+			node.style.maxHeight = 'calc(' + maxHeight + 'px - ' + window.getComputedStyle(node).marginBottom + ')';
+		});
+	},
+	
 	_scrollFileIntoView: function(fileNode) {
 		var y0 = fileNode.offsetTop,
 			y1 = y0 + fileNode.offsetHeight,
@@ -245,15 +263,18 @@ var UI = {
 	_updateModuleFilesDiff: function(moduleName, status) {
 		var diffNode = $m(moduleName, '.filesDiff');
 		diffNode.innerHTML = '';
+		var documentFragment = document.createDocumentFragment();
 		function add(type) {
 			status[type].map(function mapper(file) {
 				return _renderFileDiff(file, type);
 			}).forEach(function iterator(node) {
-				diffNode.appendChild(node);
+				documentFragment.appendChild(node);
 			});
 		}
 		add('unstaged');
 		add('staged');
+		diffNode.appendChild(documentFragment);
+		this.updateModuleLayout(moduleName);
 	},
 	
 	_updateModuleBranch: function(moduleName, branch) {
