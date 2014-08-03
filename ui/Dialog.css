@@ -9,6 +9,7 @@
 	transition: top 0.25s ease, opacity 0.25s ease;
 	opacity: 0;
 	z-index: 100;
+	font-size: 1.25rem;
 	-webkit-user-select: initial;
 }
 
@@ -53,8 +54,7 @@
 	display: flex;
 	flex-flow: row nowrap;
 	flex: 0 0 auto;
-	padding: 1rem;
-	font-size: 1.25rem;
+	padding: 1em;
 	font-weight: bold;
 	text-align: center;
 	border-bottom: 1px solid rgba(0, 0, 255, 0.4);
@@ -79,7 +79,7 @@
 	display: flex;
 	flex-flow: row nowrap;
 	flex: 4 1 auto;
-	padding: 1rem;
+	padding: 1em;
 	overflow: auto;
 	position: relative;
 }
@@ -87,7 +87,7 @@
 #dialogOutput {
 	flex: 1 1 auto;
 	overflow: auto;
-	padding: 1rem;
+	padding: 1em;
 	border-top: 1px solid rgba(0, 0, 255, 0.4);
 	white-space: pre;
 	background-color: #333;

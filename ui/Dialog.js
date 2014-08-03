@@ -124,6 +124,41 @@ var BranchCreateDialog = (function() {
 
 
 
+var RemotePushDialog = (function() {
+	function buildRemoteNamesOptions(remotes) {
+		var documentFragment = document.createDocumentFragment();
+		remotes.forEach(function(name) {
+			var option = document.createElement('option');
+			option.value = name;
+			option.textContent = name;
+			if (name === 'origin') option.selected = true;
+			documentFragment.appendChild(option);
+		});
+		return documentFragment;
+	}
+	return function() {
+		commander.getRemotes(gitErrHandler.intercept(function(remotes) {
+			var node = document.importNode($('#remotePushTpl').content, true).querySelector('.dialogMainSection');
+			Dialog().open('Push', node);
+			$('.remotePushName').appendChild(buildRemoteNamesOptions(remotes));
+			$('.remotePushAccept').addEventListener('click', function() {
+				var remoteName = $('.remotePushName').value;
+				var options = {
+					includeTags: $('.remotePushIncludeTagsOption').checked
+				};
+				commander.push(remoteName, options, gitErrHandler.intercept(function(output) {
+					Dialog().writeOutput(output);
+				}));
+			});
+			$('.remotePushCancel').addEventListener('click', function() {
+				Dialog().close();
+			});
+		}));
+	};
+})();
+
+
+
 var FileStatisticsDialog = (function() {
 	function getData(file, callback) {
 		var limitNumberNode = $('.fileStatisticsTopCommittersOptions input[name=fileStatisticsTopCommittersLimitOption]');

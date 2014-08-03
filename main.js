@@ -324,7 +324,7 @@ var UI = {
 		}, false);
 		$m(moduleName,'.commitButton').addEventListener('click', commit, false);
 		$m(moduleName,'.pushButton').addEventListener('click', function(e) {
-			commander.push(_handleGitResponse);
+			RemotePushDialog();
 		}, false);
 	}
 };

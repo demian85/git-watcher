@@ -66,7 +66,7 @@ input, select, button {
 }
 
 input, button, fieldset {
-	padding: 0.5rem 1rem;
+	padding: 0.5em 1em;
 }
 
 #main {
@@ -470,13 +470,21 @@ input, button, fieldset {
 
 
 
-.branchCheckout,
-.branchCreate,
-.fileStatistics {
+/* Dialogs */
+
+.dialogMainSection {
 	display: flex;
 	flex-flow: column nowrap;
 	flex: 1 1 auto;
 }
+.dialogContentFieldset {
+	flex: 0 0 auto;
+	margin: 1em 0 0 0;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+}
+
+
 
 .branchListContent {
 	flex: 1 1 auto;
@@ -517,31 +525,25 @@ table.branchList td {
 	white-space: nowrap;
 }
 
-.branchCheckoutOptions,
-.branchCreateOptions,
-.fileStatisticsOptions {
-	flex: 0 0 auto;
-	margin: 1em 0 0 0;
-	border-radius: 4px;
-	border: 1px solid #ccc;
-}
-.branchCheckoutControls,
-.branchCreateControls {
+
+
+.dialogContentControlButtons {
 	flex: 0 0 auto;
 	margin: 1em 0 0 0;
 	text-align: right;
-	font-size: 1.25em;
 }
 .branchCreateName {
 	width: 100%;
-	font-size: 1.25em;
 }
-.branchCreateContent {
+.branchCreateContent,
+.remotePushMainOptions {
 	flex: 1 0 auto;
 }
 
 
+
 .fileStatisticsHeader {
+	font-size: 1em;
 	margin: 0 0 1em 0;
 	text-align: center;
 }

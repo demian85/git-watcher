@@ -61,7 +61,7 @@
 		</template>
 	
 		<template id="branchCheckoutTpl">
-			<div class="branchCheckout">
+			<div class="branchCheckout dialogMainSection">
 				<div class="branchListContent">
 					<table class="branchList">
 						<thead>
@@ -73,11 +73,11 @@
 						<tbody></tbody>
 					</table>
 				</div>
-				<fieldset class="branchCheckoutOptions">
+				<fieldset class="dialogContentFieldset">
 					<legend>Options</legend>
 					<label><input type="checkbox" value="1" class="branchCheckoutFetchOption" checked /> Fetch from tracking branch</label>
 				</fieldset>
-				<div class="branchCheckoutControls">
+				<div class="dialogContentControlButtons">
 					<button class="branchCheckoutAccept actionBtn">Checkout</button>
 					<button class="branchCheckoutCancel">Cancel</button>
 				</div>
@@ -92,25 +92,41 @@
 		</template>
 	
 		<template id="branchCreateTpl">
-			<div class="branchCreate">
+			<div class="branchCreate dialogMainSection">
 				<div class="branchCreateContent">
 					<input type="text" class="branchCreateName" placeholder="Enter name..." required autofocus />
 				</div>
-				<fieldset class="branchCreateOptions">
+				<fieldset class="dialogContentFieldset">
 					<legend>Options</legend>
 					<label><input type="checkbox" value="1" class="branchCreateCheckoutOption" checked /> Checkout branch</label>
 				</fieldset>
-				<div class="branchCreateControls">
+				<div class="dialogContentControlButtons">
 					<button class="branchCreateAccept actionBtn">Create</button>
 					<button class="branchCreateCancel">Cancel</button>
 				</div>
 			</div>
 		</template>
 	
+		<template id="remotePushTpl">
+			<div class="dialogMainSection">
+				<div class="remotePushMainOptions">
+					<label>Select remote: <select class="remotePushName" required autofocus></select></label>
+				</div>
+				<fieldset class="dialogContentFieldset">
+					<legend>Options</legend>
+					<label><input type="checkbox" value="1" class="remotePushIncludeTagsOption" /> Include tags</label>
+				</fieldset>
+				<div class="dialogContentControlButtons">
+					<button class="remotePushAccept actionBtn">Push</button>
+					<button class="remotePushCancel">Cancel</button>
+				</div>
+			</div>
+		</template>
+	
 		<template id="fileStatisticsTpl">
-			<div class="fileStatistics">
+			<div class="fileStatistics dialogMainSection">
 				<h2 class="fileStatisticsHeader">Top committers</h2>
-				<fieldset class="fileStatisticsOptions fileStatisticsTopCommittersOptions">
+				<fieldset class="dialogContentFieldset fileStatisticsTopCommittersOptions">
 					<legend>Options</legend>
 					<label><input type="radio" name="fileStatisticsTopCommittersMergesOption" class="actionInput" value="" checked /> All</label>
 					<label><input type="radio" name="fileStatisticsTopCommittersMergesOption" class="actionInput" value="--no-merges" /> Exclude merges</label>
