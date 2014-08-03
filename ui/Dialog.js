@@ -148,6 +148,7 @@ var RemotePushDialog = (function() {
 				};
 				commander.push(remoteName, options, gitErrHandler.intercept(function(output) {
 					Dialog().writeOutput(output);
+					updateCurrentModuleStatus();
 				}));
 			});
 			$('.remotePushCancel').addEventListener('click', function() {
