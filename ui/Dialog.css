@@ -92,7 +92,7 @@
 	white-space: pre;
 	background-color: #333;
 	color: #eee;
-	font-family: "liberation mono", "dejavu sans mono", monospace;
+	font-family: "dejavu sans mono", "liberation mono", monospace;
 }
 
 #dialogOutput:empty {
