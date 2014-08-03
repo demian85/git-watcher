@@ -1,6 +1,9 @@
 /* Dialog */
 #dialog {
 	position: fixed;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
 	top: -100%;
 	left: 0;
 	width: 100%;
@@ -23,31 +26,17 @@
 }
 
 #dialogContents {
-	position: absolute;
 	display: flex;
 	flex-flow: column nowrap;
-	left: 50%;
-	top: 50%;
-	margin-left: -25vw;
-	margin-top: -35vh;
-	width: 50vw;
-	height: 70vh;
+	flex: 0 0 auto;
+	margin: auto;
+	min-width: 40rem;
+	max-width: 70vw;
+	max-height: 90vh;
 	overflow: auto;
 	border: 2px solid rgba(0, 0, 255, 0.4);
 	border-radius: 6px;
 	background-color: #fff;
-}
-
-@media screen and (max-width: 1024px) {
-	#dialogContents {
-		left: 5rem;
-		top: 5rem;
-		right: 5rem;
-		bottom: 5rem;
-		margin: 0;
-		width: auto;
-		height: auto;
-	}
 }
 
 #dialogHeader {
@@ -93,6 +82,7 @@
 	background-color: #333;
 	color: #eee;
 	font-family: "dejavu sans mono", "liberation mono", monospace;
+	font-size: 1rem;
 }
 
 #dialogOutput:empty {

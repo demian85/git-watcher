@@ -489,15 +489,11 @@ input, button, fieldset {
 .branchListContent {
 	flex: 1 1 auto;
 	overflow: auto;
-	position: relative;
 }
 table.branchList {
 	table-layout: fixed;
 	border-collapse: collapse;
 	width: 100%;
-	position: absolute;
-	left: 0;
-	top: 0;
 }
 table.branchList tr {
 	cursor: default;
