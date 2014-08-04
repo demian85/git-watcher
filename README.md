@@ -93,8 +93,7 @@ I'm working on the following features
 (your help will be much appreciated!)
 
 * Amend commit (Really hard to do!)
-* Allow to choose remote to push
-* Delete and rename branches
+* Rename branches
 * Delete, edit and add remotes
 * More shortcuts (waiting for native support from node-webkit)
 * More configuration options: restrict submodule watching to improve performance for large repositories
