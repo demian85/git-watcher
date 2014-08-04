@@ -11,6 +11,19 @@ var Dialog = (function() {
 	function closeListener(e) {
 		if (e.keyCode === 27) instance.close();
 	}
+	function handleCommandOutput(err) {
+		var statusNode = $('#dialogOutputStatus');
+		if (err) {
+			statusNode.textContent = 'Error';
+			statusNode.classList.remove('success');
+			statusNode.classList.add('error');
+		} else {
+			statusNode.textContent = 'Success';
+			statusNode.classList.add('success');
+			statusNode.classList.remove('error');
+		}
+	}
+	
 	Dialog.prototype = {
 		open: function(title, contentNode) {
 			document.addEventListener('keydown', closeListener);
@@ -21,8 +34,9 @@ var Dialog = (function() {
 			} else {
 				$('#dialog').classList.add('empty');
 			}
-			$('#dialogOutput').textContent = '';
 			$('#dialog').classList.add('visible');
+			
+			commander.on('cmdend', handleCommandOutput);
 		},
 		clearOutput: function() {
 			$('#dialogOutput').textContent = '';
@@ -36,7 +50,10 @@ var Dialog = (function() {
 			document.removeEventListener('keydown', closeListener);
 			$('#dialogTitle').textContent = '';
 			$('#dialogOutput').textContent = '';
+			$('#dialogOutputStatus').textContent = '';
 			$('#dialog').classList.remove('visible', 'empty');
+			
+			commander.removeListener('cmdend', handleCommandOutput);
 		}
 	};
 	return function() {

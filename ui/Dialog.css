@@ -85,6 +85,25 @@
 	font-size: 1rem;
 }
 
+#dialogOutputStatus {
+	flex: 0 0 auto;
+	padding: 0.5em 1em;
+	border-top: 1px solid rgba(0, 0, 255, 0.4);
+	text-align: center;
+}
+
+#dialogOutputStatus:empty {
+	display: none;
+}
+
+#dialogOutputStatus.success {
+	background-color: #ddffdd;
+}
+
+#dialogOutputStatus.error {
+	background-color: #ffdddd;
+}
+
 #dialogOutput:empty {
 	display: none;
 }
