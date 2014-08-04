@@ -522,7 +522,7 @@ table.branchList td {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
-.branchCheckoutItemCommitSubject {
+.branchListItemCommitSubject {
 	margin-top: 0.5em;
 	text-overflow: ellipsis;
 	overflow: hidden;

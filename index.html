@@ -84,10 +84,34 @@
 			</div>
 		</template>
 	
-		<template id="branchCheckoutItemTpl">
+		<template id="branchDeleteTpl">
+			<div class="dialogMainSection">
+				<div class="branchListContent">
+					<table class="branchList">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Last commit</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+				<fieldset class="dialogContentFieldset">
+					<legend>Options</legend>
+					<label><input type="checkbox" value="1" class="branchDeleteForceOption" /> Force deletion (do not perform merge check)</label>
+				</fieldset>
+				<div class="dialogContentControlButtons">
+					<button class="branchDeleteAccept actionBtn">Delete</button>
+					<button class="branchDeleteCancel cancelBtn">Cancel</button>
+				</div>
+			</div>
+		</template>
+	
+		<template id="branchListItemTpl">
 			<tr>
-				<td class="branchCheckoutItemName"></td>
-				<td class="branchCheckoutItemCommit"></td>
+				<td class="branchListItemName"></td>
+				<td class="branchListItemCommit"></td>
 			</tr>
 		</template>
 	

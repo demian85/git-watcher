@@ -64,26 +64,19 @@ var Dialog = (function() {
 
 
 
-var BranchCheckoutDialog = (function() {
-	function doCheckout(branchName) {
-		commander.checkoutBranch(branchName, gitErrHandler.intercept(function(output) {
-			Dialog().writeOutput(output);
-		}));
-	}
-	function selectRow() {
-		var row = this, items = $$('.branchList tbody > tr');
-		items.forEach(function(item) {
-			if (row === item) item.classList.add('selected');
-			else item.classList.remove('selected');
-		});
-	}
-	return function() {
+var DialogHelper = {
+	getBranchListAsDocumentFragment: function(callback) {
+		function selectRow() {
+			var row = this, siblings = $$('tr', row.parentNode);
+			siblings.forEach(function(item) {
+				if (row === item) item.classList.add('selected');
+				else item.classList.remove('selected');
+			});
+		}
 		commander.getLocalBranches(gitErrHandler.intercept(function(branches) {
-			var node = document.importNode($('#branchCheckoutTpl').content, true).querySelector('.branchCheckout');
-			Dialog().open('Checkout branch', node);
-			var branchListNode = $('.branchList tbody');
+			var documentFragment = document.createDocumentFragment();
 			branches.forEach(function(branch) {
-				var row = document.importNode($('#branchCheckoutItemTpl').content, true).querySelector('tr');
+				var row = document.importNode($('#branchListItemTpl').content, true).querySelector('tr');
 				row.addEventListener('click', selectRow);
 				row.dataset.branchName = branch.name;
 				row.dataset.upstreamBranch = branch.upstream;
@@ -91,12 +84,30 @@ var BranchCheckoutDialog = (function() {
 					'<div><strong>Commit</strong> ' + branch.lastCommit.objectName + '</div>',
 					'<div><em>' + branch.lastCommit.date + '</em></div>',
 					'<div>by <em>' + branch.lastCommit.authorName + ' &lt;' + branch.lastCommit.authorEmail + '&gt;</em></div>',
-					'<div class="branchCheckoutItemCommitSubject">' + branch.lastCommit.subject + '</div>'
+					'<div class="branchListItemCommitSubject">' + branch.lastCommit.subject + '</div>'
 				];
-				$('.branchCheckoutItemName', row).textContent = branch.name;
-				$('.branchCheckoutItemCommit', row).innerHTML = commitContents.join('');
-				branchListNode.appendChild(row);
+				$('.branchListItemName', row).textContent = branch.name;
+				$('.branchListItemCommit', row).innerHTML = commitContents.join('');
+				documentFragment.appendChild(row);
 			});
+			callback(documentFragment);
+		}));
+	}
+};
+
+
+
+var BranchCheckoutDialog = (function() {
+	function doCheckout(branchName) {
+		commander.checkoutBranch(branchName, gitErrHandler.intercept(function(output) {
+			Dialog().writeOutput(output);
+		}));
+	}
+	return function() {
+		DialogHelper.getBranchListAsDocumentFragment(function(branchListFragment) {
+			var node = document.importNode($('#branchCheckoutTpl').content, true).querySelector('.dialogMainSection');
+			Dialog().open('Checkout branch', node);
+			$('.branchList tbody').appendChild(branchListFragment);
 			$('.branchCheckoutAccept').addEventListener('click', function() {
 				var selectedBranch = $('.branchList tr.selected');
 				if (!selectedBranch) return;
@@ -115,7 +126,41 @@ var BranchCheckoutDialog = (function() {
 			$('.branchCheckoutCancel').addEventListener('click', function() {
 				Dialog().close();
 			});
-		}));
+		});
+	};
+})();
+
+
+
+var BranchDeleteDialog = (function() {
+	function updateList() {
+		DialogHelper.getBranchListAsDocumentFragment(function(branchListFragment) {
+			var tbody = $('.branchList tbody');
+			tbody.innerHTML = '';
+			tbody.appendChild(branchListFragment);
+		});
+	}
+	return function() {
+		DialogHelper.getBranchListAsDocumentFragment(function(branchListFragment) {
+			var node = document.importNode($('#branchDeleteTpl').content, true).querySelector('.dialogMainSection');
+			Dialog().open('Delete branch', node);
+			$('.branchList tbody').appendChild(branchListFragment);
+			$('.branchDeleteAccept').addEventListener('click', function() {
+				var selectedBranch = $('.branchList tr.selected');
+				if (!selectedBranch) return;
+				var branchName = selectedBranch.dataset.branchName;
+				var options = {
+					force: $('.branchDeleteForceOption').checked
+				};
+				commander.deleteBranch(branchName, options, gitErrHandler.intercept(function(output) {
+					Dialog().writeOutput(output);
+					updateList();
+				}));
+			});
+			$('.branchDeleteCancel').addEventListener('click', function() {
+				Dialog().close();
+			});
+		});
 	};
 })();
 

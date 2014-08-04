@@ -210,6 +210,12 @@ var AppMenus = {
 				BranchCreateDialog();
 			}
 		});
+		this.items['branchDelete'] = new gui.MenuItem({
+			label: 'Delete...',
+			click: function() {
+				BranchDeleteDialog();
+			}
+		});
 		
 		// Stash items
 		this.items['stashSave'] = new gui.MenuItem({
@@ -300,6 +306,7 @@ var AppMenus = {
 		this.menus.branch = new gui.Menu();
 		this.menus.branch.append(this.items['branchCheckout']);
 		this.menus.branch.append(this.items['branchCreate']);
+		this.menus.branch.append(this.items['branchDelete']);
 		
 		this.menus.stash = new gui.Menu();
 		this.menus.stash.append(this.items['stashSave']);
