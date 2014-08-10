@@ -16,7 +16,6 @@ gitErrHandler.on('error', function(err) {
 function init() {
 	initApp();
 	
-	var me = this;
 	window.addEventListener('resize', function() {
 		if (currentModuleName) UI.updateModuleLayout(currentModuleName);
 	});
