@@ -153,13 +153,16 @@ var UI = {
 	load: function() {
 		gitWatcher.getStatus(function getStatusCallback(err, status) {
 			if (err) throw err;
-			log('Status:', status);
+			
 			$('#loadingImage').classList.remove('visible');
+			
 			var modules = gitWatcher.getModules();
 			modules.forEach(function createModule(module) {
 				UI.createModule(module);
 			});
+			
 			UI.showModule(modules[0]);
+			
 			for (var module in status) {
 				UI.updateModule(module, status[module]);
 			}
