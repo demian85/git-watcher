@@ -46,7 +46,7 @@ button:hover:not([disabled]) {
 	background-color: #d3d3d3;
 }
 button[disabled] {
-	color: gray;
+	color: #aaa;
 }
 
 fieldset {
