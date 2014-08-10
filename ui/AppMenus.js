@@ -2,8 +2,10 @@ var AppMenus = {
 	
 	menus: Object.create(null),
 	items: Object.create(null),
+	shortcuts: null,
 	
 	init: function() {
+		this._loadShortcuts();
 		this._createMenuBar();
 	},
 	
@@ -156,24 +158,34 @@ var AppMenus = {
 	},
 	
 	_createMenuBar: function() {
+		var shortcut = this._getMenuShortcut.bind(this);
+		
 		// Repository items
 		this.items['repositoryOpen'] = new gui.MenuItem({
 			label: 'Open...',
+			key: shortcut('repositoryOpen').key,
+			modifiers: shortcut('repositoryOpen').modifiers,
 			click: chooseRepository
 		});
 		this.items['repositoryClose'] = new gui.MenuItem({
 			label: 'Close',
             enabled: false,
+			key: shortcut('repositoryClose').key,
+			modifiers: shortcut('repositoryClose').modifiers,
 			click: closeRepository
 		});
 		this.items['repositorySubmoduleUpdate'] = new gui.MenuItem({
 			label: 'Submodule update',
+			key: shortcut('repositorySubmoduleUpdate').key,
+			modifiers: shortcut('repositorySubmoduleUpdate').modifiers,
 			click: function() {
 				commander.submoduleUpdate(null, _handleGitResponse);
 			}
 		});
 		this.items['repositoryExplore'] = new gui.MenuItem({
 			label: 'Explore...',
+			key: shortcut('repositoryExplore').key,
+			modifiers: shortcut('repositoryExplore').modifiers,
 			click: function() {
 				gui.Shell.openItem(currentModulePath);
 			}
@@ -181,6 +193,8 @@ var AppMenus = {
 		this.items['repositoryBrowse'] = new gui.MenuItem({
 			label: 'View branch history (gitk)',
 			enabled: false,
+			key: shortcut('repositoryBrowse').key,
+			modifiers: shortcut('repositoryBrowse').modifiers,
 			click: function() {
 				External.openGitk(currentModulePath);
 			}
@@ -188,10 +202,14 @@ var AppMenus = {
 		this.items['repositoryRefresh'] = new gui.MenuItem({
 			label: 'Refresh',
 			enabled: false,
+			key: shortcut('repositoryRefresh').key,
+			modifiers: shortcut('repositoryRefresh').modifiers,
 			click: updateCurrentModuleStatus
 		});
 		this.items['repositoryQuit'] = new gui.MenuItem({
 			label: 'Quit',
+			key: shortcut('repositoryQuit').key,
+			modifiers: shortcut('repositoryQuit').modifiers,
 			click: function() {
 				gui.Window.get().close();
 			}
@@ -200,18 +218,24 @@ var AppMenus = {
 		// Branch items
 		this.items['branchCheckout'] = new gui.MenuItem({
 			label: 'Checkout...',
+			key: shortcut('branchCheckout').key,
+			modifiers: shortcut('branchCheckout').modifiers,
 			click: function() {
 				BranchCheckoutDialog();
 			}
 		});
 		this.items['branchCreate'] = new gui.MenuItem({
 			label: 'Create...',
+			key: shortcut('branchCreate').key,
+			modifiers: shortcut('branchCreate').modifiers,
 			click: function() {
 				BranchCreateDialog();
 			}
 		});
 		this.items['branchDelete'] = new gui.MenuItem({
 			label: 'Delete...',
+			key: shortcut('branchDelete').key,
+			modifiers: shortcut('branchDelete').modifiers,
 			click: function() {
 				BranchDeleteDialog();
 			}
@@ -220,12 +244,16 @@ var AppMenus = {
 		// Stash items
 		this.items['stashSave'] = new gui.MenuItem({
 			label: 'Save',
+			key: shortcut('stashSave').key,
+			modifiers: shortcut('stashSave').modifiers,
 			click: function() {
 				commander.stashSave(_handleGitResponse);
 			}
 		});
 		this.items['stashPop'] = new gui.MenuItem({
 			label: 'Pop',
+			key: shortcut('stashPop').key,
+			modifiers: shortcut('stashPop').modifiers,
 			click: function() {
 				commander.stashPop(_handleGitResponse);
 			}
@@ -278,6 +306,7 @@ var AppMenus = {
 			type: 'checkbox',
 			checked: config.diff.highlight.enabled,
 			label: 'Syntax highlighting',
+			
 			click: function() {
 				config.diff.highlight.enabled = this.checked;
 				updateGlobalStatus();
@@ -372,6 +401,26 @@ var AppMenus = {
 				}
 			}));
 		}, this);
+	},
+	
+	_getMenuShortcut: function(key) {
+		return this.shortcuts[key] || {key: "", modifiers: ""};
+	},
+	
+	_loadShortcuts: function() {
+		var shortcuts = config.shortcuts || Object.create(null);
+		var value;
+		this.shortcuts = Object.create(null);
+		for (var name in shortcuts) {
+			value = shortcuts[name] || "";
+			if (value) {
+				value = value.split(/\s+/);
+				this.shortcuts[name] = {
+					key: value[1], 
+					modifiers: value[0]
+				};
+			}
+		}
 	},
 	
 	enableRepoMenu: function(enabled) {

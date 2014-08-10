@@ -28,5 +28,19 @@
 			"cmd": "git",
 			"args": ["pull"]
 		}
-	]
+	],
+	"shortcuts": {
+		"repositoryOpen": "ctrl+alt o",
+		"repositoryClose": "ctrl+alt c",
+		"repositorySubmoduleUpdate": "ctrl+alt u",
+		"repositoryExplore": "ctrl+alt e",
+		"repositoryBrowse": "ctrl+alt k",
+		"repositoryRefresh": "F5",
+		"repositoryQuit": "ctrl q",
+		"branchCreate": "ctrl n",
+		"branchCheckout": "ctrl o",
+		"branchDelete": "ctrl d",
+		"stashSave": "ctrl s",
+		"stashPop": "ctrl p"
+	}
 }
