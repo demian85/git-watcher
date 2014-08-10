@@ -244,6 +244,9 @@ input, button, fieldset, textarea {
 .fileDiff .string {
 	color: chocolate;
 }
+.fileDiff .number {
+	color: deeppink;
+}
 .fileDiff .conflict {
 	color: orange;
 	font-weight: bold;
