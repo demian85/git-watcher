@@ -19,10 +19,13 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 * System Tray support
 * Support for custom tools (external commands)
 
-## Screenshots (outdated)
-![Overview 1](http://gitw.zedplan.com/screenshots/gitw1.png)
-![Overview 2](http://gitw.zedplan.com/screenshots/gitw2.png)
-![Overview 3](http://gitw.zedplan.com/screenshots/gitw3.png)
+## Screenshots (v0.5.0)
+![Overview 1](http://i.imgur.com/D84jkKK.png)
+![Overview 2](http://i.imgur.com/foXpFd7.png)
+![Overview 3](http://i.imgur.com/PMqHodV.png)
+![Overview 4](http://i.imgur.com/ps73SBC.png)
+![Overview 5](http://i.imgur.com/iZAVXyq.png)
+![Overview 6](http://i.imgur.com/vaZfPpz.png)
 
 ## Download
 
