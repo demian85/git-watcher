@@ -100,10 +100,6 @@ function openRepository(repositoryPath) {
 	baseRepoDirectory = repositoryPath;
     
 	gitWatcher = new GitWatcher(repositoryPath);
-	gitWatcher.on('change', function(status) {
-		log('Event: change', status);
-		UI.updateModule(status.module, status.status);
-	});
 	gitWatcher.on('error', function(err) {
 		logError('Event: error', err);
 		UI.showError(err);
@@ -112,6 +108,14 @@ function openRepository(repositoryPath) {
 	gitWatcher.on('ready', function() {
 		log('Event: ready');
 		UI.load();
+		gitWatcher.on('change', function(status) {
+			log('Event: change', status);
+			UI.updateModule(status.module, status.status);
+		});
+		gitWatcher.on('merge', function(data) {
+			log('Event: merge', data);
+			UI._updateModuleMergeMsg(data.module, data.msg);
+		});
 	});
 	gitWatcher.init();
 	
