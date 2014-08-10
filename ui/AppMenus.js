@@ -365,7 +365,6 @@ var AppMenus = {
 		});
 		this.items['optionsMenu'] = new gui.MenuItem({
 			label: 'Options',
-			enabled: false,
 			submenu: this.menus.options
 		});
 		this.items['toolsMenu'] = new gui.MenuItem({
@@ -429,10 +428,19 @@ var AppMenus = {
 		this.items['repositoryBrowse'].enabled = enabled;
 		this.items['repositoryRefresh'].enabled = enabled;
 		this.items['repositorySubmoduleUpdate'].enabled = enabled;
+		
 		this.items['branchMenu'].enabled = enabled;
-		this.items['stashMenu'].enabled = enabled;
-		this.items['optionsMenu'].enabled = enabled;
-		this.items['toolsMenu'].enabled = enabled;
+		
+		this.enableMenuItems('branch', enabled);
+		this.enableMenuItems('stash', enabled);
+		this.enableMenuItems('options', enabled);
+		this.enableMenuItems('tools', enabled);
+	},
+	
+	enableMenuItems: function(name, enabled) {
+		this.menus[name].items.forEach(function(item) {
+			item.enabled = enabled;
+		});
 	},
 	
 	showFileListMenu: function(file, type, x, y, line) {
