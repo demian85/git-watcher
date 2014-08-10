@@ -11,11 +11,11 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 ## Features
 
 * **Real-time** multiple file diff information with line numbers and **syntax highlighting**
-* Allows you to work with **submodules organized in tabs**.
+* Allows you to work with **submodules organized in tabs**
 * Support for **hunk and line staging**
 * Allows you to **open files** by clicking on its name or lines numbers. You can even use your preferred editor!
-* Shows current **branch information**: upstream branch and ahead/behind commit count.
-* Menu bar with configuration options and utilities.
+* Shows current **branch information**: upstream branch and ahead/behind commit count
+* Menu bar with **shortcuts, configuration options and utilities**
 * System Tray support
 * Support for custom tools (external commands)
 
@@ -85,7 +85,21 @@ Current config file structure EXAMPLE:
 			"cmd": "/path/to/script.sh",
 			"args": []
 		}
-	]
+	],
+	"shortcuts": {	// customize shortcuts, you can combine the following modifiers with a letter: cmd, shift, ctrl, alt
+		"repositoryOpen": "ctrl+alt o",
+		"repositoryClose": "ctrl+alt c",
+		"repositorySubmoduleUpdate": "ctrl+alt u",
+		"repositoryExplore": "ctrl+alt e",
+		"repositoryBrowse": "ctrl+alt k",
+		"repositoryRefresh": "F5",	// F1-F11 keys are allowed. F12 is reserved for devtools
+		"repositoryQuit": "ctrl q",
+		"branchCreate": "ctrl n",
+		"branchCheckout": "ctrl o",
+		"branchDelete": "ctrl d",
+		"stashSave": "ctrl s",
+		"stashPop": "ctrl p"
+	}
 }
 ```
 
@@ -120,7 +134,7 @@ Then:
 * Rebuild *git-utils* dependency based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.8.6`.
 * Run the app! `/opt/node-webkit/nw /path/to/gitw`.
 
-Also, you will find two helper scripts `./build.sh` and `build-new.sh`. Those creates distributable packages for Linux. It asumes you have node-webkit installed on `/opt/node-webkit`.
+Also, you will find two helper scripts inside the `tools` folder: `build.sh` and `build-new.sh`. Those creates distributable packages for Linux. It asumes you have node-webkit installed on `/opt/node-webkit`.
 
 ## Troubleshooting
 
