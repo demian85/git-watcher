@@ -263,19 +263,15 @@ var AppMenus = {
 		this.items['optionsZoomIn'] = new gui.MenuItem({
 			label: 'Zoom In',
 			click: function() {
-				try {
-					var zoom = gui.Window.get().zoomLevel;
-					gui.Window.get().zoomLevel = [zoom + 1]; // FIXME: this should not be an array! #node-webkit
-				} catch (e) {}
+				var zoom = gui.Window.get().zoomLevel;
+				gui.Window.get().zoomLevel = zoom + 1;
 			}
 		});
 		this.items['optionsZoomOut'] = new gui.MenuItem({
 			label: 'Zoom Out',
 			click: function() {
-				try {
-					var zoom = gui.Window.get().zoomLevel;
-					gui.Window.get().zoomLevel = [zoom - 1]; // FIXME: this should not be an array! #node-webkit
-				} catch (e) {}
+				var zoom = gui.Window.get().zoomLevel;
+				gui.Window.get().zoomLevel = zoom - 1;
 			}
 		});
 		this.items['optionsLessContext'] = new gui.MenuItem({
