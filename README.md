@@ -110,9 +110,9 @@ I'm working on the following features
 
 * Amend commit (Really hard to do!)
 * Rename branches
+* "File" menu with shortcuts
 * Delete, edit and add remotes
-* More shortcuts (waiting for native support from node-webkit)
-* More configuration options: restrict submodule watching to improve performance for large repositories
+* More configuration options
 * Better syntax highlighting.
 * UI improvements: allow to view diff one file at a time to avoid "confusion".
 * Hooks/tools: allow to add external commands to interact with branches or files.
