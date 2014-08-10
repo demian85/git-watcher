@@ -241,6 +241,13 @@ var UI = {
 		}
 	},
 	
+	_updateModuleMergeMsg: function(moduleName, mergeMsg) {
+		var commitMessageInput = $m(moduleName, '.commitMessage');
+		if (!commitMessageInput.value && mergeMsg) {
+			commitMessageInput.value = mergeMsg;
+		}
+	},
+	
 	_updateModuleFileList: function(moduleName, status) {
 		var selectedFileNode = $m(moduleName, '.fileList > li.selected');
 		var fileToSelect = selectedFileNode ? {
