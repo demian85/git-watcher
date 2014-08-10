@@ -30,11 +30,11 @@ Please consider downloading the proper build according to your distribution.
 See __Troubleshooting__ if you cannot run the app.
 
 * Linux x64 - __Old dists__: Ubuntu 12.04, 12.10 or derivative distributions
-	* [v0.4.8](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-v0.4.8.tar.gz)
 	* [v0.4.11](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-v0.4.11.tar.gz)
+	* [v0.5.0](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-v0.5.0.tar.gz)
 * Linux x64 - __New dists__: Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
-	* [v0.4.8](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-new-v0.4.8.tar.gz)
 	* [v0.4.11](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-new-v0.4.11.tar.gz)
+	* [v0.5.0](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-new-v0.5.0.tar.gz)
 
 **Someone please help me to create Windows & Mac binaries!**
 
