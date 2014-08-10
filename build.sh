@@ -1,21 +1,23 @@
 #zip all files to nw archive
 zip -r gitw.nw ./* -x"build/*"
 
-#copy nw.pak from current build node-webkit
+#copy necessary files from current node-webkit build
 cp /opt/node-webkit/nw.pak ./nw.pak
+cp /opt/node-webkit/icudtl.dat ./icudtl.dat
 
 #create directory
-mkdir ./build/linux -p
+mkdir ./build/gitw-linux-x64 -p
 
 #compilation to executable form
-cat /opt/node-webkit/nw ./gitw.nw > ./build/linux/gitw && chmod +x ./build/linux/gitw
+cat /opt/node-webkit/nw ./gitw.nw > ./build/gitw-linux-x64/gitw && chmod +x ./build/gitw-linux-x64/gitw
 
-#move nw.pak to build folder
-mv ./nw.pak ./build/linux/nw.pak
+#move necessary files to build folder
+mv ./nw.pak ./build/gitw-linux-x64/nw.pak
+mv ./icudtl.dat ./build/gitw-linux-x64/icudtl.dat
 
 #remove app.nw
 rm ./gitw.nw
 
 #copy useful files
-cp ./build-package.json ./build/linux/package.json
-cp ./icons/git-watcher.png ./build/linux/icon.png
+cp ./build-package.json ./build/gitw-linux-x64/package.json
+cp ./icons/git-watcher.png ./build/gitw-linux-x64/icon.png
