@@ -57,15 +57,16 @@ input[type=checkbox], input[type=radio] {
 	vertical-align: middle;
 }
 
-input, select, button {
+input, select, button, textarea {
 	box-sizing: border-box;
 	border: 1px solid #ccc;
 	color: #333;
+	font-family: "dejavu sans", sans-serif;
 	font-size: 1em;
 	margin: 0;
 }
 
-input, button, fieldset {
+input, button, fieldset, textarea {
 	padding: 0.5em 1em;
 }
 
@@ -463,12 +464,9 @@ input, button, fieldset {
 	height: 50px;
 	margin: 0.5rem 0;
 	flex: 1 1 auto;
-	font-family: sans-serif;
-	box-sizing: border-box;
 	padding: 0.5rem;
 	resize: none;
 	border-radius: 3px;
-	border: 1px solid #ccc;
 	transition: height 0.1s ease;
 }
 .commitMessage:focus {
