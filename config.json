@@ -30,11 +30,11 @@
 		}
 	],
 	"shortcuts": {
-		"repositoryOpen": "ctrl+alt o",
-		"repositoryClose": "ctrl+alt c",
-		"repositorySubmoduleUpdate": "ctrl+alt u",
-		"repositoryExplore": "ctrl+alt e",
-		"repositoryBrowse": "ctrl+alt k",
+		"repositoryOpen": "ctrl+shift o",
+		"repositoryClose": "ctrl+shift c",
+		"repositorySubmoduleUpdate": "ctrl+shift u",
+		"repositoryExplore": "ctrl+shift e",
+		"repositoryBrowse": "ctrl+shift k",
 		"repositoryRefresh": "F5",
 		"repositoryQuit": "ctrl q",
 		"branchCreate": "ctrl n",
