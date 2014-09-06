@@ -7,6 +7,7 @@ var AppMenus = {
 	init: function() {
 		this._loadShortcuts();
 		this._createMenuBar();
+		this.enableRepoMenu(false);
 	},
 	
 	_createFileMenu: function(file, type, line) {
@@ -426,6 +427,9 @@ var AppMenus = {
 		this.items['repositorySubmoduleUpdate'].enabled = enabled;
 		
 		this.items['branchMenu'].enabled = enabled;
+		this.items['stashMenu'].enabled = enabled;
+		this.items['optionsMenu'].enabled = enabled;
+		this.items['toolsMenu'].enabled = enabled;
 		
 		this.enableMenuItems('branch', enabled);
 		this.enableMenuItems('stash', enabled);
