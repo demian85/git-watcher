@@ -112,11 +112,13 @@ I'm working on the following features
 * Amend commit (Really hard to do!)
 * Rename branches
 * "File" menu with shortcuts
+* Keyboard navigation between files
 * Delete, edit and add remotes
 * More configuration options
-* Better syntax highlighting.
+* Better syntax highlighting
 * UI improvements: allow to view diff one file at a time to avoid "confusion".
 * Hooks/tools: allow to add external commands to interact with branches or files.
+* Performance improvements for large list of files.
 
 ## Create your own build
 
@@ -124,15 +126,15 @@ Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) fo
 
 Requirements:
 
-* [NodeJS >= 0.10](http://nodejs.org/download/)
-* [node-webkit](https://github.com/rogerwang/node-webkit#downloads). Download and extract its contents in `/opt/node-webkit`.
+* [NodeJS >= 0.11](http://nodejs.org/download/)
+* [node-webkit >= 0.10](https://github.com/rogerwang/node-webkit#downloads). Download and extract its contents in `/opt/node-webkit`.
 
 
 Then:
 
 * Clone repo and run `npm install` or just run `npm install gitw`.
 * Install *nw-gyp*: `npm install -g nw-gyp`.
-* Rebuild *git-utils* dependency based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.8.6`.
+* Rebuild *git-utils* dependency based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.10.4`.
 * Run the app! `/opt/node-webkit/nw /path/to/gitw`.
 
 Also, you will find two helper scripts: `build.sh` and `build-new.sh`. Those creates distributable packages for Linux. It asumes you have node-webkit installed on `/opt/node-webkit`.
