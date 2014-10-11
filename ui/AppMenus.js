@@ -3,11 +3,27 @@ var AppMenus = {
 	menus: Object.create(null),
 	items: Object.create(null),
 	shortcuts: null,
+	recentRepositories: [],
 	
 	init: function() {
+		this._loadRecentRepositories();
 		this._loadShortcuts();
 		this._createMenuBar();
+		this._updateRecentRepositoriesMenu();
 		this.enableRepoMenu(false);
+	},
+	
+	_updateRecentRepositoriesMenu: function() {
+		var menu = new gui.Menu();
+		this.recentRepositories.forEach(function(path) {
+			menu.append(new gui.MenuItem({
+				label: path,
+				click: function() {
+					openRepository(path);
+				}
+			}));
+		}, this);
+		this.items['repositoryRecent'].submenu = menu;
 	},
 	
 	_createFileMenu: function(file, type, line) {
@@ -174,6 +190,9 @@ var AppMenus = {
 			key: shortcut('repositoryClose').key,
 			modifiers: shortcut('repositoryClose').modifiers,
 			click: closeRepository
+		});
+		this.items['repositoryRecent'] = new gui.MenuItem({
+			label: 'Recent...'
 		});
 		this.items['repositorySubmoduleUpdate'] = new gui.MenuItem({
 			label: 'Submodule update',
@@ -347,6 +366,7 @@ var AppMenus = {
 		this.menus.repository = new gui.Menu();
 		this.menus.repository.append(this.items['repositoryOpen']);
 		this.menus.repository.append(this.items['repositoryClose']);
+		this.menus.repository.append(this.items['repositoryRecent']);
 		this.menus.repository.append(this.items['repositoryRefresh']);
 		this.menus.repository.append(new gui.MenuItem({type: 'separator'}));
 		this.menus.repository.append(this.items['repositorySubmoduleUpdate']);
@@ -455,6 +475,10 @@ var AppMenus = {
 		}
 	},
 	
+	_loadRecentRepositories: function() {
+		this.recentRepositories = localStorage.recentRepositories ? JSON.parse(localStorage.recentRepositories) : [];
+	},
+	
 	enableRepoMenu: function(enabled) {
 		this.items['repositoryClose'].enabled = enabled;
 		this.items['repositoryExplore'].enabled = enabled;
@@ -482,5 +506,17 @@ var AppMenus = {
 	showFileListMenu: function(file, type, x, y, line) {
 		var menu = this._createFileMenu(file, type, line);
 		menu.popup(x, y);
+	},
+	
+	pushRecentRepository: function(path) {
+		var repos = this.recentRepositories;
+		var currIndex = repos.indexOf(path);
+		if (currIndex > -1) {
+			repos.splice(currIndex, 1);
+		}
+		repos.unshift(path);
+		this.recentRepositories = repos.slice(0, 10);
+		this._updateRecentRepositoriesMenu();
+		localStorage.recentRepositories = JSON.stringify(this.recentRepositories);
 	}
 };

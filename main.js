@@ -120,6 +120,8 @@ function openRepository(repositoryPath) {
 	gitWatcher.init();
 	
 	gui.Window.get().title = gui.App.manifest.window.title + ' :: ' + repositoryPath;
+	
+	AppMenus.pushRecentRepository(repositoryPath);
 	AppMenus.enableRepoMenu(true);
 	
 	$('#main').classList.remove('empty');
