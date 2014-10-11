@@ -98,6 +98,9 @@ Current config file structure EXAMPLE:
 		"branchCreate": "ctrl n",
 		"branchCheckout": "ctrl o",
 		"branchDelete": "ctrl d",
+		"commitAmend": "ctrl BackSpace",
+		"commitStageAll": "ctrl t",
+		"commitUnstageAll": "ctrl u",
 		"stashSave": "ctrl s",
 		"stashPop": "ctrl p"
 	}
@@ -109,9 +112,7 @@ Current config file structure EXAMPLE:
 I'm working on the following features
 (your help will be much appreciated!)
 
-* Amend commit (Really hard to do!)
 * Rename branches
-* "File" menu with shortcuts
 * Keyboard navigation between files
 * Delete, edit and add remotes
 * More configuration options
