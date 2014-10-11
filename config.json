@@ -41,6 +41,8 @@
 		"branchCheckout": "ctrl o",
 		"branchDelete": "ctrl d",
 		"commitAmend": "",
+		"commitStageAll": "ctrl t",
+		"commitUnstageAll": "ctrl u",
 		"stashSave": "ctrl s",
 		"stashPop": "ctrl p"
 	}

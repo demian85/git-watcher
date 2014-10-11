@@ -251,6 +251,22 @@ var AppMenus = {
 				commander.softResetLastCommit(_handleGitResponse);
 			}
 		});
+		this.items['commitStageAll'] = new gui.MenuItem({
+			label: 'Stage all files',
+			key: shortcut('commitStageAll').key,
+			modifiers: shortcut('commitStageAll').modifiers,
+			click: function() {
+				commander.stageAll(_handleGitResponse);
+			}
+		});
+		this.items['commitUnstageAll'] = new gui.MenuItem({
+			label: 'Unstage all files',
+			key: shortcut('commitUnstageAll').key,
+			modifiers: shortcut('commitUnstageAll').modifiers,
+			click: function() {
+				commander.unstageAll(_handleGitResponse);
+			}
+		});
 		
 		// Stash items
 		this.items['stashSave'] = new gui.MenuItem({
@@ -346,6 +362,8 @@ var AppMenus = {
 		
 		this.menus.commit = new gui.Menu();
 		this.menus.commit.append(this.items['commitAmend']);
+		this.menus.commit.append(this.items['commitStageAll']);
+		this.menus.commit.append(this.items['commitUnstageAll']);
 		
 		this.menus.stash = new gui.Menu();
 		this.menus.stash.append(this.items['stashSave']);
