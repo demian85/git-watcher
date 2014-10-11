@@ -242,6 +242,16 @@ var AppMenus = {
 			}
 		});
 		
+		// Commit items
+		this.items['commitAmend'] = new gui.MenuItem({
+			label: 'Amend (Soft reset last commit)',
+			key: shortcut('commitAmend').key,
+			modifiers: shortcut('commitAmend').modifiers,
+			click: function() {
+				commander.softResetLastCommit(_handleGitResponse);
+			}
+		});
+		
 		// Stash items
 		this.items['stashSave'] = new gui.MenuItem({
 			label: 'Save',
@@ -334,6 +344,9 @@ var AppMenus = {
 		this.menus.branch.append(this.items['branchCreate']);
 		this.menus.branch.append(this.items['branchDelete']);
 		
+		this.menus.commit = new gui.Menu();
+		this.menus.commit.append(this.items['commitAmend']);
+		
 		this.menus.stash = new gui.Menu();
 		this.menus.stash.append(this.items['stashSave']);
 		this.menus.stash.append(this.items['stashPop']);
@@ -356,6 +369,10 @@ var AppMenus = {
 			label: 'Branch',
 			submenu: this.menus.branch
 		});
+		this.items['commitMenu'] = new gui.MenuItem({
+			label: 'Commit',
+			submenu: this.menus.commit
+		});
 		this.items['stashMenu'] = new gui.MenuItem({
 			label: 'Stash',
 			submenu: this.menus.stash
@@ -375,6 +392,7 @@ var AppMenus = {
 			submenu: this.menus.repository
 		}));
 		this.menubar.append(this.items['branchMenu']);
+		this.menubar.append(this.items['commitMenu']);
 		this.menubar.append(this.items['stashMenu']);
 		this.menubar.append(this.items['optionsMenu']);
 		this.menubar.append(this.items['toolsMenu']);
