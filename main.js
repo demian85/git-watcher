@@ -149,6 +149,19 @@ function closeRepository() {
 	}
 }
 
+function commit() {
+	var input = $m(currentModuleName, '.commitMessage');
+	var message = input.value.trim();
+	if (!message) {
+		alert('Please enter a valid commit message!');
+		input.focus();
+		return;
+	}
+	commander.commit(message, gitErrHandler.intercept(function() {
+		input.value = '';
+	}));
+}
+
 var UI = {
 	load: function() {
 		gitWatcher.getStatus(function getStatusCallback(err, status) {
@@ -312,23 +325,12 @@ var UI = {
 	},
 	
 	_addModuleControlEvents: function(moduleName) {
-		var commitMessageInput = $m(moduleName, '.commitMessage');
-		commitMessageInput.addEventListener('keydown', function(e) {
+		var msgInput = $m(moduleName, '.commitMessage');
+		msgInput.addEventListener('keydown', function(e) {
 			if (e.ctrlKey && e.keyCode === 13) {
 				commit();
 			}
 		}, false);
-		function commit() {
-			var message = commitMessageInput.value.trim();
-			if (!message) {
-				alert('Please enter a valid commit message!');
-				commitMessageInput.focus();
-				return;
-			}
-			commander.commit(message, gitErrHandler.intercept(function() {
-				commitMessageInput.value = '';
-			}));
-		}
 		$m(moduleName,'.stageButton').addEventListener('click', function(e) {
 			commander.stageAll(_handleGitResponse);
 		}, false);
