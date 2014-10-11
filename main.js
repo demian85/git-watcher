@@ -274,11 +274,7 @@ var UI = {
 	},
 	
 	_updateModuleFileList: function(moduleName, status) {
-		var selectedFileNode = $m(moduleName, '.fileList > li.selected');
-		var fileToSelect = selectedFileNode ? {
-			name: selectedFileNode.dataset.name, 
-			type: selectedFileNode.dataset.type
-		} : null;
+		var fileToSelect = this._getModuleFile(moduleName, true);
 		function update(type) {
 			var listNode = $m(moduleName, '.' + type + 'Files');
 			listNode.innerHTML = '';
@@ -292,6 +288,9 @@ var UI = {
 		}
 		update('unstaged');
 		update('staged');
+		if (!fileToSelect) {
+			fileToSelect = this._getModuleFile(moduleName);
+		}
 		if (fileToSelect) {
 			this.selectFile(fileToSelect.name, fileToSelect.type);
 		}
@@ -350,6 +349,15 @@ var UI = {
 		$m(moduleName,'.pushButton').addEventListener('click', function(e) {
 			RemotePushDialog();
 		}, false);
+	},
+	
+	_getModuleFile: function(moduleName, selectedOnly) {
+		var selector = selectedOnly ? '.fileList > li.selected' : '.fileList > li';
+		var node = $m(moduleName, selector);
+		return node ? {
+			name: node.dataset.name, 
+			type: node.dataset.type
+		} : null;
 	}
 };
 
