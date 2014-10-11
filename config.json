@@ -40,7 +40,7 @@
 		"branchCreate": "ctrl n",
 		"branchCheckout": "ctrl o",
 		"branchDelete": "ctrl d",
-		"commitAmend": "",
+		"commitAmend": "ctrl BackSpace",
 		"commitStageAll": "ctrl t",
 		"commitUnstageAll": "ctrl u",
 		"stashSave": "ctrl s",
