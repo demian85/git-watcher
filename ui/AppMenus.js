@@ -487,11 +487,13 @@ var AppMenus = {
 		this.items['repositorySubmoduleUpdate'].enabled = enabled;
 		
 		this.items['branchMenu'].enabled = enabled;
+		this.items['commitMenu'].enabled = enabled;
 		this.items['stashMenu'].enabled = enabled;
 		this.items['optionsMenu'].enabled = enabled;
 		this.items['toolsMenu'].enabled = enabled;
 		
 		this.enableMenuItems('branch', enabled);
+		this.enableMenuItems('commit', enabled);
 		this.enableMenuItems('stash', enabled);
 		this.enableMenuItems('options', enabled);
 		this.enableMenuItems('tools', enabled);
