@@ -248,7 +248,7 @@ var AppMenus = {
 			key: shortcut('commitAmend').key,
 			modifiers: shortcut('commitAmend').modifiers,
 			click: function() {
-				commander.softResetLastCommit(_handleGitResponse);
+				amendCommit();
 			}
 		});
 		this.items['commitStageAll'] = new gui.MenuItem({

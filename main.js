@@ -162,6 +162,13 @@ function commit() {
 	}));
 }
 
+function amendCommit() {
+	var input = $m(currentModuleName, '.commitMessage');
+	commander.softResetLastCommit(gitErrHandler.intercept(function(lastCommitMessage) {
+		input.value = lastCommitMessage;
+	}));
+}
+
 var UI = {
 	load: function() {
 		gitWatcher.getStatus(function getStatusCallback(err, status) {
