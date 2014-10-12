@@ -118,7 +118,6 @@ I'm working on the following features
 * Delete, edit and add remotes
 * More configuration options
 * Better syntax highlighting
-* UI improvements: allow to view diff one file at a time to avoid "confusion".
 * Hooks/tools: allow to add external commands to interact with branches or files.
 * Performance improvements for large list of files.
 
