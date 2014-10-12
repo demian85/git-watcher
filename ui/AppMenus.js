@@ -348,12 +348,20 @@ var AppMenus = {
 			type: 'checkbox',
 			checked: config.diff.highlight.enabled,
 			label: 'Syntax highlighting',
-			
 			click: function() {
 				config.diff.highlight.enabled = this.checked;
 				updateGlobalStatus();
 			}
 		});
+		this.items['optionsMultipleFileView'] = new gui.MenuItem({
+			type: 'checkbox',
+			checked: config.diff.viewType === 'multiple',
+			label: 'Multiple files view',
+			click: function() {
+				config.diff.viewType = this.checked ? 'multiple' : 'single';
+				updateDiffViewConfig();
+			}
+		})
 		
 		// Help items
 		this.items['helpReportBugs'] = new gui.MenuItem({
@@ -397,6 +405,7 @@ var AppMenus = {
 		this.menus.options.append(this.items['optionsMoreContext']);
 		this.menus.options.append(this.items['optionsEolWhitespace']);
 		this.menus.options.append(this.items['optionsSyntaxHighlighting']);
+		this.menus.options.append(this.items['optionsMultipleFileView']);
 		
 		this._createToolsMenu();
 		

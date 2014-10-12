@@ -63,6 +63,16 @@ function initApp() {
 		Config.save();
 		this.close(true);
 	});
+	
+	updateDiffViewConfig();
+}
+
+function updateDiffViewConfig() {
+	if (config.diff.viewType === 'single') {
+		document.body.classList.add('singleFileViewMode');
+	} else {
+		document.body.classList.remove('singleFileViewMode');
+	}
 }
 
 function updateGlobalStatus() {

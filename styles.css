@@ -129,6 +129,9 @@ input, button, fieldset, textarea {
 	overflow: hidden;
 	transition: border-color 0.1s ease;
 }
+.singleFileViewMode .file:not(.selected) {
+	display: none;
+}
 .file.collapsed .lineRow:nth-child(n+11) {
 	display: none;
 }

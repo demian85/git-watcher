@@ -2,6 +2,7 @@
 	"defaultRepository": "",
 	"debugMode": false,
 	"diff": {
+		"viewType": "multiple",
 		"contextLines": 3,
 		"ignoreEolWhitespace": false,
 		"highlight": {

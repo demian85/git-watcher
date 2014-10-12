@@ -60,6 +60,7 @@ Current config file structure EXAMPLE:
 	"defaultRepository": "~/www/myproject",    // default git repository to load on startup
 	"debugMode": false,    // enable debugging
 	"diff": {
+		"viewType": "multiple",		// view mode can be 'single' or 'multiple'
 		"contextLines": 4,
 		"ignoreEolWhitespace": true,
 		"highlight": {
