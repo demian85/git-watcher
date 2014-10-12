@@ -320,6 +320,7 @@ var UI = {
 		$m(moduleName, '.branchInfo').innerHTML = html;
 	},
 	
+	// FIXME: use event delegation
 	_addFileSelectionEvents: function(moduleName) {
 		var me = this;
 		var items = $$m(moduleName, '.fileList > li, .file');
