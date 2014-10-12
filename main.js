@@ -232,15 +232,40 @@ var UI = {
 	
 	selectFile: function(name, type) {
 		var me = this;
-		var items = $$('.fileList > li, .file');
-		items.forEach(function iterator(node) {
-			if (node.dataset.name === name && node.dataset.type === type) {
-				node.classList.add('selected');
-				me._scrollFileIntoView(node);
-			} else {
-				node.classList.remove('selected');
-			}
+		var items = $$m(currentModuleName, '.fileList > li, .file');
+		var found = false;
+		function select(node) {
+			node.classList.add('selected');
+			me._scrollFileIntoView(node);
+		}
+		function selectFirst() {
+			var fileListItem = $m(currentModuleName, '.fileList > li');
+			var fileItem = $m(currentModuleName, '.file');
+			if (fileListItem) select(fileListItem);
+			if (fileItem) select(fileItem);
+		}
+		items.forEach(function(node) {
+			node.classList.remove('selected');
 		});
+		if (name && type) {
+			items.forEach(function(node) {
+				if (node.dataset.name === name && node.dataset.type === type) {
+					found = true;
+					select(node);
+				}
+			});
+			if (!found) {
+				items.forEach(function(node) {
+					if (node.dataset.name === name) {
+						found = true;
+						select(node);
+					}
+				});
+			}
+		}
+		if (!found) {
+			selectFirst();
+		}
 	},
 	
 	/**
@@ -274,7 +299,11 @@ var UI = {
 	},
 	
 	_updateModuleFileList: function(moduleName, status) {
-		var fileToSelect = this._getModuleFile(moduleName, true);
+		var selectedFileNode = $m(moduleName, '.fileList > li.selected');
+		var fileToSelect = selectedFileNode ? {
+			name: selectedFileNode.dataset.name, 
+			type: selectedFileNode.dataset.type
+		} : null;
 		function update(type) {
 			var listNode = $m(moduleName, '.' + type + 'Files');
 			listNode.innerHTML = '';
@@ -288,11 +317,10 @@ var UI = {
 		}
 		update('unstaged');
 		update('staged');
-		if (!fileToSelect) {
-			fileToSelect = this._getModuleFile(moduleName);
-		}
 		if (fileToSelect) {
 			this.selectFile(fileToSelect.name, fileToSelect.type);
+		} else {
+			this.selectFile();
 		}
 	},
 	
@@ -350,15 +378,6 @@ var UI = {
 		$m(moduleName,'.pushButton').addEventListener('click', function(e) {
 			RemotePushDialog();
 		}, false);
-	},
-	
-	_getModuleFile: function(moduleName, selectedOnly) {
-		var selector = selectedOnly ? '.fileList > li.selected' : '.fileList > li';
-		var node = $m(moduleName, selector);
-		return node ? {
-			name: node.dataset.name, 
-			type: node.dataset.type
-		} : null;
 	}
 };
 
