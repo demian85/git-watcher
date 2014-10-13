@@ -405,6 +405,11 @@ var UI = {
 		$m(moduleName,'.pushButton').addEventListener('click', function(e) {
 			RemotePushDialog();
 		}, false);
+		$m(moduleName, '.commitLog').addEventListener('click', function(e) {
+			if (e.target.matches('.commitLogHash')) {
+				External.openApp('gitk', ['--select-commit=' + e.target.textContent], currentModulePath);
+			}
+		});
 	}
 };
 
