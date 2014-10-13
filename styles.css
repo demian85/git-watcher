@@ -314,11 +314,11 @@ input, button, fieldset, textarea {
 }
 .leftColumn {
 	display: flex;
-	overflow: auto;
+	overflow: hidden;
 	flex-flow: column nowrap;
 	flex: 0 0 auto;
 	min-width: 180px;
-	max-width: 30vw;
+	max-width: 35vw;
 	margin-right: 0.5rem;
 	border: 1px solid gray;
 	border-radius: 6px;
@@ -425,7 +425,6 @@ input, button, fieldset, textarea {
 .controls {
 	display: flex;
 	flex-flow: column nowrap;
-	font-size: 0.9rem;
 	flex: 0 0 auto;
 	padding: 0.5rem;
 	margin-top: 0.5rem;
@@ -451,7 +450,6 @@ input, button, fieldset, textarea {
 	background-repeat: no-repeat;
 	cursor: pointer;
 	margin: 0.2rem;
-	font-size: 1.25em;
 }
 .stageButton {
 	background-image: url(icons/stage16.png);
@@ -467,17 +465,19 @@ input, button, fieldset, textarea {
 }
 .commitMessage {
 	width: 100%;
-	height: 50px;
+	height: 5rem;
 	margin: 0.5rem 0;
 	flex: 1 1 auto;
 	padding: 0.5rem;
 	resize: none;
 	border-radius: 3px;
-	transition: height 0.1s ease;
+	transition: height 0.1s ease, width 0.1s ease;
+	transition-delay: 0.1s;
 }
 .commitMessage:focus {
 	outline: 0;
-	height: 100px;
+	width: 20rem;
+	height: 10rem;
 }
 
 
