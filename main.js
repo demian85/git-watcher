@@ -389,22 +389,21 @@ var UI = {
 	},
 	
 	_addModuleControlEvents: function(moduleName) {
-		var msgInput = $m(moduleName, '.commitMessage');
-		msgInput.addEventListener('keydown', function(e) {
+		$m(moduleName, '.commitMessage').addEventListener('keydown', function(e) {
 			if (e.ctrlKey && e.keyCode === 13) {
 				commit();
 			}
-		}, false);
+		});
 		$m(moduleName,'.stageButton').addEventListener('click', function(e) {
 			commander.stageAll(_handleGitResponse);
-		}, false);
+		});
 		$m(moduleName,'.unstageButton').addEventListener('click', function(e) {
 			commander.unstageAll(_handleGitResponse);
-		}, false);
-		$m(moduleName,'.commitButton').addEventListener('click', commit, false);
+		});
+		$m(moduleName,'.commitButton').addEventListener('click', commit);
 		$m(moduleName,'.pushButton').addEventListener('click', function(e) {
 			RemotePushDialog();
-		}, false);
+		});
 		$m(moduleName, '.commitLog').addEventListener('click', function(e) {
 			if (e.target.matches('.commitLogHash')) {
 				External.openApp('gitk', ['--select-commit=' + e.target.textContent], currentModulePath);
