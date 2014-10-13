@@ -16,6 +16,7 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 * Allows you to **open files** by clicking on its name or lines numbers. You can even use your preferred editor!
 * Shows current **branch information**: upstream branch and ahead/behind commit count
 * Menu bar with **shortcuts, configuration options and utilities**
+* Shows commit log per module
 * System Tray support
 * Support for custom tools (external commands)
 
