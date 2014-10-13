@@ -135,6 +135,7 @@ input, button, fieldset, textarea {
 .file.collapsed .lineRow:nth-child(n+11) {
 	display: none;
 }
+.singleFileViewMode .file,
 .file:only-child {
 	margin: 0;
 }
@@ -471,13 +472,12 @@ input, button, fieldset, textarea {
 	padding: 0.5rem;
 	resize: none;
 	border-radius: 3px;
-	transition: height 0.1s ease, width 0.1s ease;
+	transition: height 0.1s ease;
 	transition-delay: 0.1s;
 }
 .commitMessage:focus {
 	outline: 0;
-	width: 20rem;
-	height: 10rem;
+	height: 8rem;
 }
 .commitLog {
 	display: none;
