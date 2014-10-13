@@ -459,17 +459,17 @@ function _renderFileDiff(file, type) {
 	
 	// events
 	fileNode.addEventListener('click', function(e) {
-		if (e.target.webkitMatchesSelector('.fileName, .newLine')) {
-			var line = e.target.webkitMatchesSelector('.newLine') ? e.target.textContent : '';
+		if (e.target.matches('.fileName, .newLine')) {
+			var line = e.target.matches('.newLine') ? e.target.textContent : '';
 			External.openFile(file, line);
 		}
 	}, false);
 	
 	fileNode.addEventListener('contextmenu', function(e) {
 		var line = null;
-		if (e.target.webkitMatchesSelector('.fileDiff .lineRow *')) {
+		if (e.target.matches('.fileDiff .lineRow *')) {
 			var node = e.target.parentNode;
-			while (!node.webkitMatchesSelector('.lineRow')) {
+			while (!node.matches('.lineRow')) {
 				node = node.parentNode;
 			}
 			line = {
