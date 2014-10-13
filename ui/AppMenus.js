@@ -361,7 +361,17 @@ var AppMenus = {
 				config.diff.viewType = this.checked ? 'multiple' : 'single';
 				updateDiffViewConfig();
 			}
-		})
+		});
+		this.items['optionsShowCommitLog'] = new gui.MenuItem({
+			type: 'checkbox',
+			checked: !!config.uiOptions.showCommitLog,
+			label: 'Show commit log',
+			click: function() {
+				config.uiOptions.showCommitLog = this.checked;
+				UI.updateGlobalLayout();
+				updateGlobalStatus();
+			}
+		});
 		
 		// Help items
 		this.items['helpReportBugs'] = new gui.MenuItem({
@@ -406,6 +416,7 @@ var AppMenus = {
 		this.menus.options.append(this.items['optionsEolWhitespace']);
 		this.menus.options.append(this.items['optionsSyntaxHighlighting']);
 		this.menus.options.append(this.items['optionsMultipleFileView']);
+		this.menus.options.append(this.items['optionsShowCommitLog']);
 		
 		this._createToolsMenu();
 		

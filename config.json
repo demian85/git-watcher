@@ -13,6 +13,9 @@
 			}
 		}
 	},
+	"uiOptions": {
+		"showCommitLog": true
+	},
 	"external": {
 		"fileOpener": {
 			"path": "",

@@ -71,6 +71,9 @@ Current config file structure EXAMPLE:
 			}
 		}
 	},
+	"uiOptions": {
+		"showCommitLog": true		// Show last 10 commits for each module
+	},
 	"external": {    // custom commands
 		"fileOpener": {    // handle file opening, empty path uses system default application
 			"path": "/usr/local/netbeans-7.4/bin/netbeans",

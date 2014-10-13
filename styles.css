@@ -479,6 +479,32 @@ input, button, fieldset, textarea {
 	width: 20rem;
 	height: 10rem;
 }
+.commitLog {
+	display: none;
+	flex: 0 0 auto;
+	border-top: 1px solid gray;
+	margin: 0.5rem 0 0 0;
+	padding: 0.5rem;
+	overflow: hidden;
+	list-style-type: none;
+	font-family: monospace;
+	-webkit-user-select: initial;
+}
+.commitLog.visible {
+	display: block;
+}
+.commitLog > li {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.commitLogHash {
+	cursor: pointer;
+	color: blue;
+}
+.commitLogHash:hover {
+	text-decoration: underline;
+}
 
 
 

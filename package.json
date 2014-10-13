@@ -29,16 +29,17 @@
   "dependencies": {
     "async": "0.9.x",
     "git-utils": "2.1.x",
-    "mime-types": "1.0.x",
-    "json-toolkit": "1.1.x"
+    "json-toolkit": "1.1.x",
+    "lodash": "^2.4.1",
+    "mime-types": "1.0.x"
   },
   "window": {
     "title": "Git Watcher",
     "icon": "icons/git-watcher.png",
     "width": 1024,
-	"min_width": 800,
+    "min_width": 800,
     "height": 600,
-	"min_height": 400,
+    "min_height": 400,
     "position": "center",
     "toolbar": false
   }

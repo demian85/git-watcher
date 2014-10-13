@@ -1,6 +1,7 @@
 var GitWatcher = require('./lib/GitWatcher'),
 	Commander = require('./lib/Commander'),
 	Highlighter = require('./lib/Highlighter'),
+	_ = require('lodash'),
 	baseRepoDirectory = null, 
 	currentModulePath = null, 
 	currentModuleName = null, 
@@ -198,6 +199,8 @@ var UI = {
 			for (var module in status) {
 				UI.updateModule(module, status[module]);
 			}
+			
+			UI.updateGlobalLayout();
 		});
 	},
 	
@@ -217,6 +220,9 @@ var UI = {
 	
 	updateModule: function(moduleName, status) {
 		this._updateModuleBranch(moduleName, status.branch);
+		if (status.log) {
+			this._updateModuleLog(moduleName, status.log);
+		}
 		this._updateModuleFilesDiff(moduleName, status);
 		this._updateModuleFileList(moduleName, status);
 		this._addFileSelectionEvents(moduleName);
@@ -290,6 +296,16 @@ var UI = {
 		});
 	},
 	
+	updateGlobalLayout: function() {
+		$$('.commitLog').forEach(function(node) {
+			if (config.uiOptions.showCommitLog) {
+				node.classList.add('visible');
+			} else {
+				node.classList.remove('visible');
+			}
+		});
+	},
+	
 	_scrollFileIntoView: function(fileNode) {
 		var y0 = fileNode.offsetTop,
 			y1 = y0 + fileNode.offsetHeight,
@@ -356,6 +372,12 @@ var UI = {
 		if (branch.ahead > 0) html += 'Ahead of ' + branch.remote + ' by ' + branch.ahead + ' commits.';
 		else if (branch.behind > 0) html += 'Behind of ' + branch.remote + ' by ' + branch.behind + ' commits.';
 		$m(moduleName, '.branchInfo').innerHTML = html;
+	},
+	
+	_updateModuleLog: function(moduleName, log) {
+		$m(moduleName, '.commitLog').innerHTML = log.map(function(item) {
+			return '<li><span class="commitLogHash">' + item.hash + '</span> ' + _.escape(item.subject) + '</li>';
+		}).join('');
 	},
 	
 	// FIXME: use event delegation
