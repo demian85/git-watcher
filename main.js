@@ -64,16 +64,6 @@ function initApp() {
 		Config.save();
 		this.close(true);
 	});
-	
-	updateDiffViewConfig();
-}
-
-function updateDiffViewConfig() {
-	if (config.diff.viewType === 'single') {
-		document.body.classList.add('singleFileViewMode');
-	} else {
-		document.body.classList.remove('singleFileViewMode');
-	}
 }
 
 function updateGlobalStatus() {
@@ -297,6 +287,11 @@ var UI = {
 	},
 	
 	updateGlobalLayout: function() {
+		if (config.diff.viewType === 'single') {
+			document.body.classList.add('singleFileViewMode');
+		} else {
+			document.body.classList.remove('singleFileViewMode');
+		}
 		$$('.commitLog').forEach(function(node) {
 			if (config.uiOptions.showCommitLog) {
 				node.classList.add('visible');

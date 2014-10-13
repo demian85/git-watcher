@@ -359,7 +359,7 @@ var AppMenus = {
 			label: 'Multiple files view',
 			click: function() {
 				config.diff.viewType = this.checked ? 'multiple' : 'single';
-				updateDiffViewConfig();
+				UI.updateGlobalLayout();
 			}
 		});
 		this.items['optionsShowCommitLog'] = new gui.MenuItem({
