@@ -4,8 +4,8 @@
 		<title>Git Watcher</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width">
-		<link rel="stylesheet" href="styles.css" />
-		<link rel="stylesheet" href="ui/Dialog.css" />
+		<link rel="stylesheet" href="styles.css">
+		<link rel="stylesheet" href="ui/Dialog.css">
 		<script src="core.js"></script>
 		<script src="ui/AppMenus.js"></script>
 		<script src="ui/Dialog.js"></script>
@@ -14,7 +14,7 @@
 	<body onload="init()">
 		
 		<template id="gitModuleTpl">
-			<div class="module">
+			<section class="module">
 				<header>
 					<div class="branchInfo"></div>
 				</header>
@@ -25,10 +25,6 @@
 						<h2 class="stagedTitle fileListTitle"><button class="fileListTitleButton unstageButton" title="Unstage all files (git reset HEAD)"></button> Staged Changes</h2>
 						<ul class="stagedFiles fileList"></ul>
 						<div class="controls">
-							<!--div class="controlPanel commitOptions">
-								<label class="commitOptionLabel"><input type="radio" value="new" class="commitOption" checked /> New commit</label>
-								<label class="commitOptionLabel"><input type="radio" value="amend" class="commitOption" disabled /> Amend commit</label>
-							</div-->
 							<textarea rows="3" cols="20" class="commitMessage" placeholder="Commit message..."></textarea>
 							<div class="controlPanel">
 								<button class="commitButton actionBtn">Commit</button>
@@ -38,7 +34,7 @@
 					</div>
 					<div class="filesDiff"></div>
 				</div>
-			</div>
+			</section>
 		</template>
 	
 		<template id="gitModuleFileTpl">
@@ -61,7 +57,7 @@
 		</template>
 	
 		<template id="branchCheckoutTpl">
-			<div class="branchCheckout dialogMainSection">
+			<section class="branchCheckout dialogMainSection">
 				<div class="branchListContent">
 					<table class="branchList">
 						<thead>
@@ -81,11 +77,11 @@
 					<button class="branchCheckoutAccept actionBtn">Checkout</button>
 					<button class="branchCheckoutCancel cancelBtn">Cancel</button>
 				</div>
-			</div>
+			</section>
 		</template>
 	
 		<template id="branchDeleteTpl">
-			<div class="dialogMainSection">
+			<section class="dialogMainSection">
 				<div class="branchListContent">
 					<table class="branchList">
 						<thead>
@@ -105,7 +101,7 @@
 					<button class="branchDeleteAccept actionBtn">Delete</button>
 					<button class="branchDeleteCancel cancelBtn">Cancel</button>
 				</div>
-			</div>
+			</section>
 		</template>
 	
 		<template id="branchListItemTpl">
@@ -116,7 +112,7 @@
 		</template>
 	
 		<template id="branchCreateTpl">
-			<div class="branchCreate dialogMainSection">
+			<section class="branchCreate dialogMainSection">
 				<div class="branchCreateContent">
 					<input type="text" class="branchCreateName" placeholder="Enter name..." required autofocus />
 				</div>
@@ -128,11 +124,11 @@
 					<button class="branchCreateAccept actionBtn">Create</button>
 					<button class="branchCreateCancel cancelBtn">Cancel</button>
 				</div>
-			</div>
+			</section>
 		</template>
 	
 		<template id="remotePushTpl">
-			<div class="dialogMainSection">
+			<section class="dialogMainSection">
 				<div class="remotePushMainOptions">
 					<label>Select remote: <select class="remotePushName" required autofocus></select></label>
 				</div>
@@ -144,11 +140,11 @@
 					<button class="remotePushAccept actionBtn">Push</button>
 					<button class="remotePushCancel cancelBtn">Cancel</button>
 				</div>
-			</div>
+			</section>
 		</template>
 	
 		<template id="fileStatisticsTpl">
-			<div class="fileStatistics dialogMainSection">
+			<section class="fileStatistics dialogMainSection">
 				<h2 class="fileStatisticsHeader">Top committers</h2>
 				<fieldset class="dialogContentFieldset fileStatisticsTopCommittersOptions">
 					<legend>Options</legend>
@@ -167,7 +163,7 @@
 					</thead>
 					<tbody></tbody>
 				</table>
-			</div>
+			</section>
 		</template>
 	
 		<template id="dialogTpl">
@@ -184,15 +180,17 @@
 			</div>
 		</template>
 	
-		<div id="main" class="empty">
+		<main id="main" class="empty">
 			<header>
 				<ul id="gitModules"></ul>
 			</header>
-			<img src="icons/loader.gif" id="loadingImage" />
-			<div id="emptyMessage"><button onclick="chooseRepository()"><img src="icons/open.png" alt="" /><br/>Open repository</button></div>
-		</div>
+			<img src="icons/loader.gif" id="loadingImage">
+			<div id="emptyMessage">
+				<button onclick="chooseRepository()"><img src="icons/open.png" alt=""><br>Open repository</button>
+			</div>
+		</main>
 	
-		<input type="file" id="repositoryChooser" style="display: none" nwdirectory nwworkingdir="/home" />
+		<input type="file" id="repositoryChooser" style="display: none" nwdirectory nwworkingdir="/home">
 		
 	</body>
 </html>
