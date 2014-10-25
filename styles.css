@@ -276,7 +276,7 @@ input, button, fieldset, textarea {
 	border-bottom: 1px solid gray;
 }
 #gitModules > li {
-	font-family: "dejavu sans mono", "liberation mono", monospace;
+	max-width: 50%;
 	flex: 1 1 auto;
 	margin: 0 0.5rem 0 0;
 	padding: 0.5rem 1rem 0.3rem 30px;
@@ -291,6 +291,9 @@ input, button, fieldset, textarea {
 	top: 1px;
 	transition: background-color 0.1s ease;
 	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-family: "dejavu sans mono", "liberation mono", monospace;
 }
 #gitModules > li:focus {
 	outline: 0;
