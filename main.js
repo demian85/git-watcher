@@ -4,7 +4,8 @@ var GitWatcher = require('./lib/GitWatcher'),
 	_ = require('lodash'),
 	baseRepoDirectory = null, 
 	currentModulePath = null, 
-	currentModuleName = null, 
+	currentModuleName = null,
+	currentStatus = null,
 	gitWatcher = null,
 	commander = null,
 	appTray;
@@ -99,6 +100,7 @@ function openRepository(repositoryPath) {
 	$('#loadingImage').classList.add('visible');
     
 	baseRepoDirectory = repositoryPath;
+	currentStatus = {};
     
 	gitWatcher = new GitWatcher(repositoryPath);
 	gitWatcher.on('error', function(err) {
@@ -139,6 +141,7 @@ function closeRepository() {
         gitWatcher.removeAllListeners();
 		gitWatcher = null;
 		baseRepoDirectory = null;
+		currentStatus = null;
 		
 		gui.Window.get().title = gui.App.manifest.window.title;
         AppMenus.enableRepoMenu(false);
@@ -209,13 +212,14 @@ var UI = {
 	},
 	
 	updateModule: function(moduleName, status) {
+		currentStatus[moduleName] = status;
 		this._updateModuleBranch(moduleName, status.branch);
 		if (status.log) {
 			this._updateModuleLog(moduleName, status.log);
 		}
-		this._updateModuleFilesDiff(moduleName, status);
-		this._updateModuleFileList(moduleName, status);
-		this._addFileSelectionEvents(moduleName);
+		this._updateModuleFilesDiff(moduleName);
+		this._updateModuleFileList(moduleName);
+		this.updateModuleLayout(moduleName);
 	},
 	
 	createModule: function(moduleName) {
@@ -238,45 +242,45 @@ var UI = {
 	
 	selectFile: function(name, type) {
 		var me = this;
-		var items = $$m(currentModuleName, '.fileList > li, .file');
-		var found = false;
-		function select(node) {
+		var selectedNodes = $$m(currentModuleName, '.fileList > li.selected, .file.selected');
+		var listItems = $$m(currentModuleName, '.fileList > li');
+		var foundListItem;
+		function select(listItemNode) {
+			var fileDiffNode = forceDiffCreation(listItemNode.dataset.name, listItemNode.dataset.type);
+			markAsSelected(listItemNode);
+			markAsSelected(fileDiffNode);
+		}
+		function markAsSelected(node) {
 			node.classList.add('selected');
 			me._scrollFileIntoView(node);
 		}
-		function selectFirst() {
-			var fileListItem = $m(currentModuleName, '.fileList > li');
-			var fileItem = $m(currentModuleName, '.file');
-			if (fileListItem) select(fileListItem);
-			if (fileItem) select(fileItem);
+		function forceDiffCreation(name, type) {
+			var fileDiff = _.find($$m(currentModuleName, '.file'), function(node) {
+				return node.dataset.name === name && node.dataset.type === type;
+			});
+			return fileDiff || UI._createModuleFileDiff(currentModuleName, name, type);
 		}
-		items.forEach(function(node) {
+		selectedNodes.forEach(function(node) {
 			node.classList.remove('selected');
 		});
-		if (name && type) {
-			items.forEach(function(node) {
-				if (node.dataset.name === name && node.dataset.type === type) {
-					found = true;
-					select(node);
-				}
-			});
-			if (!found) {
-				items.forEach(function(node) {
-					if (node.dataset.name === name) {
-						found = true;
-						select(node);
-					}
+		if (listItems.length > 0) {
+			if (name && type) {
+				foundListItem = _.find(listItems, function(node) {
+					return node.dataset.name === name && node.dataset.type === type;
 				});
+				if (!foundListItem) {
+					foundListItem = _.find(listItems, function(node) {
+						return node.dataset.name === name;
+					});
+				}
 			}
-		}
-		if (!found) {
-			selectFirst();
+			if (!foundListItem) {
+				foundListItem = $m(currentModuleName, '.fileList > li');
+			}
+			select(foundListItem);
 		}
 	},
 	
-	/**
-	 * Adjust files max-height according to its container clientHeight
-	 */
 	updateModuleLayout: function(moduleName) {
 		var diffNode = $m(moduleName, '.filesDiff');
 		var fileNodes = $$m(moduleName, '.file');
@@ -319,7 +323,8 @@ var UI = {
 		}
 	},
 	
-	_updateModuleFileList: function(moduleName, status) {
+	_updateModuleFileList: function(moduleName) {
+		var status = currentStatus[moduleName];
 		var selectedFileNode = $m(moduleName, '.fileList > li.selected');
 		var fileToSelect = selectedFileNode ? {
 			name: selectedFileNode.dataset.name, 
@@ -345,21 +350,34 @@ var UI = {
 		}
 	},
 	
-	_updateModuleFilesDiff: function(moduleName, status) {
+	_updateModuleFilesDiff: function(moduleName) {
+		var status = currentStatus[moduleName];
 		var diffNode = $m(moduleName, '.filesDiff');
-		diffNode.innerHTML = '';
+		var fileCounter = 0;
 		var documentFragment = document.createDocumentFragment();
 		function add(type) {
-			status[type].map(function mapper(file) {
+			status[type].slice(0, 6 - fileCounter).map(function mapper(file) {
 				return _renderFileDiff(file, type);
 			}).forEach(function iterator(node) {
+				++fileCounter;
 				documentFragment.appendChild(node);
 			});
 		}
 		add('unstaged');
 		add('staged');
+		diffNode.innerHTML = '';
 		diffNode.appendChild(documentFragment);
-		this.updateModuleLayout(moduleName);
+	},
+	
+	_createModuleFileDiff: function(moduleName, fileName, type) {
+		var status = currentStatus[moduleName];
+		var diffNode = $m(moduleName, '.filesDiff');
+		var file = _.find(status[type], function(file) {
+			return file.name === fileName;
+		});
+		var fileDiffNode = _renderFileDiff(file, type);
+		diffNode.appendChild(fileDiffNode);
+		return fileDiffNode;
 	},
 	
 	_updateModuleBranch: function(moduleName, branch) {
@@ -375,39 +393,45 @@ var UI = {
 		}).join('');
 	},
 	
-	// FIXME: use event delegation
-	_addFileSelectionEvents: function(moduleName) {
-		var me = this;
-		var items = $$m(moduleName, '.fileList > li, .file');
-		items.forEach(function iterator(node) {
-			node.addEventListener('mousedown', function(e) {
-				if (!this.classList.contains('selected')) {
-					me.selectFile(this.dataset.name, this.dataset.type);
-				}
-			}, false);
-		});
-	},
-	
 	_addModuleControlEvents: function(moduleName) {
+		var me = this;
 		$m(moduleName, '.commitMessage').addEventListener('keydown', function(e) {
 			if (e.ctrlKey && e.keyCode === 13) {
 				commit();
 			}
 		});
-		$m(moduleName,'.stageButton').addEventListener('click', function(e) {
+		$m(moduleName, '.stageButton').addEventListener('click', function(e) {
 			commander.stageAll(_handleGitResponse);
 		});
-		$m(moduleName,'.unstageButton').addEventListener('click', function(e) {
+		$m(moduleName, '.unstageButton').addEventListener('click', function(e) {
 			commander.unstageAll(_handleGitResponse);
 		});
-		$m(moduleName,'.commitButton').addEventListener('click', commit);
-		$m(moduleName,'.pushButton').addEventListener('click', function(e) {
+		$m(moduleName, '.commitButton').addEventListener('click', commit);
+		$m(moduleName, '.pushButton').addEventListener('click', function(e) {
 			RemotePushDialog();
 		});
 		$m(moduleName, '.commitLog').addEventListener('click', function(e) {
 			if (e.target.matches('.commitLogHash')) {
 				External.openApp('gitk', ['--select-commit=' + e.target.textContent], currentModulePath);
 			}
+		});
+		function selectFileNode(e, selector) {
+			if (e.target === e.currentTarget) return;
+			var node = e.target;
+			while (!node.matches(selector)) {
+				node = node.parentNode;
+			}
+			if (!node.classList.contains('selected')) {
+				me.selectFile(node.dataset.name, node.dataset.type);
+			}
+		}
+		$$m(moduleName, '.fileList').forEach(function(node) {
+			node.addEventListener('mousedown', function(e) {
+				selectFileNode(e, '.fileList > li');
+			});
+		});
+		$m(moduleName, '.filesDiff').addEventListener('mousedown', function(e) {
+			selectFileNode(e, '.file');
 		});
 	}
 };

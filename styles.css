@@ -363,6 +363,12 @@ input, button, fieldset, textarea {
 .module h2:first-child {
 	margin-top: 0;
 }
+.file.unstaged {
+	order: 1;
+}
+.file.staged {
+	order: 2;
+}
 .unstagedTitle,
 .file.unstaged > label {
 	background-color: rgba(255, 0, 0, 0.3);
