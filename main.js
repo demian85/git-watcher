@@ -115,7 +115,7 @@ function openRepository(repositoryPath) {
 		});
 		gitWatcher.on('merge', function(data) {
 			log('Event: merge', data);
-			UI._updateModuleMergeMsg(data.module, data.msg);
+			UI.updateModuleMergeMsg(data.module, data.msg);
 		});
 	});
 	gitWatcher.init();
@@ -301,6 +301,13 @@ var UI = {
 		});
 	},
 	
+	updateModuleMergeMsg: function(moduleName, mergeMsg) {
+		var commitMessageInput = $m(moduleName, '.commitMessage');
+		if (!commitMessageInput.value && mergeMsg) {
+			commitMessageInput.value = mergeMsg;
+		}
+	},
+	
 	_scrollFileIntoView: function(fileNode) {
 		var y0 = fileNode.offsetTop,
 			y1 = y0 + fileNode.offsetHeight,
@@ -309,13 +316,6 @@ var UI = {
 			fileNode.scrollIntoView(true);
 		} else if (y1 > (parent.clientHeight + parent.scrollTop)) {
 			fileNode.scrollIntoView(false);
-		}
-	},
-	
-	_updateModuleMergeMsg: function(moduleName, mergeMsg) {
-		var commitMessageInput = $m(moduleName, '.commitMessage');
-		if (!commitMessageInput.value && mergeMsg) {
-			commitMessageInput.value = mergeMsg;
 		}
 	},
 	
