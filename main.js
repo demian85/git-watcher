@@ -108,7 +108,7 @@ function openRepository(repositoryPath) {
 		UI.showError(err);
 		throw err;
 	});
-	gitWatcher.on('ready', function() {
+	gitWatcher.once('ready', function() {
 		log('Event: ready');
 		UI.load();
 		gitWatcher.on('change', function(status) {
