@@ -389,7 +389,7 @@ var UI = {
 	
 	_updateModuleLog: function(moduleName, log) {
 		$m(moduleName, '.commitLog').innerHTML = log.map(function(item) {
-			return '<li><span class="commitLogHash">' + item.hash + '</span> ' + _.escape(item.subject) + '</li>';
+			return '<li title="' + _.escape(item.subject) +'"><span class="commitLogHash">' + item.hash + '</span> ' + _.escape(item.subject) + '</li>';
 		}).join('');
 	},
 	
