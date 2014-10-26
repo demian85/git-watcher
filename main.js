@@ -291,11 +291,6 @@ var UI = {
 	},
 	
 	updateGlobalLayout: function() {
-		if (config.diff.viewType === 'single') {
-			document.body.classList.add('singleFileViewMode');
-		} else {
-			document.body.classList.remove('singleFileViewMode');
-		}
 		$$('.commitLog').forEach(function(node) {
 			if (config.uiOptions.showCommitLog) {
 				node.classList.add('visible');
@@ -353,10 +348,10 @@ var UI = {
 	_updateModuleFilesDiff: function(moduleName) {
 		var status = currentStatus[moduleName];
 		var diffNode = $m(moduleName, '.filesDiff');
-		var fileCounter = 0;
+		var fileCounter = 0, maxFiles = config.diff.defaultMaxFiles || 1;
 		var documentFragment = document.createDocumentFragment();
 		function add(type) {
-			status[type].slice(0, 6 - fileCounter).map(function mapper(file) {
+			status[type].slice(0, maxFiles - fileCounter).map(function mapper(file) {
 				return _renderFileDiff(file, type);
 			}).forEach(function iterator(node) {
 				++fileCounter;

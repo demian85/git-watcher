@@ -61,7 +61,7 @@ Current config file structure EXAMPLE:
 	"defaultRepository": "~/www/myproject",    // default git repository to load on startup
 	"debugMode": false,    // enable debugging
 	"diff": {
-		"viewType": "multiple",		// view mode can be 'single' or 'multiple'
+		"defaultMaxFiles": 6,		// maximum number of files to display by default (too many files may slow down application)
 		"contextLines": 4,
 		"ignoreEolWhitespace": true,
 		"highlight": {

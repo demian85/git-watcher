@@ -355,11 +355,11 @@ var AppMenus = {
 		});
 		this.items['optionsMultipleFileView'] = new gui.MenuItem({
 			type: 'checkbox',
-			checked: config.diff.viewType === 'multiple',
+			checked: config.diff.defaultMaxFiles > 1,
 			label: 'Multiple files view',
 			click: function() {
-				config.diff.viewType = this.checked ? 'multiple' : 'single';
-				UI.updateGlobalLayout();
+				config.diff.defaultMaxFiles = this.checked ? 6 : 1;
+				updateGlobalStatus();
 			}
 		});
 		this.items['optionsShowCommitLog'] = new gui.MenuItem({

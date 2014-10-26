@@ -2,7 +2,7 @@
 	"defaultRepository": "",
 	"debugMode": false,
 	"diff": {
-		"viewType": "multiple",
+		"defaultMaxFiles": 6,
 		"contextLines": 3,
 		"ignoreEolWhitespace": false,
 		"highlight": {
