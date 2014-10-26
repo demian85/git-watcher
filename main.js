@@ -332,13 +332,13 @@ var UI = {
 		} : null;
 		function update(type) {
 			var listNode = $m(moduleName, '.' + type + 'Files');
-			listNode.innerHTML = '';
 			var documentFragment = document.createDocumentFragment();
 			status[type].map(function mapper(file) {
 				return _renderFileListItem(file, type);
 			}).forEach(function iterator(node) {
 				documentFragment.appendChild(node);
 			});
+			listNode.innerHTML = '';
 			listNode.appendChild(documentFragment);
 		}
 		update('unstaged');
