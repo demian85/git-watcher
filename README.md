@@ -123,8 +123,7 @@ I'm working on the following features
 * Delete, edit and add remotes
 * More configuration options
 * Better syntax highlighting
-* Hooks/tools: allow to add external commands to interact with branches or files.
-* Performance improvements for large list of files.
+* Hooks: allow to add external commands to interact with branches or files.
 
 ## Create your own build
 
