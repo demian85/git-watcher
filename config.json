@@ -37,6 +37,7 @@
 		"repositoryOpen": "ctrl+shift o",
 		"repositoryClose": "ctrl+shift c",
 		"repositorySubmoduleUpdate": "ctrl+shift u",
+		"repositorySubmoduleUpdateRecursive": "ctrl+shift r",
 		"repositoryExplore": "ctrl+shift e",
 		"repositoryBrowse": "ctrl+shift k",
 		"repositoryRefresh": "F5",

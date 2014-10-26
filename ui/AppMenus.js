@@ -86,7 +86,7 @@ var AppMenus = {
 			label: 'Submodule update', 
 			icon: 'icons/submodule-update.png',
 			click: function() {
-				commander.submoduleUpdate(file, _handleGitResponse);
+				commander.submoduleUpdate(file, false, _handleGitResponse);
 			}
 		});
 		items['checkoutTheirs'] = new gui.MenuItem({
@@ -199,7 +199,15 @@ var AppMenus = {
 			key: shortcut('repositorySubmoduleUpdate').key,
 			modifiers: shortcut('repositorySubmoduleUpdate').modifiers,
 			click: function() {
-				commander.submoduleUpdate(null, _handleGitResponse);
+				commander.submoduleUpdate(null, false, _handleGitResponse);
+			}
+		});
+		this.items['repositorySubmoduleUpdateRecursive'] = new gui.MenuItem({
+			label: 'Submodule update (recursive)',
+			key: shortcut('repositorySubmoduleUpdateRecursive').key,
+			modifiers: shortcut('repositorySubmoduleUpdateRecursive').modifiers,
+			click: function() {
+				commander.submoduleUpdate(null, true, _handleGitResponse);
 			}
 		});
 		this.items['repositoryExplore'] = new gui.MenuItem({
@@ -388,6 +396,7 @@ var AppMenus = {
 		this.menus.repository.append(this.items['repositoryRefresh']);
 		this.menus.repository.append(new gui.MenuItem({type: 'separator'}));
 		this.menus.repository.append(this.items['repositorySubmoduleUpdate']);
+		this.menus.repository.append(this.items['repositorySubmoduleUpdateRecursive']);
 		this.menus.repository.append(this.items['repositoryExplore']);
 		this.menus.repository.append(this.items['repositoryBrowse']);
 		this.menus.repository.append(new gui.MenuItem({type: 'separator'}));
@@ -505,6 +514,7 @@ var AppMenus = {
 		this.items['repositoryBrowse'].enabled = enabled;
 		this.items['repositoryRefresh'].enabled = enabled;
 		this.items['repositorySubmoduleUpdate'].enabled = enabled;
+		this.items['repositorySubmoduleUpdateRecursive'].enabled = enabled;
 		
 		this.items['branchMenu'].enabled = enabled;
 		this.items['commitMenu'].enabled = enabled;

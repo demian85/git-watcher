@@ -96,6 +96,7 @@ Current config file structure EXAMPLE:
 		"repositoryOpen": "ctrl+shift o",
 		"repositoryClose": "ctrl+shift c",
 		"repositorySubmoduleUpdate": "ctrl+shift u",
+		"repositorySubmoduleUpdateRecursive": "ctrl+shift r",
 		"repositoryExplore": "ctrl+shift e",
 		"repositoryBrowse": "ctrl+shift k",
 		"repositoryRefresh": "F5",	// F1-F11 keys are allowed. F12 is reserved for devtools
