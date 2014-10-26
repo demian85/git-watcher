@@ -20,13 +20,14 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 * System Tray support
 * Support for custom tools (external commands)
 
-## Screenshots (v0.5.0)
-![Overview 1](http://i.imgur.com/D84jkKK.png)
-![Overview 2](http://i.imgur.com/foXpFd7.png)
-![Overview 3](http://i.imgur.com/PMqHodV.png)
-![Overview 4](http://i.imgur.com/ps73SBC.png)
-![Overview 5](http://i.imgur.com/iZAVXyq.png)
-![Overview 6](http://i.imgur.com/vaZfPpz.png)
+## Screenshots (v0.5.5)
+![Overview 1](http://i.imgur.com/n3rsGgi.png)
+![Overview 2](http://i.imgur.com/WJdDe2D.png)
+![Overview 3](http://i.imgur.com/kO2v4Yl.png)
+![Overview 4](http://i.imgur.com/7Ogiptt.png)
+![Overview 5](http://i.imgur.com/kS9MiD5.png)
+![Overview 6](http://i.imgur.com/52V7PqS.png)
+![Overview 7](http://i.imgur.com/s9VuDdQ.png)
 
 ## Download
 
