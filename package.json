@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "async": "0.9.x",
-    "git-utils": "2.1.x",
+    "git-utils": "3.0.x",
     "json-toolkit": "1.1.x",
     "lodash": "^2.4.1",
     "mime-types": "1.0.x"
