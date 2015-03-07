@@ -13,7 +13,8 @@
     "tool",
     "commit",
     "push",
-    "realtime"
+    "realtime",
+    "nw.js"
   ],
   "description": "Git GUI desktop app that shows real-time diff file information for working directory and index",
   "contributors": [
