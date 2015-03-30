@@ -31,6 +31,8 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 
 ## Download
 
+* [Latest build Linux x64 v0.6.0 (nw.js v0.12.0)](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-v0.6.0.tar.gz)
+
 Please consider downloading the proper build according to your distribution. 
 See __Troubleshooting__ if you cannot run the app.
 
@@ -142,7 +144,7 @@ Then:
 
 * Clone repo and run `npm install` or just run `npm install gitw`.
 * Install *nw-gyp*: `npm install -g nw-gyp`.
-* Rebuild *git-utils* dependency based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.10.4`.
+* Rebuild *git-utils* dependency based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.12.0`.
 * Run the app! `/opt/node-webkit/nw /path/to/gitw`.
 
 Also, you will find two helper scripts: `build.sh` and `build-new.sh`. Those creates distributable packages for Linux. It asumes you have node-webkit installed on `/opt/node-webkit`.
