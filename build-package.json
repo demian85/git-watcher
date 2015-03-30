@@ -1,6 +1,6 @@
 {
   "name": "gitw",
-  "version": "0.5.5",
+  "version": "0.6.0",
   "author": {
     "name": "Demián Rodriguez",
     "email": "demian85@gmail.com"
@@ -12,7 +12,8 @@
     "tool",
     "commit",
     "push",
-    "realtime"
+    "realtime",
+    "nw.js"
   ],
   "description": "Git GUI desktop app that shows real-time diff file information for working directory and index",
   "repository": {
