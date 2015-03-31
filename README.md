@@ -33,15 +33,14 @@ In my opinion, the native git gui app is awful and lacks a lot of features. This
 
 * [Latest build Linux x64 v0.6.0 (nw.js v0.12.0)](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-v0.6.0.tar.gz)
 
-Please consider downloading the proper build according to your distribution. 
-See __Troubleshooting__ if you cannot run the app.
+__Previous versions__
 
-* Linux x64 - __Old dists__: Ubuntu 12.04, 12.10 or derivative distributions
-	* [v0.5.5](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-v0.5.5.tar.gz)
-	* [v0.5.4](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-v0.5.4.tar.gz)
-* Linux x64 - __New dists__: Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
-	* [v0.5.5](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-new-v0.5.5.tar.gz)
-	* [v0.5.4](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-new-v0.5.4.tar.gz)
+Please consider downloading the proper build according to your distribution. See **Troubleshooting** if you cannot run the app.
+
+* Ubuntu 12.04, 12.10 or derivative distributions
+    * [Linux x64 v0.5.5](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-v0.5.5.tar.gz)
+* Ubuntu 13.04+, Gentoo, Arch, Fedora 18+
+    * [Linux x64 v0.5.5](https://bitbucket.org/demian85/git-watcher/downloads/gitw-linux-x64-new-v0.5.5.tar.gz)
 
 **Someone please help me to create Windows & Mac binaries!**
 
@@ -136,8 +135,8 @@ Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) fo
 
 Requirements:
 
-* [NodeJS >= 0.11](http://nodejs.org/download/)
-* [node-webkit >= 0.10](https://github.com/rogerwang/node-webkit#downloads). Download and extract its contents in `/opt/node-webkit`.
+* [NodeJS >= 0.12](http://nodejs.org/download/)
+* [node-webkit >= 0.12](https://github.com/rogerwang/node-webkit#downloads). Download and extract its contents in `/opt/node-webkit`.
 
 
 Then:
@@ -147,7 +146,7 @@ Then:
 * Rebuild *git-utils* dependency based on the node-webkit version you are running. Eg: `cd node_modules/git-utils && nw-gyp rebuild --target=0.12.0`.
 * Run the app! `/opt/node-webkit/nw /path/to/gitw`.
 
-Also, you will find two helper scripts: `build.sh` and `build-new.sh`. Those creates distributable packages for Linux. It asumes you have node-webkit installed on `/opt/node-webkit`.
+Also, you will find two helper scripts: `build.sh` and `build-new.sh` (deprecated). Those creates distributable packages for Linux. It asumes you have node-webkit installed on `/opt/node-webkit`.
 
 ## Troubleshooting
 
