@@ -390,13 +390,15 @@ var UI = {
 	
 	_addModuleControlEvents: function(moduleName) {
 		var me = this;
-		$m(moduleName, '.commitMessage').addEventListener('keydown', function(e) {
+		var commitMessageInput = $m(moduleName, '.commitMessage');
+		commitMessageInput.addEventListener('keydown', function(e) {
 			if (e.ctrlKey && e.keyCode === 13) {
 				commit();
 			}
 		});
 		$m(moduleName, '.stageButton').addEventListener('click', function(e) {
 			commander.stageAll(_handleGitResponse);
+			commitMessageInput.focus();
 		});
 		$m(moduleName, '.unstageButton').addEventListener('click', function(e) {
 			commander.unstageAll(_handleGitResponse);
