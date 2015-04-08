@@ -450,7 +450,7 @@ input, button, fieldset, textarea {
 	flex: 1 1 auto;
 }
 .controlPanel > button {
-	flex: 1 1 auto;
+	flex: 0 0 auto;
 	padding: 0.3rem 0.5rem 0.3rem 27px;
 	background-position: 2px center;
 	background-repeat: no-repeat;
