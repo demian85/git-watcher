@@ -30,14 +30,14 @@ var AppMenus = {
 		var items = Object.create(null);
 		
 		items['stage'] = new gui.MenuItem({
-			label: 'Stage file', 
+			label: ' Stage file',
 			icon: 'icons/stage.png',
 			click: function() {
 				commander.stageFile(file, _handleGitResponse);
 			}
 		});
 		items['unstage'] = new gui.MenuItem({
-			label: 'Unstage file', 
+			label: ' Unstage file',
 			icon: 'icons/unstage.png',
 			click: function() {
 				commander.unstageFile(file, _handleGitResponse);
@@ -45,14 +45,14 @@ var AppMenus = {
 		});
 		if (line !== null) {
 			items['stageHunk'] = new gui.MenuItem({
-				label: 'Stage hunk', 
+				label: ' Stage hunk',
 				icon: 'icons/stage.png',
 				click: function() {
 					commander.stageHunk(file, line, _handleGitResponse);
 				}
 			});
 			items['unstageHunk'] = new gui.MenuItem({
-				label: 'Unstage hunk', 
+				label: ' Unstage hunk',
 				icon: 'icons/unstage.png',
 				click: function() {
 					commander.unstageHunk(file, line, _handleGitResponse);
@@ -60,14 +60,14 @@ var AppMenus = {
 			});
 			if (line.type !== null) {
 				items['stageLine'] = new gui.MenuItem({
-					label: 'Stage line ' + line.number, 
+					label: ' Stage line ' + line.number,
 					icon: 'icons/stage.png',
 					click: function() {
 						commander.stageLine(file, line, _handleGitResponse);
 					}
 				});
 				items['unstageLine'] = new gui.MenuItem({
-					label: 'Unstage line ' + line.number, 
+					label: ' Unstage line ' + line.number,
 					icon: 'icons/unstage.png',
 					click: function() {
 						commander.unstageLine(file, line, _handleGitResponse);
@@ -76,63 +76,63 @@ var AppMenus = {
 			}
 		}
 		items['revert'] = new gui.MenuItem({
-			label: 'Revert changes', 
+			label: ' Revert changes',
 			icon: 'icons/revert.png',
 			click: function() {
 				commander.revertFile(file, _handleGitResponse);
 			}
 		});
 		items['submoduleUpdate'] = new gui.MenuItem({
-			label: 'Submodule update', 
+			label: ' Submodule update',
 			icon: 'icons/submodule-update.png',
 			click: function() {
 				commander.submoduleUpdate(file, false, _handleGitResponse);
 			}
 		});
 		items['checkoutTheirs'] = new gui.MenuItem({
-			label: 'Checkout theirs', 
+			label: ' Checkout theirs',
 			icon: 'icons/checkout-theirs.png',
 			click: function() {
 				commander.checkoutTheirs(file, _handleGitResponse);
 			}
 		});
 		items['checkoutOurs'] = new gui.MenuItem({
-			label: 'Checkout ours', 
+			label: ' Checkout ours',
 			icon: 'icons/checkout-ours.png',
 			click: function() {
 				commander.checkoutOurs(file, _handleGitResponse);
 			}
 		});
 		items['open'] = new gui.MenuItem({
-			label: 'Open file', 
+			label: ' Open file',
 			icon: 'icons/open-file.png',
 			click: function() {
 				External.openFile(file);
 			}
 		});
 		items['delete'] = new gui.MenuItem({
-			label: 'Delete file', 
+			label: ' Delete file',
 			icon: 'icons/delete.png',
 			click: function() {
 				commander.removeFileFromDisk(file, _handleGitResponse);
 			}
 		});
 		items['viewHistory'] = new gui.MenuItem({
-			label: 'View file history', 
+			label: ' View file history',
 			icon: 'icons/view-history.png',
 			click: function() {
 				External.openGitk(currentModulePath, file);
 			}
 		});
 		items['blame'] = new gui.MenuItem({
-			label: 'Blame', 
+			label: ' Blame',
 			icon: 'icons/view-history.png',
 			click: function() {
 				External.openGitBlame(currentModulePath, file, line ? line.number : null);
 			}
 		});
 		items['stats'] = new gui.MenuItem({
-			label: 'Statistics', 
+			label: ' Statistics',
 			icon: 'icons/statistics.png',
 			click: function() {
 				FileStatisticsDialog(file);
