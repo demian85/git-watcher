@@ -136,7 +136,7 @@ Please read [node-webkit wiki](https://github.com/rogerwang/node-webkit/wiki) fo
 Requirements:
 
 * [NodeJS >= 0.12](http://nodejs.org/download/)
-* [node-webkit >= 0.12](https://github.com/rogerwang/node-webkit#downloads). Download and extract its contents in `/opt/node-webkit`.
+* [nw.js >= 0.12](https://github.com/rogerwang/node-webkit#downloads). Download and extract its contents in `/opt/node-webkit`.
 
 
 Then:
